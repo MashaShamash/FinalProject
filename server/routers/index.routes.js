@@ -9,7 +9,7 @@ const figureRouter = require('./api/figure.routes');
 
 
 
-router.use('/fugures', figureRouter);
+router.use('/figures', figureRouter);
 router.use('/categories',categoryRouter);
 router.use('/auth', authRouter);
 router.use('/tokens', tokensRouter);
