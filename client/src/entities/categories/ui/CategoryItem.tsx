@@ -9,16 +9,16 @@ type CategoryItemProps = {
 function CategoryItem({ category }: CategoryItemProps): JSX.Element {
   const dispatch = useAppDispatch();
   const [active, setActive] = useState(false);
-  const onHadleDelete = (): void => {
-    void dispatch(removeCategoryThunk(category.id));
-  };
+  // const onHadleDelete = (): void => {
+  //   void dispatch(removeCategoryThunk(category.id));
+  // };
   return (
     <div>
       <h3>{category.title}</h3>
-      <h3>{category.img}</h3>
+      <img src={category.img} alt="" />
       <div>
-        <button onClick={onHadleDelete}>удалить</button>
-        <button onClick={() => setActive((prev) => !prev)}>изменить</button>
+        {/* <button onClick={onHadleDelete}>удалить</button>
+        <button onClick={() => setActive((prev) => !prev)}>изменить</button> */}
         {/* {active && <FormUpdateCategories movie={category} />} */}
       </div>
     </div>
