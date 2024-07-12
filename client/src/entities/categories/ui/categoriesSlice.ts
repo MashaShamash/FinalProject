@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import CategoryApi from "./api/categoryApi"
-import { Movie, CategoryId, CategoryWithoutIdAndUserId } from "./types/categoryTypes"
+import { Category, CategoryId, CategoryWithoutIdAndUserId } from "./types/categoryTypes"
 
 
 
