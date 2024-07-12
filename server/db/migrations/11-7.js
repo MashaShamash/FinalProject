@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       date: {
-        type: Sequelize.DATE
+        type: Sequelize.TEXT
       },
       img: {
         type: Sequelize.TEXT
@@ -21,7 +21,7 @@ module.exports = {
       materials: {
         type: Sequelize.TEXT
       },
-      heigth: {
+      height: {
         type: Sequelize.INTEGER
       },
       price: {
@@ -52,12 +52,14 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        allowNull: true,
+        type: Sequelize.DATE,
+        defaultValue: new Date()
       },
       updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
+        allowNull: true,
+        type: Sequelize.DATE,
+        defaultValue: new Date()
       }
     });
   },
