@@ -1,8 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
+import categorySlice from '../../entities/categories/categoriesSlice';
 
 const store = configureStore({
   reducer: {
+    categories: categorySlice.reducer,
    
 
   },
