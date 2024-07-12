@@ -2,9 +2,13 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const removeHeaders = require('./middleware/removeHeaders');
-const app = express();
-const PORT = process.env.PORT;
 
+const path = require('path')
+require('dotenv').config()
+const PORT= process.env.PORT
+
+
+const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

@@ -10,6 +10,7 @@ function AppRoutes(): JSX.Element {
       <Route path='/signUp'/> 
       <Route path='/profile'/> 
       <Route path='/categories' element={<CategoryPage />}/> 
+
     </Routes>
   );
 }
