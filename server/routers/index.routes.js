@@ -5,9 +5,11 @@ const userRouter = require('./api/user.routes');
 const authRouter = require('./api/auth.routes');
 const tokensRouter = require('./api/tokens.routes')
 const categoryRouter = require('./api/category.routes');
+const figureRouter = require('./api/fugure.routes');
 
 
 
+router.use('/fugures', figureRouter);
 router.use('/categories', categoryRouter);
 router.use('/users', userRouter);
 router.use('/auth', authRouter);
