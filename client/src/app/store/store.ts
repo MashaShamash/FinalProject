@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
 import categorySlice from '../../entities/categories/categoriesSlice';
-
+import authSlice from '../../entities/auth/authSlice';
 const store = configureStore({
   reducer: {
     categories: categorySlice.reducer,
-   
-
+    auth: authSlice.reducer
   },
 });
 

@@ -4,6 +4,8 @@ import React, { useEffect } from 'react';
 import './App.css';
 import { useAppDispatch } from './store/store';
 import { getCategoriesThunk } from '../entities/categories/categoriesSlice';
+import Navbar from '../widgets/Navbar/Navbar';
+
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -14,6 +16,7 @@ function App(): JSX.Element {
 
   return (
     <div>
+      <Navbar />
       <h1>Hay</h1>
     </div>
   );

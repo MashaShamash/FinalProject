@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import CategoryPage from '../../page/CategoryPage/CategoryPage';
 
-type AppRoutesProps = {};
 function AppRoutes(): JSX.Element {
   return (
     <Routes>
