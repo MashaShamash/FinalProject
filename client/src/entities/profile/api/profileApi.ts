@@ -1,6 +1,8 @@
 import type { AxiosResponse } from 'axios';
 import axios from 'axios';
-import type { Profile } from '../types/profileTypes';
+import type { Profile, ProfileWithoutId } from '../types/profileTypes';
+import type { UserId } from '../../auth/types/userTypes';
+import axiosInstance from '../../../services/axiosInstance';
 
 const profileRequest = axios.create({ baseURL: '/api/profile' });
 
@@ -13,6 +15,14 @@ class ProfileApi {
     } catch (error) {
       throw new Error('Ошибка');
     }
+  };
+
+  static updateProfile = async (obj: { id: UserId; body: ProfileWithoutId }): Promise<Profile> => {
+    const response: AxiosResponse<{ profile: Profile }> = await axiosInstance.put(
+      `/profile/${obj.id}`,
+      obj.body,
+    );
+    return response.data.profile;
   };
 }
 export default ProfileApi;

@@ -14,3 +14,5 @@ router.get('/', async (req, res) => {
       res.json({ error: message });
     }
   });
+
+  module.exports = router;
