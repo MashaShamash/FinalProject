@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const { Profile } = require("../../db/models");
 
-router.get("/profileId", async (req, res) => {
+router.get("/:profileId", async (req, res) => {
   try {
     const { profileId } = req.params;
     const profUser = await Profile.findOne({ where: { id: profileId } });
@@ -11,7 +11,7 @@ router.get("/profileId", async (req, res) => {
   }
 });
 
-router.post("/profile", verifyAccessTokenasync, async (req, res) => {
+router.post("/", async (req, res) => {
   try {
     const { user } = res.locals;
     const { pseudonym, activity, biography } = req.body;
@@ -35,7 +35,7 @@ router.put("/:profileId", async (req, res) => {
   try {
     const { user } = res.locals;
     const { profileId } = req.params;
-    const { pseudonym, activity, biography, userId } = req.body;
+    const { pseudonym, activity, biography} = req.body;
     const result = await Profile.update(
       { pseudonym, activity, biography },
       { where: { id: profileId, userId: user.id } }
@@ -48,3 +48,4 @@ router.put("/:profileId", async (req, res) => {
     res.status(500).json({ error: message });
   }
 });
+module.exports = router;
