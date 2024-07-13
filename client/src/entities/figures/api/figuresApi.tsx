@@ -6,7 +6,6 @@ class FigureApi {
   static getAllFigure = async (): Promise<Figure[]> => {
     const response: AxiosResponse<{ message: string; figures: Figure[] }> =
       await axiosInstance.get('/figures');
-    console.log("7777777777777777777777777777", response.data.figures);
 
     return response.data.figures;
   };

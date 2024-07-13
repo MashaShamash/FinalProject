@@ -19,7 +19,6 @@ function App(): JSX.Element {
   return (
     <div>
       <Navbar />
-      <h1>Hay</h1>
       <AppRoutes />
     </div>
   );

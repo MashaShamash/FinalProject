@@ -34,7 +34,6 @@ const figureSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getFiguresThunk.fulfilled, (state, action) => {
-        console.log("33333333333333", action.payload);
 
         state.figures = action.payload;
       })
