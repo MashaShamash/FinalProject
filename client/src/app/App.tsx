@@ -1,27 +1,26 @@
 import React, { useEffect } from 'react';
-// import reactLogo from './assets/react.svg';
-// import elbrusLogo from './assets/elbrus.svg';
-// import './App.css';
+// // import './App.css';
+import { useAppDispatch } from './store/store';
+import { getCategoriesThunk } from '../entities/categories/categoriesSlice';
 import Navbar from '../widgets/Navbar/Navbar';
 import AppRoutes from './provider/AppRoutes';
-import { useAppDispatch } from './store/store';
 import { getRefreshTokensThunk } from '../entities/auth/authSlice';
+import { getFiguresThunk } from '../entities/figures/figuresSlice';
 
 function App(): JSX.Element {
 
     const dispatch = useAppDispatch()
 
-    
-useEffect(() => {
-  void dispatch(getRefreshTokensThunk())
-},[])
-
+  useEffect(() => {
+    void dispatch(getRefreshTokensThunk())
+    void dispatch(getCategoriesThunk());
+    void dispatch(getFiguresThunk());
+  }, [dispatch]);
 
   return (
     <div>
       <Navbar />
       <AppRoutes />
-      <h1>Hay</h1>
     </div>
   );
 }

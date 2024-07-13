@@ -1,0 +1,11 @@
+.categoryDiv {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none; /* для Firefox */
+  -ms-overflow-style: none; /* для Internet Explorer и Edge */
+}
+
+.categoryDiv::-webkit-scrollbar {
+  display: none; /* для Chrome, Safari и Opera */
+}

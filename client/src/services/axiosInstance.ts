@@ -1,10 +1,8 @@
+import type { AxiosError } from 'axios';
+import axios from 'axios';
 
-import axios, { AxiosError } from "axios";
-import { StoreType } from "../app/store/store";
 import { User } from "../entities/auth/types/userTypes";
-
-
-
+import { StoreType } from '../app/store/store';
 
 let store: StoreType;
 
@@ -13,7 +11,7 @@ export const injectStore = (_store: StoreType): void => {
 };
 
 const axiosInstance = axios.create({
-  baseURL: "/api",
+  baseURL: '/api',
   withCredentials: true,
 });
 
@@ -31,23 +29,21 @@ axiosInstance.interceptors.response.use(
   async (err: AxiosError & { config: { sent?: boolean; url?: string } }) => {
     const prevRequest = err.config; // необходимо чтобы понять что это второй запрос
     // предотвращает зацикливание запроса если в cookie нет refresh либо истек срок его действия
-    if (prevRequest.url?.endsWith("/tokens/refresh")) {
+    if (prevRequest.url?.endsWith('/tokens/refresh')) {
       return Promise.reject(err);
     }
     if (err.response?.status === 403 && !prevRequest.sent) {
       prevRequest.sent = true;
       const {
         data: { accessToken },
-      } = await axiosInstance<{
-        message: "success";
-        user: User; // Подтянуть
-        accessToken: string;
-      }>("/tokens/refresh");
+      } = await axiosInstance<{ message: 'success'; user: User; accessToken: string }>(
+        '/tokens/refresh',
+      );
       prevRequest.headers.Authorization = `Bearer ${accessToken}`;
       return axiosInstance(prevRequest);
     }
     return Promise.reject(err);
-  }
+  },
 );
 
 export default axiosInstance;
