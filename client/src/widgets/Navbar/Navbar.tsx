@@ -8,7 +8,7 @@ function Navbar(): JSX.Element {
     <div className="Navbar">
       <ul>
         <li>
-          <NavLink to="/">главная</NavLink>
+          <NavLink to="/categories">главная</NavLink>
         </li>
         <li>
           <NavLink to="/figures">картины</NavLink>
