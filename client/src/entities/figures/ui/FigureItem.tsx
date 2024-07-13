@@ -1,32 +1,37 @@
 import React, { useState } from 'react';
-// import { useAppDispatch } from '../../../app/store/store';
-import { removeFigureThunk } from '../figuresSlice';
-import type { Figure } from '../types/figureTypes';
+import { FcLikePlaceholder, FcLike } from 'react-icons/fc';
 import './figure.css';
+import type { Figure } from '../types/figureTypes';
 
 type FigureItemProps = {
   figure: Figure;
 };
+
 function FigureItem({ figure }: FigureItemProps): JSX.Element {
-  //   const dispatch = useAppDispatch();
-  const [active, setActive] = useState(false);
-  // const onHadleDelete = (): void => {
-  //   void dispatch(removeCategoryThunk(category.id));
-  // };
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  const handleFavorite = () => {
+    if (favorites.includes(figure.id)) {
+      setFavorites(favorites.filter((id) => id !== figure.id));
+    } else {
+      setFavorites([...favorites, figure.id]);
+    }
+  };
+
   return (
     <div className="figureCard">
       <img src={figure.img} alt="" />
       <h3>{figure.title}</h3>
-      {/* <h3>{figure.date}</h3> */}
       <p>{figure.materials}</p>
       <p>{figure.height}</p>
       <h3>{figure.price}</h3>
       <p>{figure.width}</p>
       <p>{figure.sell}</p>
+      <button type="button" onClick={handleFavorite}>
+        {favorites.includes(figure.id) ? <FcLike /> : <FcLikePlaceholder />}
+      </button>
       <div>
-        {/* <button onClick={onHadleDelete}>удалить</button>
-        <button onClick={() => setActive((prev) => !prev)}>изменить</button> */}
-        {/* {active && <FormUpdateCategories movie={category} />} */}
+        <button>покупаю!</button>
       </div>
     </div>
   );

@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
-
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../app/store/store';
 import FigureItem from '../../entities/figures/ui/FigureItem';
-import './FigureDiv.css'
+import LikePage from '../LikePage/LikePage';
+import './FigureDiv.css';
 
 function FigurePage(): JSX.Element {
   const { figures } = useSelector((state: RootState) => state.figures);
-  // const [active, setActive] = useState(false)
-  console.log(11111, figures);
+  // const [likedFigures, setLikedFigures] = useState<{ figureId: string }[]>([]);
 
   return (
-    <div className='figureDiv'>
-      {/* <button onClick={()=>setActive((prev)=>!prev)}>
-           добавить фильм
-          </button>
-          {active &&
-            <FormAddCategory/>
-          } */}
+    <div className="figureDiv">
       {figures &&
-        figures.map((figure) => <FigureItem figure={figure} key={figure.id} />)}
+        figures.map((figure) => (
+          <FigureItem
+            figure={figure}
+            // like={likedFigures}
+            // setLikes={setLikedFigures}
+            key={figure.id}
+          />
+        ))}
+      {/* <LikePage likedFigures={likedFigures} setLikes={setLikedFigures} /> */}
     </div>
   );
 }

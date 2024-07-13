@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './Navbar.css';
+import { PiBasketThin } from 'react-icons/pi';
 
 function Navbar(): JSX.Element {
   let user;
@@ -12,6 +13,14 @@ function Navbar(): JSX.Element {
         </li>
         <li>
           <NavLink to="/figures">картины</NavLink>
+        </li>
+        <li>
+          <NavLink to="/basket">
+            <PiBasketThin style={{ width: '30px' }} />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/figures">купить</NavLink>
         </li>
         {user ? (
           <li>
@@ -27,13 +36,16 @@ function Navbar(): JSX.Element {
             </li>
           </>
         )}
+
+        <li>
+          <NavLink to="/like">избранное</NavLink>
+        </li>
+
         {user ? (
           <li>
             <NavLink to="/profile">личный кабинет</NavLink>
           </li>
-        ) : (
-          null
-        )}
+        ) : null}
       </ul>
     </div>
   );
