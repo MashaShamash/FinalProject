@@ -2,6 +2,8 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const morgan = require('morgan')
 const removeHeaders = require('./middleware/removeHeaders');
+const path = require('path');
+require('dotenv').config();
 
 const app = express();
 

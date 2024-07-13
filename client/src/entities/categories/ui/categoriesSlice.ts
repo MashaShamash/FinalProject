@@ -1,11 +1,11 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import CategoryApi from "./api/categoryApi"
-import { Category, CategoryId, CategoryWithoutIdAndUserId } from "./types/categoryTypes"
+// import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+// import CategoryApi from "./api/categoryApi"
+// import { Category, CategoryId, CategoryWithoutIdAndUserId } from "./types/categoryTypes"
 
 
 
 
-const categorySlice =({})
+// const categorySlice =({})
 
 
-export default categorySlice
+// export default categorySlice

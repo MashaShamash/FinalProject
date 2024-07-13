@@ -1,18 +1,20 @@
 require('dotenv').config();
 const { User } = require('../db/models');
 const jwt = require('jsonwebtoken');
+
+
 async function verifyAccessToken(req, res, next) {
   try {
     // проверяем заголовок на наличие токена
     const accessToken = req.headers.authorization.split(' ')[1];
     const { user } = jwt.verify(accessToken, process.env.ACCESS_TOKEN);
 
-    user = await User.findOne({
-        where: { id: user.id },
-        attributes: ["id", "name", "email"],
-      });
+    // user = await User.findOne({
+    //     where: { id: user.id },
+    //     attributes: ["id", "name",'lastName', "email"],
+    //   });
   
-
+      console.log(111111111113,user);
     res.locals.user = user;
 
     next();
