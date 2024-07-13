@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import { PiBasketThin } from 'react-icons/pi';
 import { useAppDispatch, useAppSelector } from '../../app/store/store';
 import { getLogoutThunk } from '../../entities/auth/authSlice';
 import ModalWindow from '../../shared/ui/Modal/Modal';
 import RegistrationPage from '../../page/AuthPage/RegistrationPage';
 import AuthorizationPage from '../../page/AuthPage/AuthorizationPage';
 import ModalWindowRego from '../../shared/ui/Modal/ModalRego';
+
 
 function Navbar(): JSX.Element {
 
@@ -33,6 +35,14 @@ function Navbar(): JSX.Element {
         <li>
           <NavLink to="/figures">картины</NavLink>
         </li>
+        <li>
+          <NavLink to="/basket">
+            <PiBasketThin style={{ width: '30px' }} />
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/figures">купить</NavLink>
+        </li>
         {user ? (
           <>
           <li>
@@ -41,6 +51,9 @@ function Navbar(): JSX.Element {
           <li>
           <NavLink to="/profile">личный кабинет</NavLink>
           </li>
+          <li>
+          <NavLink to="/like">избранное</NavLink>
+        </li>
           </>
         ) : (
           <>
