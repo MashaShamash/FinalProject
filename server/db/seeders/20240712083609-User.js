@@ -10,7 +10,7 @@ async function getAllUser () {
         const newArrUser = []
       
         parsGetReadFile.map( (el) => {
-          newArrUser.push({id: el.id, name: el.name, lastName: el.lastName,email: el.email, password: el.password})
+          newArrUser.push({name: el.name, lastName: el.lastName,email: el.email, password: el.password})
         })
        
       return newArrUser

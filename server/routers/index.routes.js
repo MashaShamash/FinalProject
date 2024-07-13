@@ -7,6 +7,7 @@ const figureRouter = require("./api/figure.routes");
 const likeRouter = require("./api/like.routes");
 const profileRouter = require("./api/profile.routes");
 
+
 router.use("/figures", figureRouter);
 router.use("/categories", categoryRouter);
 router.use("/auth", authRouter);
@@ -15,3 +16,5 @@ router.use("/like", likeRouter);
 router.use("/profile", profileRouter);
 
 module.exports = router;
+
+

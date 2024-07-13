@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { User, UserWithoutIdWithPassword, UserWithoutNameAndLastName } from "./types/userTypes";
-import AuthApi from "./api/AuthApi";
+
+import AuthApi from "../entities/auth/api/AuthApi";
+import { User, UserWithoutIdWithPassword, UserWithoutName } from "../entities/auth/types/userTypes";
+
 
 
 
@@ -20,7 +22,7 @@ const initialState: initialStateType = {
 
 export const getRegistrationThunk = createAsyncThunk('registration/user', (body:UserWithoutIdWithPassword) => AuthApi.registration(body))
 
-export const getAuthorizationThunk = createAsyncThunk('authorization/user', (body:UserWithoutNameAndLastName) => AuthApi.authorization(body))
+export const getAuthorizationThunk = createAsyncThunk('authorization/user', (body:UserWithoutName) => AuthApi.authorization(body))
 
 export const getRefreshTokensThunk = createAsyncThunk('refreshTokens/user', () => AuthApi.refreshTokens())
 
