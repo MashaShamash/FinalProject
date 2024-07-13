@@ -1,0 +1,22 @@
+.figureCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    padding: 10px;
+    margin: 30px;
+    font-size: 12px;
+  }
+  .figureCard img {
+    width:50%;
+  }
+  p{
+      margin: auto 0;
+  }
+
+.CategoriesParams {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }

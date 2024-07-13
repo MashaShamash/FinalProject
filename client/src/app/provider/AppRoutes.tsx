@@ -5,6 +5,7 @@ import AuthorizationPage from '../../page/AuthPage/AuthorizationPage';
 import CategoryPage from '../../page/CategoryPage/CategoryPage';
 import FigurePage from '../../page/FigurePage/FigurePage';
 import LikePage from '../../page/LikePage/LikePage';
+import CategoriesParams from '../../entities/categories/ui/CategoriesParams';
 
 function AppRoutes(): JSX.Element {
   return (
@@ -13,7 +14,9 @@ function AppRoutes(): JSX.Element {
       <Route path='/categories' element={<CategoryPage />}/> 
       <Route path='/figures' element={<FigurePage />}/> 
 
-      <Route path='/like' element={<LikePage />}/> 
+      <Route path='/like' element={<LikePage />}/>
+       
+      <Route path='/categories/:catId' element={<CategoriesParams />}/>
 
       <Route path="/registration" element={<RegistrationPage />}/>
       <Route path="/autorization" element={<AuthorizationPage />}/>

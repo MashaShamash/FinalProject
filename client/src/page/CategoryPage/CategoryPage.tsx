@@ -10,6 +10,10 @@ function CategoryPage(): JSX.Element {
   console.log(11111, categories);
 
   return (
+    <>
+    <div className="categorName">
+      <h4>Категории</h4>
+    </div>
     <div className='categoryDiv'>
       {/* <button onClick={()=>setActive((prev)=>!prev)}>
            добавить фильм
@@ -20,6 +24,7 @@ function CategoryPage(): JSX.Element {
       {categories &&
         categories.map((category) => <CategoryItem category={category} key={category.id} />)}
     </div>
+    </>
   );
 }
 
