@@ -8,22 +8,40 @@ import AppRoutes from './provider/AppRoutes';
 import { getRefreshTokensThunk } from '../entities/auth/authSlice';
 import { getFiguresThunk } from '../entities/figures/figuresSlice';
 import { getAllLikeThunk } from '../entities/like/likeSlice';
+import { Loader } from '../widgets/Loading/Loader';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     void dispatch(getRefreshTokensThunk())
-
     void dispatch(getCategoriesThunk());
     void dispatch(getFiguresThunk());
+    const id = setTimeout(() => {
+      setLoading(true)
+    }, 2000)
+    return () => clearTimeout(id)
   }, [dispatch]);
 
   return (
-    <div>
-      <Navbar />
+    <>
+    {loading ? (<div className="app">
+    <Navbar />
       <AppRoutes />
+      </div>
+  ) : (
+    <div style={{
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+    <Loader />
     </div>
+  )}
+    </>
   );
 }
 
