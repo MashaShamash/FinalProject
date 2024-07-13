@@ -7,41 +7,43 @@ const jwtConfig = require('../../config/jwtConfig')
 
 router.post('/registration', async (req, res) => {
     try {
-
-        const {name, email, password} = req.body
-
-        if(name.trim() === '' || email.trim() === '' || password.trim() === ''){
-            res.status(400).json({message: 'заполните все поля' })
-            return
-        }
-
-        const isUser = await User.findOne({where: { email }})
-
-        if(isUser) {
-            res.status(400).json({message: 'Такой пользователь уже зарегестрирован' })
+        const { name, lastName, email, password } = req.body;
+        
+        if (name.trim() === '' || email.trim() === '' || password.trim() === '' || lastName.trim() === '') {
+            res.status(400).json({ message: 'заполните все поля' });
             return;
         }
 
-        const bcryptPassword = await bcrypt.hash(password, 10)
+        const isUser = await User.findOne({ where: { email } });
 
-        const user = await User.create({name, email, password: bcryptPassword})
+        if (isUser) {
+            res.status(400).json({ message: 'Такой пользователь уже зарегистрирован' });
+            return;
+        }
+
+        const bcryptPassword = await bcrypt.hash(password, 10);
+
+        const user = await User.create({ name, lastName, email, password: bcryptPassword });
+
 
         delete user.dataValues.password;
 
         const { accessToken, refreshToken } = generateTokens({ user });
 
-        if(user) {
+
+        if (user) {
             res.status(201)
-            .cookie('refresh', refreshToken, {httpOnly: true})
-            .json({message: 'success',  user, accessToken})
-            return
+                .cookie('refresh', refreshToken, { httpOnly: true })
+                .json({ message: 'success', user, accessToken });
+            return;
         }
 
-        res.status(400).json({ message: 'попробуйде еще раз' })
-    } catch ({message}) {
-        res.status(500).json({message})
+        res.status(400).json({ message: 'попробуйте еще раз' });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+        
     }
-})
+});
 
 router.post('/authorization', async (req, res) => {
     try {

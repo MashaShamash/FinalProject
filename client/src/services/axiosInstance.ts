@@ -1,7 +1,7 @@
 import type { AxiosError } from 'axios';
 import axios from 'axios';
 
-import { User } from '../entities/users/types/userTypes';
+import { User } from "../entities/auth/types/userTypes";
 import { StoreType } from '../app/store/store';
 
 let store: StoreType;
@@ -17,7 +17,9 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use((config) => {
   if (!config.headers.Authorization) {
-    config.headers.Authorization = `Bearer ${store?.getState().auth.accessToken}`;
+    config.headers.Authorization = `Bearer ${
+      store?.getState()?.auth?.accessToken
+    }`;
   }
   return config;
 });
