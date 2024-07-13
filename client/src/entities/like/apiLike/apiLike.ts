@@ -1,6 +1,11 @@
 import type { AxiosResponse } from 'axios';
 import axiosInstance from '../../../services/axiosInstance';
-import type { Like, LikeId, LikeWithoutId } from '../likeTypes/likeTypes';
+import type {
+  Like,
+  LikeId,
+  LikeWithoutId,
+  LikeWithoutIdAndWithotFigure,
+} from '../likeTypes/likeTypes';
 
 class LikeApi {
   static getAllLike = async (): Promise<Like[]> => {
@@ -9,7 +14,7 @@ class LikeApi {
     return response.data.like;
   };
 
-  static createLike = async (body: LikeWithoutId): Promise<Like> => {
+  static createLike = async (body: LikeWithoutIdAndWithotFigure): Promise<Like> => {
     const response: AxiosResponse<{ message: string; like: Like }> = await axiosInstance.post(
       '/like',
       body,
