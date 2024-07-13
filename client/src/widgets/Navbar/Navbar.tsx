@@ -1,9 +1,29 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Navbar.css';
+import { useAppDispatch, useAppSelector } from '../../app/store/store';
+import { getLogoutThunk } from '../../entities/auth/authSlice';
+import ModalWindow from '../../shared/ui/Modal/Modal';
+import RegistrationPage from '../../page/AuthPage/RegistrationPage';
+import AuthorizationPage from '../../page/AuthPage/AuthorizationPage';
+import ModalWindowRego from '../../shared/ui/Modal/ModalRego';
 
 function Navbar(): JSX.Element {
-  let user;
+
+  const {user} = useAppSelector((state) => state.auth)
+  const [active, setActive] = useState<boolean>(false);
+  const [activeRego, setActiveRego] = useState<boolean>(false);
+  
+  const dispatch = useAppDispatch()
+
+
+  const onHendleLogaut = ():void => {
+    void dispatch(getLogoutThunk())
+    setActive(false)
+    setActiveRego(false)
+
+
+  }
   return (
     <div className="Navbar">
       <ul>
@@ -14,25 +34,33 @@ function Navbar(): JSX.Element {
           <NavLink to="/figures">картины</NavLink>
         </li>
         {user ? (
+          <>
           <li>
-            <NavLink to="/logout">выйти</NavLink>
+            <NavLink to="*" onClick={onHendleLogaut}>выйти</NavLink>
           </li>
+          <li>
+          <NavLink to="/profile">личный кабинет</NavLink>
+          </li>
+          </>
         ) : (
           <>
             <li>
-              <NavLink to="/registration">регистрация</NavLink>
+              <NavLink to="#" onClick={() => setActiveRego(prev => !prev)}>регистрация</NavLink>
             </li>
+            <>
+              <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
+                <RegistrationPage />
+              </ModalWindowRego>
+            </>
             <li>
-              <NavLink to="/autorization">войти</NavLink>
+              <NavLink to="_" onClick={() => setActive(prev => !prev)}>войти</NavLink>
             </li>
+            <>
+              <ModalWindow active={active} setActive={setActive}>
+                <AuthorizationPage />
+              </ModalWindow>
+              </>
           </>
-        )}
-        {user ? (
-          <li>
-            <NavLink to="/profile">личный кабинет</NavLink>
-          </li>
-        ) : (
-          null
         )}
       </ul>
     </div>
