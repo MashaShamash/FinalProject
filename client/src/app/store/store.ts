@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import categorySlice from '../../entities/categories/categoriesSlice';
 import authSlice from '../../entities/auth/authSlice';
 import figureSlice from '../../entities/figures/figuresSlice';
-
+import likeSlice from '../../entities/like/likeSlice';
 
 const store = configureStore({
   reducer: {
-    categories: categorySlice.reducer, 
+    categories: categorySlice.reducer,
     auth: authSlice.reducer,
+    like: likeSlice.reducer,
     figures: figureSlice.reducer,
-
   },
 });
 

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { Like, LikeWithoutId } from './likeTypes/likeTypes';
+import type { Like, LikeWithoutId, LikeWithoutIdAndWithotFigure } from './likeTypes/likeTypes';
 import LikeApi from './apiLike/apiLike';
 
 type StateLike = { like: Like[] };
@@ -8,7 +8,7 @@ const initialState: StateLike = {
 };
 export const getAllLikeThunk = createAsyncThunk('load/like', () => LikeApi.getAllLike());
 
-export const createLikeThunk = createAsyncThunk('add/categories', (body: LikeWithoutId) =>
+export const createLikeThunk = createAsyncThunk('add/categories', (body: LikeWithoutIdAndWithotFigure) =>
   LikeApi.createLike(body),
 );
 
@@ -26,3 +26,5 @@ const likeSlice = createSlice({
       });
   },
 });
+
+export default likeSlice;
