@@ -8,6 +8,7 @@ import ModalWindow from '../../shared/ui/Modal/Modal';
 import RegistrationPage from '../../page/AuthPage/RegistrationPage';
 import AuthorizationPage from '../../page/AuthPage/AuthorizationPage';
 import ModalWindowRego from '../../shared/ui/Modal/ModalRego';
+import InputFilter from '../../entities/InputFilter/InputFilter';
 
 
 function Navbar(): JSX.Element {
@@ -28,7 +29,11 @@ function Navbar(): JSX.Element {
   }
   return (
     <div className="Navbar">
+
       <ul>
+        <li>
+          <InputFilter />
+        </li>
         <li>
           <NavLink to="/categories">главная</NavLink>
         </li>
