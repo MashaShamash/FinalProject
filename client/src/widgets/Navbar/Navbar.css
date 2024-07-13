@@ -1,0 +1,37 @@
+.Navbar {
+    width: 100%;
+  
+    height: var(--navbar-height);
+    background: var(--inverted-bg-color);
+    display: flex;
+    align-items: center;
+    padding: 20px;
+  }
+  .Navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .Navbar li {
+    padding: 14px 20px;
+  }
+  
+  .Navbar li a {
+    color: var(--inverted-secondary-color);
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .Navbar li a:hover {
+    background-color: var(--bg-color);
+  }
+  
+  .Navbar li a.active {
+    color: var(--bg-color);
+  }
+  
