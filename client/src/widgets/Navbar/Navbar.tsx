@@ -46,7 +46,7 @@ function Navbar(): JSX.Element {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/figures">купить</NavLink>
+          <NavLink to="/magazin">купить</NavLink>
         </li>
         {user ? (
           <>

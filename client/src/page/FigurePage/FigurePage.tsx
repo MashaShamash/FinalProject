@@ -26,7 +26,7 @@ function FigurePage(): JSX.Element {
   };
 
   return (
-    <div className="figureDiv">
+    <div>
       <InfiniteScroll style={{'height': 'auto', 'overflow': 'auto', 'display': 'flex', 'flexWrap': 'wrap', 'justifyContent': 'center'}}
         dataLength={items.length}
         next={fetchMoreData}

@@ -7,6 +7,7 @@ import FigurePage from '../../page/FigurePage/FigurePage';
 
 
 import CategoriesParams from '../../entities/categories/ui/CategoriesParams';
+import MagazinPage from '../../page/MagazinPage/MagazinPage';
 
 
 
@@ -17,6 +18,7 @@ function AppRoutes(): JSX.Element {
       <Route path='/'/> 
       <Route path='/categories' element={<CategoryPage />}/> 
       <Route path='/figures' element={<FigurePage />}/> 
+      <Route path='/magazin' element={<MagazinPage />}/>
       <Route path='/categories/:catId' element={<CategoriesParams />}/>
       {/* <Route path='/like' element={<FavoritePage />}/>  */}
       <Route path="/registration" element={<RegistrationPage />}/>

@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.TEXT
       },
       date: {
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER
       },
       img: {
         type: Sequelize.TEXT
@@ -26,6 +26,18 @@ module.exports = {
       },
       price: {
         type: Sequelize.INTEGER
+      },
+      name: {
+        type: Sequelize.TEXT,
+      },
+      lastName: {
+        type: Sequelize.TEXT,
+      },
+      pseudonym: {
+        type: Sequelize.TEXT,
+      },
+      biography: {
+        type: Sequelize.TEXT,
       },
       width: {
         type: Sequelize.INTEGER

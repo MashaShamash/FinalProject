@@ -14,9 +14,8 @@ function CategoryItem({ category }: CategoryItemProps): JSX.Element {
   
   return (
     <div className="categoryItem">
-      <h3>{category.title}</h3>
-      <img src={category.img} alt="" />
-      <Link to={`/categories/${category.id}`}>Подробнее</Link>
+      <Link to={`/categories/${category.id}`}><h1 style={{display: 'flex', justifyContent: 'center'}}>{category.title}</h1>
+      <img src={category.img} alt="" /></Link>
     </div>
   );
 }

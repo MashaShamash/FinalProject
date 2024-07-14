@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TEXT,
       },
       date: {
-        type: DataTypes.DATE,
+        type: DataTypes.INTEGER,
       },
       img: {
         type: DataTypes.TEXT,
@@ -38,8 +38,20 @@ module.exports = (sequelize, DataTypes) => {
       price: {
         type: DataTypes.INTEGER,
       },
+      name: {
+        type: DataTypes.TEXT,
+      },
+      lastName: {
+        type: DataTypes.TEXT,
+      },
       width: {
         type: DataTypes.INTEGER,
+      },
+      pseudonym: {
+        type: DataTypes.TEXT,
+      },
+      biography: {
+        type: DataTypes.TEXT,
       },
       categoryId: {
         allowNull: false,
