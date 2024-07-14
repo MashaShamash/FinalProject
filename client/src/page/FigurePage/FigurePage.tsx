@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { type RootState } from '../../app/store/store';
 import FigureItem from '../../entities/figures/ui/FigureItem';
+
 import InfiniteScroll from 'react-infinite-scroll-component';
-import LikePage from '../LikePage/LikePage';
+
+import LikePage from '../LikePage/FavoritePage';
+
 import './FigureDiv.css';
 
 function FigurePage(): JSX.Element {
