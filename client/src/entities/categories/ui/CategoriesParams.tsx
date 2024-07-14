@@ -14,7 +14,7 @@ const CategoriesParams = (): JSX.Element =>{
     const [hasMore, setHasMore] = useState(true);
     const [items, setItems] = useState<Figure[]>([]);
     const [filteredFigures, setFilteredFigures] = useState<Figure[]>([]);
-
+    const [active, setActive] =useState(false)
     let nameCategor: Category | undefined = undefined
 
         if(catId) {
@@ -49,6 +49,9 @@ return (
         loader={<h4>Loading...</h4>}
         endMessage={<p>No more figures to display</p>}
       >
+
+
+    
     { items && 
     items.map((el) => (
           <div key={el.id} className='figureCard'>
@@ -58,7 +61,7 @@ return (
             <p>{el.height}</p>
             <h3>{el.price}</h3>
             <p>{el.width}</p>
-            <p>{el.sell}</p>
+            <p>{el.sell}</p>     
           </div>
         ))}
     </InfiniteScroll>
