@@ -46,7 +46,7 @@ function Navbar(): JSX.Element {
         {user ? (
           <>
           <li>
-            <NavLink to="*" onClick={onHendleLogaut}>выйти</NavLink>
+            <button onClick={onHendleLogaut}>выйти</button>
           </li>
           <li>
           <NavLink to="/profile">личный кабинет</NavLink>
@@ -58,7 +58,7 @@ function Navbar(): JSX.Element {
         ) : (
           <>
             <li>
-              <NavLink to="#" onClick={() => setActiveRego(prev => !prev)}>регистрация</NavLink>
+              <button  onClick={() => setActiveRego(prev => !prev)}>регистрация</button>
             </li>
             <>
               <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
@@ -66,7 +66,7 @@ function Navbar(): JSX.Element {
               </ModalWindowRego>
             </>
             <li>
-              <NavLink to="_" onClick={() => setActive(prev => !prev)}>войти</NavLink>
+              <button onClick={() => setActive(prev => !prev)}>войти</button>
             </li>
             <>
               <ModalWindow active={active} setActive={setActive}>
