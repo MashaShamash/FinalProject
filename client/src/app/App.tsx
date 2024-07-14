@@ -1,6 +1,6 @@
 
 import React, { useEffect, useState } from 'react';
-// // import './App.css';
+import './styles/App.css';
 import { useAppDispatch } from './store/store';
 import { getCategoriesThunk } from '../entities/categories/categoriesSlice';
 import Navbar from '../widgets/Navbar/Navbar';

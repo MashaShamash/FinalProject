@@ -1,5 +1,5 @@
 import React from 'react';
-import {  useNavigate } from 'react-router-dom';
+
 import { useAppDispatch } from '../../app/store/store';
 import {object, string, ref} from 'yup'
 import { useForm } from "react-hook-form"
@@ -49,7 +49,7 @@ const schema = object().shape({
 
 
 function RegistrationPage(): JSX.Element {
-  const navigation = useNavigate()
+ 
   const dispatch = useAppDispatch();
  
 const {register, handleSubmit, formState: {errors}} = useForm<RegistrationFormInputs>({resolver: yupResolver(schema)})
@@ -57,7 +57,7 @@ const {register, handleSubmit, formState: {errors}} = useForm<RegistrationFormIn
 
 const onHandleSubmit  = (user:UserWithoutIdWithPassword):void => {
   void dispatch(getRegistrationThunk(user))
-  navigation('/')
+  
 }
 
   return (

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useAppDispatch } from '../../app/store/store';
 // import './AuthorizationPage.css'
-import { useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form"
 import {yupResolver} from '@hookform/resolvers/yup'
 import {object, string} from 'yup'
@@ -35,7 +34,6 @@ const schema = object().shape({
 
 
 function AuthorizationPage(): JSX.Element {
-    const navigation = useNavigate()
   const dispatch = useAppDispatch();
   
 
@@ -43,7 +41,7 @@ function AuthorizationPage(): JSX.Element {
 
   const onHandleAuth = (user: UserWithoutNameAndLastName):void => {
     void dispatch(getAuthorizationThunk(user))
-    navigation('/')
+    
   }
 
   return (

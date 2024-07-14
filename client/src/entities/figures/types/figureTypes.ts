@@ -1,3 +1,5 @@
+import { CategoryId } from "../../categories/types/categoryTypes"
+
 export type Figure ={
     id: number,
     title: string,
@@ -7,7 +9,8 @@ export type Figure ={
     height: number,
     price: number,
     width: number,
-    sell: boolean
+    sell: boolean,
+    categoryId: CategoryId,
 
 }
 
