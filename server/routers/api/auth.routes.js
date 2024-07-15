@@ -8,12 +8,11 @@ const jwtConfig = require('../../config/jwtConfig')
 router.post('/registration', async (req, res) => {
     try {
         const { name, lastName, email, password } = req.body;
-        
+        console.log(12345567788);
         if (name.trim() === '' || email.trim() === '' || password.trim() === '' || lastName.trim() === '') {
             res.status(400).json({ message: 'заполните все поля' });
             return;
         }
-
         const isUser = await User.findOne({ where: { email } });
 
         if (isUser) {
