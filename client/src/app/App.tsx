@@ -9,6 +9,7 @@ import { getRefreshTokensThunk } from '../entities/auth/authSlice';
 import { getFiguresThunk } from '../entities/figures/figuresSlice';
 import { getAllLikeThunk } from '../entities/like/likeSlice';
 import { Loader } from '../widgets/Loading/Loader';
+import StickyFooter from '../widgets/StickyFooter/StyckyFooter';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -39,8 +40,17 @@ function App(): JSX.Element {
       justifyContent: 'center',
     }}>
     <Loader />
+
+
+    <header>
+        <h1>Welcome to Website</h1>
+      </header>
+         
+
+
     </div>
   )}
+  <StickyFooter/>
     </>
   );
 }
