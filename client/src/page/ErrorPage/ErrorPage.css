@@ -1,0 +1,49 @@
+#error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 80vh; 
+    text-align: center; 
+    margin-top: 5px;
+
+  }
+  
+  .rotating-text {
+    font-size: 100px; 
+    color: black; 
+    text-shadow: 
+      1px 1px 0 #ccc,
+      2px 2px 0 #c9c9c9,
+      3px 3px 0 #bbb,
+      4px 4px 0 #b9b9b9,
+      5px 5px 0 #aaa,
+      6px 6px 0 #a9a9a9,
+      7px 7px 0 #999,
+      8px 8px 0 #949494,
+      9px 9px 0 #888,
+      10px 10px 0 #777,
+      11px 11px 0 #666,
+      12px 12px 0 #555,
+      13px 13px 0 #444,
+      14px 14px 0 #333,
+      15px 15px 0 #222,
+      16px 16px 0 #111,
+      17px 17px 0 #000;
+    animation: rotate 7s linear infinite; /* Применяем анимацию вращения */
+    margin-bottom: 20px; /* Отступ снизу */
+  
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotateY(0deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+  
+  .error-image {
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5); /* Тень изображения */
+  }
