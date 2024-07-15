@@ -15,6 +15,7 @@ class AuthApi {
 
     static registration = async (body:UserWithoutId):Promise<UserType> => {
         try {
+        
             const response: AxiosResponse<UserType> = await axiosInstance.post('/auth/registration', body)
             return response.data
         } catch (error) {
