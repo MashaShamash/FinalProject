@@ -8,6 +8,7 @@ import { getRefreshTokensThunk } from '../entities/auth/authSlice';
 import { getFiguresThunk } from '../entities/figures/figuresSlice';
 import { getAllLikeThunk } from '../entities/like/likeSlice';
 import { Loader } from '../widgets/Loading/Loader';
+import StickyFooter from '../widgets/StickyFooter/StyckyFooter';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -26,24 +27,32 @@ function App(): JSX.Element {
 
   return (
     <>
-      {loading ? (
-        <div className="app">
-          <Navbar />
-          <AppRoutes />
-        </div>
-      ) : (
-        <div
-          style={{
-            width: '100vw',
-            height: '100vh',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <Loader />
-        </div>
-      )}
+
+    {loading ? (<div className="app">
+    <Navbar />
+      <AppRoutes />
+      </div>
+  ) : (
+    <div style={{
+      width: '100vw',
+      height: '100vh',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+    }}>
+    <Loader />
+
+
+    <header>
+        <h1>Welcome to Website</h1>
+      </header>
+         
+
+
+    </div>
+  )}
+  <StickyFooter/>
+
     </>
   );
 }

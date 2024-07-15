@@ -16,3 +16,34 @@ p {
   object-fit: cover;
 }
 
+/* .figureItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 900px;
+  height: 650px;
+  padding: 10px;
+  margin: 30px;
+  font-size: 12px;
+}
+
+.figureItem img {
+  width: 81%;
+  height: auto; /* Изменено с 100% на auto для сохранения пропорций */
+}
+
+.figureItem div {
+  width: 81%;
+  text-align: center; /* Центрирование текста */
+}
+
+p {
+  margin: auto 0;
+}
+
+.bold {
+  font-weight: bold; /* Жирный текст */
+}
+ */
+
+
