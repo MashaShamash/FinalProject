@@ -9,17 +9,20 @@ import type {
 
 class LikeApi {
   static getAllLike = async (): Promise<Like[]> => {
-    const response: AxiosResponse<{ message: string; like: Like[] }> =
+    const response: AxiosResponse<{ message: string; likes: Like[] }> =
       await axiosInstance.get('/like');
-    return response.data.like;
+    return response.data.likes;
   };
 
-  static createLike = async (body: LikeWithoutIdAndWithotFigure): Promise<Like> => {
+  static createLike = async (
+    body: LikeWithoutIdAndWithotFigure,
+  ): Promise<{ message: string; like: Like }> => {
     const response: AxiosResponse<{ message: string; like: Like }> = await axiosInstance.post(
       '/like',
       body,
     );
-    return response.data.like;
+    console.log(response.data);
+    return response.data;
   };
 
   static deleteLike = async (id: LikeId): Promise<LikeId | string> => {

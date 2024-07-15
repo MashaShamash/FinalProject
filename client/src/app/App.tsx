@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import './styles/App.css';
 import { useAppDispatch } from './store/store';
@@ -13,20 +12,22 @@ import StickyFooter from '../widgets/StickyFooter/StyckyFooter';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    void dispatch(getRefreshTokensThunk())
+    void dispatch(getRefreshTokensThunk());
     void dispatch(getCategoriesThunk());
     void dispatch(getFiguresThunk());
+    void dispatch(getAllLikeThunk());
     const id = setTimeout(() => {
-      setLoading(true)
-    }, 2000)
-    return () => clearTimeout(id)
+      setLoading(true);
+    }, 2000);
+    return () => clearTimeout(id);
   }, [dispatch]);
 
   return (
     <>
+
     {loading ? (<div className="app">
     <Navbar />
       <AppRoutes />
@@ -51,6 +52,7 @@ function App(): JSX.Element {
     </div>
   )}
   <StickyFooter/>
+
     </>
   );
 }

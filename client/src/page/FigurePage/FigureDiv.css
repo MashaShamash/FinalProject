@@ -1,5 +1,7 @@
-.figureDiv{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+.figureDiv {
+  width: 100%;
+  height: 320px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }

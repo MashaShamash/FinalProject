@@ -8,8 +8,9 @@ const initialState: StateLike = {
 };
 export const getAllLikeThunk = createAsyncThunk('load/like', () => LikeApi.getAllLike());
 
-export const createLikeThunk = createAsyncThunk('add/categories', (body: LikeWithoutIdAndWithotFigure) =>
-  LikeApi.createLike(body),
+export const createLikeThunk = createAsyncThunk(
+  'add/categories',
+  (body: LikeWithoutIdAndWithotFigure) => LikeApi.createLike(body),
 );
 
 const likeSlice = createSlice({
@@ -19,10 +20,24 @@ const likeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllLikeThunk.fulfilled, (state, action) => {
+        console.log(action.payload);
+
         state.like = action.payload;
       })
       .addCase(createLikeThunk.fulfilled, (state, action) => {
-        state.like.push(action.payload);
+        switch (action.payload.message) {
+          case 'success':
+            state.like.push(action.payload.like);
+            break;
+          case 'успешно удалено':
+            state.like = state.like.filter(
+              (like: Like) => like.figureId !== action.payload.like.id,
+            );
+            break;
+
+          default:
+            break;
+        }
       });
   },
 });

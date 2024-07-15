@@ -1,18 +1,19 @@
 .Navbar {
-  width: 100%;
-  height: var(--navbar-height);
+  align-items: center;
   background: var(--inverted-bg-color);
   display: flex;
   justify-content: space-around;
   padding: 20px;
-  border-bottom: solid;
-  height:70px ;
+  border-bottom: solid 1px;
+  height: 40px;
+  font-size: 22px;
 }
+
 .Navbar ul {
+  display: flex;
   list-style-type: none;
   margin: 0;
   padding: 0;
-  display: flex;
 }
 
 .Navbar li {
@@ -26,11 +27,28 @@
   text-decoration: none;
   display: block;
 }
-
-.Navbar li a:hover {
-  background-color: var(--bg-color);
+.buttonLogout {
+  background-color: #fb4b4d;
+  color: aliceblue;
+  padding: 10px;
+}
+.linkMain {
+  color: aliceblue;
+}
+.linkMain a {
+  background-color: #fb4b4d;
+  color: aliceblue;
+}
+.Navbar li a {
+  padding: 10px;
 }
 
 .Navbar li a.active {
   color: var(--bg-color);
+}
+.Navbar li input {
+  height: 30px;
+  border: solid 2px;
+  border-radius: 15px;
+  border-color: white;
 }
