@@ -9,6 +9,7 @@ import { getRefreshTokensThunk } from '../entities/auth/authSlice';
 import { getFiguresThunk } from '../entities/figures/figuresSlice';
 import { getAllLikeThunk } from '../entities/like/likeSlice';
 import { Loader } from '../widgets/Loading/Loader';
+import { getAllProfileThunk } from '../entities/profile/profileSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -18,6 +19,7 @@ function App(): JSX.Element {
     void dispatch(getRefreshTokensThunk())
     void dispatch(getCategoriesThunk());
     void dispatch(getFiguresThunk());
+    void dispatch(getAllProfileThunk())
     const id = setTimeout(() => {
       setLoading(true)
     }, 2000)

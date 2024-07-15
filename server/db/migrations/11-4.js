@@ -12,7 +12,16 @@ module.exports = {
       pseudonym: {
         type: Sequelize.TEXT
       },
+      name: {
+        type: Sequelize.TEXT
+      },
+      lastName: {
+        type: Sequelize.TEXT
+      },
       activity: {
+        type: Sequelize.TEXT
+      },
+      conDan: {
         type: Sequelize.TEXT
       },
       biography: {

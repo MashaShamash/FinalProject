@@ -1,5 +1,15 @@
 const router = require("express").Router();
-const { Profile } = require("../../db/models");
+const { Profile, User} = require("../../db/models");
+const verifyAccessToken = require("../../middleware/verifyAccessToken");
+
+router.get("/", async (req, res) => {
+  try {
+    const profUsers = await Profile.findAll({include: User});
+    res.status(200).json({ message: "success", profUsers });
+  } catch ({ message }) {
+    res.status(500).json({ error: message });
+  }
+});
 
 router.get("/:profileId", async (req, res) => {
   try {
@@ -7,14 +17,19 @@ router.get("/:profileId", async (req, res) => {
     const profUser = await Profile.findOne({ where: { id: profileId } });
     res.status(200).json({ message: "success", profUser });
   } catch ({ message }) {
-    res.json({ error: message });
+    res.status(500).json({ error: message });
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/",verifyAccessToken, async (req, res) => {
   try {
     const { user } = res.locals;
     const { pseudonym, activity, biography } = req.body;
+    const profUserGet = await Profile.findOne({ where: { id: user.id } })
+
+    if(profUserGet) {
+      res.status(400).json({ message: 'Такой пользователь уже зарегистрирован' });
+    }
     const profUser = await Profile.create({
       pseudonym,
       activity,
@@ -31,13 +46,13 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.put("/:profileId", async (req, res) => {
+router.put("/:profileId",verifyAccessToken, async (req, res) => {
   try {
     const { user } = res.locals;
     const { profileId } = req.params;
-    const { pseudonym, activity, biography} = req.body;
+    const { pseudonym, activity, biography, name, lastName} = req.body;
     const result = await Profile.update(
-      { pseudonym, activity, biography },
+      { pseudonym, activity, biography, name, lastName},
       { where: { id: profileId, userId: user.id } }
     );
     if (result[0] > 0) {

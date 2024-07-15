@@ -1,6 +1,6 @@
 const router = require('express').Router()
 const bcrypt = require('bcrypt')
-const { User } = require('../../db/models')
+const { User, Profile } = require('../../db/models')
 const generateTokens = require('../../utils/authUtils')
 const jwtConfig = require('../../config/jwtConfig')
 
@@ -34,6 +34,16 @@ router.post('/registration', async (req, res) => {
             res.status(201)
                 .cookie('refresh', refreshToken, { httpOnly: true })
                 .json({ message: 'success', user, accessToken });
+
+                const profUser = await Profile.create({
+                    name: user.name,
+                    lastName: user.lastName,
+                    pseudonym: '',
+                    activity: '',
+                    biography: '',
+                    userId: user.id,
+                  });
+            
             return;
         }
 

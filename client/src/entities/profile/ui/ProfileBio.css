@@ -1,0 +1,80 @@
+.ProfileBio {
+    background-color: rgb(255, 255, 255);
+
+}
+
+.div-biograf {
+
+}
+
+.psevdanim-btn {
+        padding: 0;
+        border: none;
+        font: inherit;
+        color: inherit;
+        background-color: transparent;
+        /* отображаем курсор в виде руки при наведении; некоторые
+        считают, что необходимо оставлять стрелочный вид для кнопок */
+        cursor: pointer;
+        border: none;
+        outline: none;
+}
+
+.div-map-bio {
+    display: flex;
+    flex-direction: column;
+    margin-left: 160px;
+}
+
+.div-map-bio_but {
+    border-bottom: 1px solid black;
+    margin-right: 350px;
+}
+
+.profile-p {
+    font-size: 20px;
+    
+}
+.formClass {
+    display: flex;
+    flex-direction: column;
+}
+
+.span-form {
+    margin-top: 50px;
+    font-size: 20px;
+}
+
+.profile-p-div {
+    word-wrap: break-word;
+    margin-right: 350px;
+    margin-top: 50px;
+}
+
+.textarea-bio {
+    width: 1000px;
+    height: 300px;
+    font-size: 20px;
+}
+
+.psevdanim-btn-ty {
+    position: absolute;
+    padding: 0;
+        border: none;
+        font: inherit;
+        color: inherit;
+        background-color: transparent;
+        /* отображаем курсор в виде руки при наведении; некоторые
+        считают, что необходимо оставлять стрелочный вид для кнопок */
+        cursor: pointer;
+        border: none;
+        outline: none;
+}
+
+.gty {
+    display: none;
+}
+
+.divr {
+    display:inline
+}

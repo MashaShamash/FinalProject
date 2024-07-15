@@ -26,7 +26,7 @@ router.post('/', verifyAccessToken, async (req, res) => {
     try {
         const { user } = res.locals;
         const { title, date, img, height, price, width, sell, categoryId } = req.body;
-        const figure = await Figure.create({ title, date, img, height, price, width, sell, categoryId, userId: user.id });
+        const figure = await Figure.create({name:user.name,name:user.lastName, title, date, img, height, price, width, sell, categoryId, userId: user.id });
         if (figure) {
             res.status(200).json({ message: 'success', figure });
             return;

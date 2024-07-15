@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios';
 import axiosInstance from '../../../services/axiosInstance';
-import type { Figure, FigureId, FigureWithoutId } from '../types/figureTypes';
+import type { Figure, FigureId, FigureWithoutId, FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym } from '../types/figureTypes';
 
 class FigureApi {
   static getAllFigure = async (): Promise<Figure[]> => {
@@ -10,7 +10,7 @@ class FigureApi {
     return response.data.figures;
   };
 
-  static createFigure = async (body: FigureWithoutId): Promise<Figure> => {
+  static createFigure = async (body: FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym): Promise<Figure> => {
     const response: AxiosResponse<{ message: string; figure: Figure }> =
       await axiosInstance.post('/figures', body);
     return response.data.figure;
@@ -28,7 +28,7 @@ class FigureApi {
 
   static updateFigure = async (obj: {
     id: FigureId;
-    body: FigureWithoutId;
+    body: FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym;
   }): Promise<Figure> => {
     const response: AxiosResponse<{ figure: Figure }> = await axiosInstance.put(
       `/figures/${obj.id}`,

@@ -8,6 +8,7 @@ import ErrorPage from '../../page/ErrorPage/ErrorPage';
 import CategoriesParams from '../../entities/categories/ui/CategoriesParams';
 import MagazinPage from '../../page/MagazinPage/MagazinPage';
 import FavoritePage from '../../page/FavoritePage/FavoritePage';
+import ProfilePage from '../../page/Profile/ProfilePage';
 
 function AppRoutes(): JSX.Element {
   return (
@@ -21,7 +22,7 @@ function AppRoutes(): JSX.Element {
      <Route path='/like' element={<FavoritePage />}/>
       <Route path="/registration" element={<RegistrationPage />}/>
       <Route path="/autorization" element={<AuthorizationPage />}/>
-      <Route path="/profile" />
+      <Route path="/profile" element={<ProfilePage />}/>
       <Route path='*' element={<ErrorPage />} />
     </Routes>
   );
