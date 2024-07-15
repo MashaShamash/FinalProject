@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import FigureItem from '../../entities/figures/ui/FigureItem';
 import type { RootState } from '../../app/store/store';
 
-function LikePage(): JSX.Element {
+function FavoritePage(): JSX.Element {
   const likes = useSelector((state: RootState) => state.like.like);
 
   return (
@@ -16,4 +16,4 @@ function LikePage(): JSX.Element {
   );
 }
 
-export default LikePage;
+export default FavoritePage;
