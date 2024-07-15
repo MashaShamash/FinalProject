@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 import { FcLikePlaceholder, FcLike } from 'react-icons/fc';
 import './figure.css';
 import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import type { Figure } from '../types/figureTypes';
 import type { RootState } from '../../../app/store/store';
 import { useAppDispatch } from '../../../app/store/store';
 import { createLikeThunk } from '../../like/likeSlice';
-import { Link } from 'react-router-dom';
 
 type FigureItemProps = {
   figure: Figure;
 };
 
 function FigureItem({ figure }: FigureItemProps): JSX.Element {
-  const [activ, setActiv] = useState(false)
+  const [activ, setActiv] = useState(false);
+  const navigte = useNavigate();
   let like;
   const likes = useSelector((state: RootState) => state.like.like);
   const user = useSelector((state: RootState) => state.auth.user);
@@ -30,25 +31,18 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
       <img src={figure.img} alt="" />
 
       <h3>{figure.title}</h3>
-      <button type="button" onClick={()=>setActiv((prev)=>!prev)}>подробнее</button>
-      {activ ? (
-        <>
-      <p>{figure.materials}</p>
-      <p>{figure.height} см</p>
-      <p>{figure.width} см</p>
-      <h3>{figure.price} $</h3>
-      <p>{figure.sell}</p>
-      </>
-      ):(
-      <>
+      <button type="button" onClick={() => navigte(`/figures/${figure.id}`)}>
+        подробнее
+      </button>
+
       <button type="button" onClick={handleFavorite}>
         {like ? <FcLike /> : <FcLikePlaceholder />}
       </button>
       <div>
         <button type="button">покупаю!</button>
       </div>
-      </>
-      )}
+      {/* )
+      } */}
     </div>
   );
 }
