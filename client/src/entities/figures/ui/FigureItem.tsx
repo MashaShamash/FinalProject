@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import './figure.css';
 import { useSelector } from 'react-redux';
+
 import { LiaStar } from 'react-icons/lia';
 import { RxStarFilled } from 'react-icons/rx';
+import { Link, useNavigate } from 'react-router-dom';
+
 import type { Figure } from '../types/figureTypes';
 import type { RootState } from '../../../app/store/store';
 import { useAppDispatch } from '../../../app/store/store';
 import { createLikeThunk } from '../../like/likeSlice';
-// import { Link } from 'react-router-dom';
 
 type FigureItemProps = {
   figure: Figure;
@@ -15,6 +17,8 @@ type FigureItemProps = {
 
 function FigureItem({ figure }: FigureItemProps): JSX.Element {
   const [activ, setActiv] = useState(false);
+  const navigte = useNavigate();
+
   let like;
   const likes = useSelector((state: RootState) => state.like.like);
   const user = useSelector((state: RootState) => state.auth.user);
@@ -29,6 +33,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
     <div className="figureCard">
       <div className="figureCardContent">
         <img src={figure.img} alt="foto" />
+
 
         <h3>{figure.title}</h3>
         <button type="button" className="detailsButton" onClick={() => setActiv((prev) => !prev)}>
@@ -53,6 +58,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
           </>
         )}
       </div>
+
     </div>
   );
 }

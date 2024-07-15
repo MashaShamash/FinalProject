@@ -1,11 +1,13 @@
-import React from 'react';
-
+import React, { useState } from 'react';
+import './Registration.css'
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useAppDispatch } from '../../app/store/store';
 import {object, string, ref} from 'yup'
 import { useForm } from "react-hook-form"
 import {yupResolver} from '@hookform/resolvers/yup'
 import { getRegistrationThunk } from '../../entities/auth/authSlice';
 import { UserWithoutIdWithPassword } from '../../entities/auth/types/userTypes';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -47,8 +49,8 @@ const schema = object().shape({
   .oneOf([ref('password')], 'Пароли должны совпадать'),
 })
 
-
-function RegistrationPage(): JSX.Element {
+function RegistrationPage( ): JSX.Element {
+  const [showPassword, setShowPassword] = useState(false);
  
   const dispatch = useAppDispatch();
  
@@ -60,50 +62,71 @@ const onHandleSubmit  = (user:UserWithoutIdWithPassword):void => {
   
 }
 
+const togglePasswordVisibility = ():void => {
+  setShowPassword(!showPassword);
+};
+
   return (
-    
+    <div className="main-div">
     <form className='form' onSubmit={handleSubmit(onHandleSubmit)}>
-      <h3 className='form__title'>Регистрация</h3>
+      <h3 className='form__title'>Зарегистрируйтесь, чтобы собирать произведения ведущих художников мира.</h3>
       <label htmlFor="name">
-        Name:
         <input type="text" className='form__input' {...register('name')}
+        placeholder='Name'
         />
         <span>{errors.name?.message}</span>
       </label>
-      <label htmlFor="lastName">
-        lastName:
+      <label htmlFor="lastName" >
         <input type="text" className='form__input' {...register('lastName')}
+        placeholder='lastName'
         />
         <span>{errors.lastName?.message}</span>
       </label>
-      <br />
-      <label htmlFor="email">
-        Email:
+      <label htmlFor="email" >
         <input type="email" className='form__input' {...register('email')}
+        placeholder='Email'
         />
         <span>{errors.email?.message}</span>
       </label>
-      <br />
-      <label htmlFor="password">
-        Password:
-        <input type="password" className='form__input' {...register('password')}
+      <div className="password-input-wrapper">
+        <input
+          type={showPassword ? 'text' : 'password'}
+          className='form__input_prop'
+          {...register('password')}
+          placeholder='password'
         />
-        <span>{errors.password?.message}</span>
-      </label>
-      <br />
-      <label htmlFor="cpassword">
-        Check password:
-        <input type="password" className='form__input' {...register('cpassword')}
+        <button
+          type="button"
+          className="toggle-password-button"
+          onClick={togglePasswordVisibility}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
+      <span>{errors.password?.message}</span>
+      <div className="password-input-wrapper">
+        <input
+          type={showPassword ? 'text' : 'password'}
+          className='form__input_prop_op'
+          placeholder='cpassword'
+          {...register('cpassword')}
         />
-        <span>{errors.cpassword?.message}</span>
-      </label>
-      <br />
+        <button
+          type="button"
+          className="toggle-password-button"
+          onClick={togglePasswordVisibility}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
+      <span>{errors.cpassword?.message}</span>
       <div className="button-container">
         <button type="submit" className='form__btn'>
-          Sign up
+          Зарегистрироваться
         </button>
       </div>
     </form>
+    </div>
   );
 }
 

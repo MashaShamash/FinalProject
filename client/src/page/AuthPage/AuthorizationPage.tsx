@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch } from '../../app/store/store';
-// import './AuthorizationPage.css'
+import './Registration.css'
 import { useForm } from "react-hook-form"
 import {yupResolver} from '@hookform/resolvers/yup'
 import {object, string} from 'yup'
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { UserWithoutNameAndLastName } from '../../entities/auth/types/userTypes';
 import { getAuthorizationThunk } from '../../entities/auth/authSlice';
 
@@ -35,6 +36,7 @@ const schema = object().shape({
 
 function AuthorizationPage(): JSX.Element {
   const dispatch = useAppDispatch();
+  const [showPassword, setShowPassword] = useState(false);
   
 
   const {register, handleSubmit, formState: {errors}} = useForm<RegistrationFormInputs>({resolver: yupResolver(schema)})
@@ -44,23 +46,43 @@ function AuthorizationPage(): JSX.Element {
     
   }
 
+  const togglePasswordVisibility = ():void => {
+    setShowPassword(!showPassword);
+  };
+
   return (
+    <div className="main-div">
     <form className='form' onSubmit={handleSubmit(onHandleAuth)}>
-        <h3 className='form__title'>Вход</h3>
-        <label htmlFor="email">
-        Email:
+      <h3 className='form__title'>Зарегистрируйтесь, чтобы собирать произведения ведущих художников мира.</h3>
+      <label htmlFor="email" >
         <input type="email" className='form__input' {...register('email')}
+        placeholder='Email'
         />
         <span>{errors.email?.message}</span>
       </label>
-      <label htmlFor="password">
-        Password:
-        <input type="password" className='form__input' {...register('password')}
+      <div className="password-input-wrapper">
+        <input
+          type={showPassword ? 'text' : 'password'}
+          className='form__input_prop'
+          {...register('password')}
+          placeholder='password'
         />
-        <span>{errors.password?.message}</span>
-      </label>
-      <button type="submit" className='form__btn'>login</button>
+        <button
+          type="button"
+          className="toggle-password-button"
+          onClick={togglePasswordVisibility}
+        >
+          {showPassword ? <FaEyeSlash /> : <FaEye />}
+        </button>
+      </div>
+      <span style={{width: '200px'}}>{errors.password?.message}</span>
+      <div className="button-container">
+        <button type="submit" className='form__btn'>
+          Войти
+        </button>
+      </div>
     </form>
+    </div>
   );
 }
 
