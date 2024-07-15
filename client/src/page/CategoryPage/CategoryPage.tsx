@@ -9,21 +9,33 @@ function CategoryPage(): JSX.Element {
   // const [active, setActive] = useState(false)
   console.log(11111, categories);
 
+  const scrollLeft = () => {
+    const container = document.getElementById('categoryContainer');
+    if (container) {
+      container.scrollLeft -= 1000; // Adjust the scroll amount as needed
+    }
+  };
+
+  const scrollRight = () => {
+    const container = document.getElementById('categoryContainer');
+    if (container) {
+      container.scrollLeft += 1000; // Adjust the scroll amount as needed
+    }
+  };
+
   return (
     <>
-    <div className="categorName">
-      <h4>Категории</h4>
-    </div>
-    <div className='categoryDiv'>
-      {/* <button onClick={()=>setActive((prev)=>!prev)}>
-           добавить фильм
-          </button>
-          {active &&
-            <FormAddCategory/>
-          } */}
-      {categories &&
-        categories.map((category) => <CategoryItem category={category} key={category.id} />)}
-    </div>
+        <h2>Категории</h2>
+      <div className='getMainDiv'>
+      <div id="categoryContainer" className='categoryDiv'>
+        {categories &&
+          categories.map((category) => <CategoryItem category={category} key={category.id} />)}
+      </div>
+      <div className="category-controls">
+        <button onClick={scrollLeft}>←</button>
+        <button onClick={scrollRight}>→</button>
+      </div>
+      </div>
     </>
   );
 }

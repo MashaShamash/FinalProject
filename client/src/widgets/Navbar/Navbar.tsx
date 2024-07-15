@@ -40,7 +40,7 @@ function Navbar(): JSX.Element {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/figures">купить</NavLink>
+          <NavLink to="/magazin">купить</NavLink>
         </li>
         {user ? (
           <>
@@ -59,16 +59,23 @@ function Navbar(): JSX.Element {
             <li>
               <button onClick={() => setActiveRego((prev) => !prev)}>регистрация</button>
             </li>
-            <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
-              <RegistrationPage />
-            </ModalWindowRego>
+
+            <>
+              <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
+                <RegistrationPage/>
+              </ModalWindowRego>
+            </>
+
             <li>
               <button onClick={() => setActive((prev) => !prev)}>войти</button>
             </li>
-            <ModalWindow active={active} setActive={setActive}>
-              <AuthorizationPage />
-            </ModalWindow>
-          </>
+
+            <>
+              <ModalWindow active={active} setActive={setActive}>
+                <AuthorizationPage/>
+              </ModalWindow>
+              </>
+ 
         )}
       </ul>
     </div>

@@ -11,7 +11,7 @@ async function getAllFigure () {
         const newArrUser = []
       
         parsGetReadFile.map( (el, i) => {
-          newArrUser.push({title: el.title, date: el.date, img: el.img, height: el.height, price: el.price, width: el.width, categoryId: el.categoryId, userId: i+1, sell: el.sell, materials: el.materials})
+          newArrUser.push({title: el.title, date: el.date, img: el.img, height: el.height, price: el.price, width: el.width, categoryId: el.categoryId, userId: i+1, sell: el.sell, materials: el.materials, name: el.name, lastName: el.lastName, pseudonym: el.pseudonym, biography: el.biography})
         })
      
       return newArrUser

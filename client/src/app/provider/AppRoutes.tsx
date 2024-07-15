@@ -6,6 +6,7 @@ import CategoryPage from '../../page/CategoryPage/CategoryPage';
 import FigurePage from '../../page/FigurePage/FigurePage';
 import ErrorPage from '../../page/ErrorPage/ErrorPage';
 import CategoriesParams from '../../entities/categories/ui/CategoriesParams';
+import MagazinPage from '../../page/MagazinPage/MagazinPage';
 import FavoritePage from '../../page/FavoritePage/FavoritePage';
 
 function AppRoutes(): JSX.Element {
@@ -15,6 +16,7 @@ function AppRoutes(): JSX.Element {
       <Route path='/'/> 
       <Route path='/categories' element={<CategoryPage />}/> 
       <Route path='/figures' element={<FigurePage />}/> 
+      <Route path='/magazin' element={<MagazinPage />}/>
       <Route path='/categories/:catId' element={<CategoriesParams />}/>
      <Route path='/like' element={<FavoritePage />}/>
       <Route path="/registration" element={<RegistrationPage />}/>
