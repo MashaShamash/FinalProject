@@ -15,7 +15,7 @@ function BasketPage(): JSX.Element {
   const baskettt = userBaskets.filter((basket) => !basket.cartStatus)[0];
 
   const totalQuantity = baskettt
-    ? baskettt.BasketLine.reduce((acc, basketLine) => acc + basketLine.count, 0)
+    ? baskettt?.BasketLine.reduce((acc, basketLine) => acc + basketLine.count, 0)
     : 0;
   const handleDeleteBasket = () => {
     void dispatch(deleteBasket(baskettt.id));
@@ -34,13 +34,13 @@ function BasketPage(): JSX.Element {
         )}
 
         {baskettt && baskettt.BasketLine.length !== 0 && (
-          <div className="cart-box">
-            <div className="cart-box-left">
+          <div >
+            <div>
               {baskettt.BasketLine.map((basketLine: BasketLine) => (
                 <BasketItem basketLine={basketLine} key={basketLine.id} />
               ))}
             </div>
-            <div className="cart-box-right">
+            <div >
               <div>
                 <h3>Количество товаров</h3>
                 <p>{totalQuantity || 0}</p>

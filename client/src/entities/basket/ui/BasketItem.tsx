@@ -31,10 +31,10 @@ function BasketItem({ basketLine }: BasketItemProps): JSX.Element {
       {figure && (
         <div className="BasketItem">
           <div className="BasketItem-image">
-            <img src={figure.img} alt="book" />
+            <img src={figure.img} alt="figure" />
           </div>
-          <div className="BasketItem-book">
-            <div className="bookInfo">
+          <div>
+            <div>
               <h3>{figure.title}</h3>
               <p>{figure.materials}</p>
             </div>

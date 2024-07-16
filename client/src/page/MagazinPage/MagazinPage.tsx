@@ -46,7 +46,7 @@ function MagazinPage(): JSX.Element {
     setStateHeight(value as PriceRange);
   };
 
-  const onHandleGetCart = () => {
+  const onHandleGetBasket = () => {
     const filteredFigures = figures.filter((figure) => {
       const { pseudonym, materials, price, width, height, title, date, categoryId } = figure;
       return (
@@ -204,8 +204,8 @@ function MagazinPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className="button-get">
-          <button onClick={onHandleGetCart}>Найти</button>
+        <div className='buttonSearch'>
+          <button onClick={() => onHandleGetBasket()}>Найти</button>
         </div>
         <div className="results">
           {isOpen ? (

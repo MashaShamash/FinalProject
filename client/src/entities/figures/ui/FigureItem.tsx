@@ -39,31 +39,33 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
         <img src={figure.img} alt="foto" />
 
         <h3>{figure.title}</h3>
-        <button type="button" className="detailsButton" onClick={() => setActiv((prev) => !prev)}>
-          подробнее
-        </button>
-        {activ ? (
-          <>
-            <p>{figure.materials}</p>
-            <p>{figure.height} см</p>
-            <p>{figure.width} см</p>
-            <h3>{figure.price} $</h3>
-            <p>{figure.sell}</p>
-          </>
-        ) : (
-          <>
-            {user && (
-              <button type="button" onClick={handleFavorite}>
-                {like ? <RxStarFilled /> : <LiaStar />}
-              </button>
-            )}
-            {user && (
-              <button className="btn" type="button" onClick={handleAddToBasket}>
-                добавить в корзину
-              </button>
-            )}
-          </>
-        )}
+        <h3>{figure.price} $</h3>
+        <div className="buttonGrop">
+          <button type="button" className="detailsButton" onClick={() => setActiv((prev) => !prev)}>
+            подробнее
+          </button>
+          {activ ? (
+            <>
+              <p>{figure.materials}</p>
+              <p>{figure.height} см</p>
+              <p>{figure.width} см</p>
+              <p>{figure.sell}</p>
+            </>
+          ) : (
+            <>
+              {user && (
+                <button className="btn" type="button" onClick={() => handleAddToBasket()}>
+                  добавить в корзину
+                </button>
+              )}
+              {user && (
+                <button type="button" onClick={handleFavorite}>
+                  {like ? <RxStarFilled /> : <LiaStar />}
+                </button>
+              )}
+            </>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -36,6 +36,17 @@ class FigureApi {
     );
     return response.data.figure;
   };
+
+  static AddToBasket = async (
+    id: FigureId,
+  ): Promise<{ message: string; basketLine: BasketLine }> => {
+    console.log(id);
+
+    const response: AxiosResponse<{ message: string; basketLine: BasketLine }> =
+      await axiosInstance.post(`/basket/${id}`);
+
+    return response.data;
+  };
 }
 
 export default FigureApi;

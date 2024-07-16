@@ -27,14 +27,24 @@ router.post("/", verifyAccessToken, async (req, res) => {
     const { user } = res.locals;
     const { figureId } = req.body;
     let like;
-    like = await Like.findOne({ where: { userId: user.id, figureId } });
+    like = await Like.findOne({
+      where: { userId: user.id, figureId },
+    });
     if (!like) {
       like = await Like.create({ userId: user.id, figureId });
       if (like) {
+        like = await Like.findOne({
+          where: { id: like.id },
+          include: Figure,
+        });
         res.status(201).json({ message: "success", like });
         return;
       }
     }
+    like = await Like.findOne({
+      where: { id: like.id },
+      include: Figure,
+    });
     const result = await Like.destroy({ where: { userId: user.id, figureId } });
     if (result > 0) {
       res.status(200).json({ message: "успешно удалено", like });
