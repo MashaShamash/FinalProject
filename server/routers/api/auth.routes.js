@@ -3,12 +3,12 @@ const bcrypt = require('bcrypt')
 const { User, Profile } = require('../../db/models')
 const generateTokens = require('../../utils/authUtils')
 const jwtConfig = require('../../config/jwtConfig')
+const { where } = require('sequelize')
 
 
 router.post('/registration', async (req, res) => {
     try {
         const { name, lastName, email, password } = req.body;
-        console.log(12345567788);
         if (name.trim() === '' || email.trim() === '' || password.trim() === '' || lastName.trim() === '') {
             res.status(400).json({ message: 'заполните все поля' });
             return;
@@ -24,27 +24,16 @@ router.post('/registration', async (req, res) => {
 
         const user = await User.create({ name, lastName, email, password: bcryptPassword });
 
-
         delete user.dataValues.password;
 
         const { accessToken, refreshToken } = generateTokens({ user });
 
 
         if (user) {
-            res.status(201)
-                .cookie('refresh', refreshToken, { httpOnly: true })
-                .json({ message: 'success', user, accessToken });
-
-                const profUser = await Profile.create({
-                    name: user.name,
-                    lastName: user.lastName,
-                    pseudonym: '',
-                    activity: '',
-                    biography: '',
-                    userId: user.id,
-                  });
-            
-            return;
+                    res.status(201)
+                    .cookie('refresh', refreshToken, { httpOnly: true })
+                    .json({ message: 'success', user, accessToken });
+                    return
         }
 
         res.status(400).json({ message: 'попробуйте еще раз' });

@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     activity: {
       type: DataTypes.TEXT
     },
+    img: {
+      type: DataTypes.TEXT
+    },
     biography: {
       type: DataTypes.TEXT
     },

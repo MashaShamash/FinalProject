@@ -11,7 +11,7 @@ async function getAllProfile () {
         const newArrUser = []
       
         parsGetReadFile.map( (el, i) => {
-          newArrUser.push({name: el.name, lastName: el.lastName, pseudonym: el.pseudonym, biography: el.biography, userId: i + 1, conDan: ''})
+          newArrUser.push({name: el.name, lastName: el.lastName, pseudonym: el.pseudonym, biography: el.biography, userId: i + 1, conDan: '', img: '/public/img/profile-2398782_1280.webp'})
         })
      
       return newArrUser

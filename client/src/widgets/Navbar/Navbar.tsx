@@ -14,11 +14,13 @@ function Navbar(): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
   const [active, setActive] = useState<boolean>(false);
   const [activeRego, setActiveRego] = useState<boolean>(false);
+  const navigate = useNavigate()
 
   const dispatch = useAppDispatch();
 
   const onHendleLogaut = (): void => {
     void dispatch(getLogoutThunk());
+    navigate('/')
     setActive(false);
     setActiveRego(false);
   };

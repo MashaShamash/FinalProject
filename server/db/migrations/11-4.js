@@ -15,6 +15,9 @@ module.exports = {
       name: {
         type: Sequelize.TEXT
       },
+      img: {
+        type: Sequelize.TEXT
+      },
       lastName: {
         type: Sequelize.TEXT
       },

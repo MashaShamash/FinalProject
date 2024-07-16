@@ -13,6 +13,9 @@ export const injectStore = (_store: StoreType): void => {
 const axiosInstance = axios.create({
   baseURL: '/api',
   withCredentials: true,
+//   headers: {
+//     "Content-Type": "multipart/form-data",
+// }
 });
 
 axiosInstance.interceptors.request.use((config) => {

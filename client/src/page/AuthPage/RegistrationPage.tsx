@@ -5,9 +5,10 @@ import { useAppDispatch } from '../../app/store/store';
 import {object, string, ref} from 'yup'
 import { useForm } from "react-hook-form"
 import {yupResolver} from '@hookform/resolvers/yup'
-import { getRegistrationThunk } from '../../entities/auth/authSlice';
+import {  getRegistrationThunk } from '../../entities/auth/authSlice';
 import { UserWithoutIdWithPassword } from '../../entities/auth/types/userTypes';
-import { useNavigate } from 'react-router-dom';
+import { getCreateProfileThunk } from '../../entities/profile/profileSlice';
+
 
 
 
@@ -57,9 +58,20 @@ function RegistrationPage( ): JSX.Element {
 const {register, handleSubmit, formState: {errors}} = useForm<RegistrationFormInputs>({resolver: yupResolver(schema)})
 
 
-const onHandleSubmit  = (user:UserWithoutIdWithPassword):void => {
-  void dispatch(getRegistrationThunk(user))
-  
+const onHandleSubmit  = async (user:UserWithoutIdWithPassword):Promise<void> => {
+  await dispatch(getRegistrationThunk(user))
+
+  const data = { 
+    img: '',
+    pseudonym: '', 
+    activity: '', 
+    biography: '', 
+    conDan: '',
+  }
+
+  await dispatch(getCreateProfileThunk(data))
+
+
 }
 
 const togglePasswordVisibility = ():void => {

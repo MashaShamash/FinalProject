@@ -52,8 +52,8 @@
 }
 
 .textarea-bio {
-    width: 1000px;
-    height: 300px;
+    width: 300px;
+    height: 100px;
     font-size: 20px;
 }
 
@@ -78,3 +78,4 @@
 .divr {
     display:inline
 }
+

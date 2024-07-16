@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { User, UserWithoutIdWithPassword, UserWithoutNameAndLastName } from "./types/userTypes";
 import AuthApi from "./api/AuthApi";
-
-
+import ProfileApi from "../profile/api/profileApi";
+import { Profile, ProfileWhizautIdAndWhizautUserId } from "../profile/types/profileTypes";
 
 type initialStateType = {
     user: User | undefined;
     accessToken: string | undefined;
     error: string | undefined;
     loading: boolean;
+
 }
 
 const initialState: initialStateType = {
@@ -16,6 +17,7 @@ const initialState: initialStateType = {
     accessToken: undefined,
     error: undefined,
     loading: true,
+    
 }
 
 export const getRegistrationThunk = createAsyncThunk('registration/user', (body:UserWithoutIdWithPassword) => AuthApi.registration(body))
@@ -25,6 +27,7 @@ export const getAuthorizationThunk = createAsyncThunk('authorization/user', (bod
 export const getRefreshTokensThunk = createAsyncThunk('refreshTokens/user', () => AuthApi.refreshTokens())
 
 export const getLogoutThunk = createAsyncThunk('logout/user', () => AuthApi.logout())
+
 
 
 const authSlice = createSlice({
