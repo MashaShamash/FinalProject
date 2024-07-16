@@ -1,18 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate }  from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import InfiniteScroll from 'react-infinite-scroll-component';
 import { type RootState } from '../../app/store/store';
 import FigureItem from '../../entities/figures/ui/FigureItem';
-
-import InfiniteScroll from 'react-infinite-scroll-component';
-
-import LikePage from '../LikePage/FavoritePage';
-
 import './FigureDiv.css';
-
-
-
 
 function FigurePage(): JSX.Element {
   const { figures } = useSelector((state: RootState) => state.figures);
@@ -20,7 +12,7 @@ function FigurePage(): JSX.Element {
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState(figures.slice(0, 20));
 
-  const fetchMoreData = () => {
+  const fetchMoreData = (): void => {
     if (items.length >= figures.length) {
       setHasMore(false);
       return;
@@ -29,10 +21,17 @@ function FigurePage(): JSX.Element {
       setItems(items.concat(figures.slice(items.length, items.length + 20)));
     }, 1500);
   };
-  const navigate = useNavigate();
+
   return (
     <div>
-      <InfiniteScroll style={{'height': 'auto', 'overflow': 'auto', 'display': 'flex', 'flexWrap': 'wrap', 'justifyContent': 'center'}}
+      <InfiniteScroll
+        style={{
+          height: 'auto',
+          overflow: 'auto',
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}
         dataLength={items.length}
         next={fetchMoreData}
         hasMore={hasMore}
@@ -49,10 +48,6 @@ function FigurePage(): JSX.Element {
         ))}
       </InfiniteScroll>
       {/* <LikePage likedFigures={likedFigures} setLikes={setLikedFigures} /> */}
-
-
-      
-
     </div>
   );
 }
