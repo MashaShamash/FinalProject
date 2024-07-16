@@ -2,14 +2,16 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../app/store/store';
 import { Figure } from '../types/figureTypes';
+import './figure.css';
+
 
 function FiguresParams(): JSX.Element {
   const { figId } = useParams<{ figId: string }>();
-  console.log(111, figId);
+
   const { figures } = useAppSelector((state) => state.figures);
 
   const figure = figures.find((f) => f.id === +figId);
-  console.log(9999, figure);
+
 
   if (!figure) {
     return <p>Figure not found</p>;
