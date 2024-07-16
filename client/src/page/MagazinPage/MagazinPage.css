@@ -1,18 +1,10 @@
 .wrapper {
-
-}
-
-.title-main-magazin {
-
-}
-
-.title-main-magazin h1{
-
+font-size: 36px;
 }
 
 .title-main-magazin p{
     font-size: 15px;
-    padding-bottom: 20px;
+    padding-bottom: 8px;
 }
 
 .MagazinPage {
@@ -148,6 +140,13 @@
 .button-get {
     display: flex;
     justify-content: center;
+    align-items: center;
     border-bottom: 1px solid black;
-    padding: 20px;
+    padding: 10px;
+}
+.buttonSearch{
+    display: grid;
+    font-size: 18px;
+    border: solid 1px;
+    border-radius: 50%;
 }

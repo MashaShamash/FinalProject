@@ -1,85 +1,187 @@
-const router = require('express').Router();
-const { Basket,Figure} = require('../../db/models');
-const verifyAccessToken = require('../../middleware/verifyAccessToken');
+// controllers/userController.js
+const router = require("express").Router();
+// const basket = require("../../db/models/basket");
+const { BasketLine, Basket, Figure } = require("../../db/models");
 
-router.get('/', verifyAccessToken, async (req, res) => {
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
   try {
-    const { user } = res.locals;
-    if (user) {
-      const basketFigure = await Basket.findOne({
-        where: { userId: user.id },
-        include: [
-          {
-            model: Figure,
-            through: {
-              attributes: [],
-            },
-          },
-        ],
-      });
+    const basketsInDB = await Basket.findAll({
+      where: { userId: id },
+      include: [BasketLine],
+    });
 
-      res.status(200).json({ message: 'success', basketFigure });
-      return;
-    }
-    res.status(400).json({ message: 'что-то пошло не так' });
+    res.json({ message: "success", baskets: basketsInDB });
   } catch ({ message }) {
-    res.status(500).json({ error: message });
+    res.status(500).json({ message });
   }
 });
-// создание OrderLine
-// router.post('/', verifyAccessToken, async (req, res) => {
-//   const { orderId, figureId } = req.body;
-//   const { user } = res.locals;
-//   let order;
-//   try {
-//     order = await Basket.findOne({ where: { id: orderId:{basketId:userId} } });
-//     if (!basket) {
-//       basket = await Basket.create({ userId: user.id });
-//     }
-//     if (basket && cardId) {
-//       const basketLine = await BasketLine.create({
-//         cardId,
-//         basketId: basket.id,
-//       });
-//       res.status(201).json({ message: 'success', basketLine });
-//       return;
-//     }
-//     res.status(400).json({ message: 'что-то пошло не так' });
-//   } catch ({ message }) {
-//     res.status(500).json({ error: message });
-//   }
-// });
 
-//удаление BasketLine
+router.get("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Basket.destroy({ where: { id } });
+    const basketsInDB = await Basket.findAll({
+      where: { userId: id },
+      include: [BasketLine],
+    });
+    res.json({ message: "success", baskets: basketsInDB });
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+});
 
-// router.delete(
-//   '/basketLines/:basketLinesId',
-//   verifyAccessToken,
-//   async (req, res) => {
-//     const { basketLinesId } = req.params;
-//     try {
-//       const { user } = res.locals;
-//       const basket = await Basket.findOne({
-//         where: { userId: user.id },
-//       });
-//       const basketLine = await BasketLine.findOne({
-//         where: { basketId: basketLinesId },
-//       });
-//       console.log(basketLine);
-//       if (basket && basketLine) {
-//         const result = await BasketLine.destroy({
-//           where: { basketId: basketLinesId },
-//         });
-//         if (result > 0) {
-//           res.status(200).json({ message: 'success', result });
-//           return;
-//         }
-//       }
-//       res.status(400).json({ message: 'что-то пошло не так' });
-//     } catch ({ message }) {
-//       res.status(500).json({ error: message });
-//     }
-//   }
-// );
+router.put("/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Basket.update(
+      { cartStatus: true, orderStatus: "Оформлен" },
+      { where: { id } }
+    );
+    const basketsInDB = await Basket.findAll({
+      where: { userId: id },
+      include: [BasketLine],
+    });
+    res.json({ message: "success", baskets: basketsInDB });
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+});
 
+router.put("/basketLine/:id", async (req, res) => {
+  const { basketLine, action } = req.body;
+  try {
+    let newCount;
+    const figure = await Figure.findOne({ where: { id: basketLine.figureId } });
+    const basket = await Basket.findOne({ where: { id: basketLine.basketId } });
+    let totalAmount;
+    if (action == "increase") {
+      newCount = basketLine.count + 1;
+      totalAmount = basket.totalAmount + figure.amount;
+    } else {
+      newCount = basketLine.count - 1;
+      totalAmount = basket.totalAmount - figure.amount;
+      if (newCount === 0) {
+        await BasketLine.destroy({ where: { id: basketLine.id } });
+        await Basket.update(
+          { totalAmount },
+          { where: { id: basketLine.basketId } }
+        );
+        const basketsInDB = await Basket.findAll({
+          where: { userId: basket.userId },
+          include: [BasketLine],
+        });
+        res.json({ message: "success", baskets: basketsInDB });
+        return;
+      }
+    }
+    await Basket.update(
+      { totalAmount },
+      { where: { id: basketLine.basketId } }
+    );
+    await BasketLine.update(
+      { count: newCount },
+      { where: { id: basketLine.id } }
+    );
+    const basketsInDB = await Basket.findAll({
+      where: { userId: basket.userId },
+      include: [BasketLine],
+    });
+    res.json({ message: "success", baskets: basketsInDB });
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+});
+
+router.delete("/basketLine/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    const basketLine = await BasketLine.findOne({ where: { id } });
+    const figure = await Figure.findOne({ where: { id: basketLine.figureId } });
+    const basket = await Basket.findOne({
+      where: { userId: +res.locals.user.id, cartStatus: false },
+      include: [BasketLine],
+    });
+    await BasketLine.destroy({ where: { id } });
+    if (basket.BasketLines.length) {
+      const totalAmount = figure.amount * basketLine.count;
+      await Basket.update(
+        { totalAmount: basket.totalAmount - totalAmount },
+        { where: { id: basket.id } }
+      );
+    } else {
+      await Basket.destroy({
+        where: { userId: +res.locals.user.id, cartStatus: false },
+      });
+    }
+    const basketsInDB = await Basket.findAll({
+      where: { userId: basket.userId },
+      include: [BasketLine],
+    });
+    res.json({ message: "success", baskets: basketsInDB });
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+});
+router.post("/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const figure = await Figure.findOne({ where: { id } });
+// console.log(figure, 'FIIIIIG');
+    let basket = await Basket.findOne({
+      where: { userId: +res.locals.user, cartStatus: false },
+      include: [BasketLine],
+    });
+    // console.log(basket, "IIIIDDDDD");
+    if (!basket) {
+      basket = await Basket.create({
+        userId: +res.locals.user.id,
+        cartStatus: false,
+        totalAmount: 0,
+        orderStatus: "Не оформлен",
+      });
+    }
+    let basketLine;
+    if (basket.BasketLine) {
+      basketLine = basket.BasketLine.find(
+        (basketLine) => basketLine.figureId === +id
+      );
+      if (basketLine) {
+        const count = basketLine.count + 1;
+        await BasketLine.update({ count }, { where: { id: basketLine.id } });
+        basketLine = basket.BasketLine.find(
+          (basketLine) => basketLine.figureId === +id
+        );
+        await Basket.update(
+          { totalAmount: +figure.amount + +basket.totalAmount },
+          { where: { id: basket.id } }
+        );
+        res.json({ message: "increase", basketLine });
+        return;
+      }
+    }
+    basketLine = await BasketLine.create({
+      figureId: +id,
+      basketId: basket.id,
+      count: 1,
+    });
+    await Basket.update(
+      { totalAmount: +figure.amount + +figure.totalAmount },
+      { where: { id: figure.id } }
+    );
+    res.json({ message: "create", basketLine });
+  } catch ({ message }) {
+    console.log(message);
+    res.status(500).json({ message });
+  }
+});
 module.exports = router;
+
+
+// 106 строка вопролс по s
+
+
+
+
+

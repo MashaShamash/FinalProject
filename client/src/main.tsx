@@ -5,6 +5,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './app/App';
 import store from './app/store/store';
+import { injectStore } from './services/axiosInstance';
+
+injectStore(store);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <BrowserRouter>

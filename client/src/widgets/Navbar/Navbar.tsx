@@ -9,6 +9,7 @@ import RegistrationPage from '../../page/AuthPage/RegistrationPage';
 import AuthorizationPage from '../../page/AuthPage/AuthorizationPage';
 import ModalWindowRego from '../../shared/ui/Modal/ModalRego';
 import InputFilter from '../../entities/InputFilter/InputFilter';
+// import { CiSearch } from 'react-icons/ci';
 
 function Navbar(): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
@@ -25,33 +26,36 @@ function Navbar(): JSX.Element {
   return (
     <div className="Navbar">
       <ul>
-        <li>
+        <li className="linkMain">
           <NavLink to="/categories">главная</NavLink>
         </li>
+
         <li>
-          <NavLink to="/figures">картины</NavLink>
-        </li>
-        <li>
+          {/* <CiSearch /> */}
           <InputFilter />
         </li>
-        <li>
-          <NavLink to="/basket">
-            <PiBasketThin style={{ width: '30px' }} />
-          </NavLink>
-        </li>
+
         <li>
           <NavLink to="/magazin">купить</NavLink>
         </li>
         {user ? (
           <>
             <li>
-              <button onClick={onHendleLogaut}>выйти</button>
-            </li>
-            <li>
               <NavLink to="/profile">личный кабинет</NavLink>
             </li>
+
             <li>
-              <NavLink to="/like">избранное</NavLink>
+              <NavLink to="/likes">избранное</NavLink>
+            </li>
+            <li>
+              <NavLink to="/basket">
+                <PiBasketThin style={{ width: '30px' }} />
+              </NavLink>
+            </li>
+            <li>
+              <button className="buttonLogout" onClick={onHendleLogaut}>
+                выйти
+              </button>
             </li>
           </>
         ) : (
