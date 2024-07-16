@@ -4,8 +4,12 @@ import { useAppSelector } from '../../../app/store/store';
 import { Figure } from '../types/figureTypes';
 import './figure.css';
 
+
+
 function FiguresParams(): JSX.Element {
   const { figId } = useParams<{ figId: string }>();
+
+
   const { figures } = useAppSelector((state) => state.figures);
   const figure = figures.find((f) => f.id === +figId);
 
