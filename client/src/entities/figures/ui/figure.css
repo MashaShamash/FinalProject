@@ -1,4 +1,4 @@
-.figureCard {
+/* .figureCard {
   flex: 0 0 auto;
   width: 300px;
   margin-bottom: 20px;
@@ -30,20 +30,86 @@ p {
 .figureItem img {
   width: 81%;
   height: auto; /* Изменено с 100% на auto для сохранения пропорций */
-}
+/* } */
 
-.figureItem div {
+/* .figureItem div {
   width: 81%;
   text-align: center; /* Центрирование текста */
-}
-
+/* } */
+/* 
 p {
   margin: auto 0;
 }
 
 .bold {
   font-weight: bold; /* Жирный текст */
+/* } */
+
+div .figureCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 8px;
+  box-shadow:
+    0 2px 4px rgba,
+    0,
+    0,
+    0.1;
+  padding: 12px;
+  transition: all 0.3s ease;
+  height: 100%;
+  width: 100%;
 }
- */
+.buttonGrop {
+  display: flex;
+}
 
+.figureCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
+.figureCardContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.figureCardContent img {
+  width: 400px;
+  max-width: 200px;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: px;
+}
+
+.figureCardContent h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+.figureCardContent p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 8px;
+}
+
+.figureCardContent button {
+  border: none;
+  background-color: transparent;
+  /* border-radius: 4px; */
+  padding: 8px 16px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.figureCardContent button:hover {
+  background-color: #555;
+}

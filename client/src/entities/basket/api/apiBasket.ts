@@ -51,12 +51,6 @@ class BasketApi {
     return response.data;
   };
 
-  static AddToBasket = async (
-    id: FigureId,
-  ): Promise<{ message: string; basketLine: BasketLine }> => {
-    const response: AxiosResponse<{ message: string; basketLine: BasketLine }> =
-      await axiosInstance.post(`/magazin/addToBasket/${id}`);
-    return response.data;
-  };
+ 
 }
 export default BasketApi;

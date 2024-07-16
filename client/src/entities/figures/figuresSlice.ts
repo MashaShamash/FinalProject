@@ -15,7 +15,7 @@ export const getFiguresThunk = createAsyncThunk('load/figures', () => FigureApi.
 export const createFigureThunk = createAsyncThunk('add/figures', (body: FigureWithoutId) =>
   FigureApi.createFigure(body),
 );
-export const addToBasket = createAsyncThunk('figures/addToBasket', (id: FigureId) =>
+export const addToBasket = createAsyncThunk('magazin/addToBasket', (id: FigureId) =>
   FigureApi.AddToBasket(id),
 );
 
