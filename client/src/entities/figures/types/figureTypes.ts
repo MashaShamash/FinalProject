@@ -1,4 +1,4 @@
-import { CategoryId } from "../../categories/types/categoryTypes"
+import type { CategoryId } from "../../categories/types/categoryTypes"
 
 export type Figure ={
     id: number,

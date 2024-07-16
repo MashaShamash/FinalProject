@@ -9,7 +9,7 @@ import RegistrationPage from '../../page/AuthPage/RegistrationPage';
 import AuthorizationPage from '../../page/AuthPage/AuthorizationPage';
 import ModalWindowRego from '../../shared/ui/Modal/ModalRego';
 import InputFilter from '../../entities/InputFilter/InputFilter';
-import { CiSearch } from 'react-icons/ci';
+// import { CiSearch } from 'react-icons/ci';
 
 function Navbar(): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
@@ -45,7 +45,7 @@ function Navbar(): JSX.Element {
             </li>
 
             <li>
-              <NavLink to="/like">избранное</NavLink>
+              <NavLink to="/likes">избранное</NavLink>
             </li>
             <li>
               <NavLink to="/basket">

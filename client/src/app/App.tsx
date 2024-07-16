@@ -27,32 +27,29 @@ function App(): JSX.Element {
 
   return (
     <>
+      {loading ? (
+        <div className="app">
+          <Navbar />
+          <AppRoutes />
+        </div>
+      ) : (
+        <div
+          style={{
+            width: '100vw',
+            height: '100vh',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+        >
+          <Loader />
 
-    {loading ? (<div className="app">
-    <Navbar />
-      <AppRoutes />
-      </div>
-  ) : (
-    <div style={{
-      width: '100vw',
-      height: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-    }}>
-    <Loader />
-
-
-    <header>
-        <h1>Welcome to Website</h1>
-      </header>
-         
-
-
-    </div>
-  )}
-  <StickyFooter/>
-
+          <header>
+            <h1>Welcome to Website</h1>
+          </header>
+        </div>
+      )}
+      <StickyFooter />
     </>
   );
 }
