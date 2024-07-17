@@ -11,21 +11,21 @@ import { deleteBasket, loadBaskets } from '../../entities/basket/basketSlice';
 function BasketPage(): JSX.Element {
   const dispatch = useAppDispatch();
   const user = useSelector((state: RootState) => state.auth.user);
-  const basket = useSelector((state: RootState) => state.basket.baskets);
+  const basket = useSelector((state: RootState) => state.basket.basket);
 
   console.log(basket);
 
   useEffect(() => {
     // сделать так, чтобы у юзера был basketId
-    void dispatch(loadBaskets(1));
+    void dispatch(loadBaskets(user.basketId));
   }, [dispatch]);
 
   // const totalQuantity = baskettt
   //   ? baskettt?.BasketLine.reduce((acc, basketLine) => acc + basketLine.count, 0)
   //   : 0;
-  // const handleDeleteBasket = (basketId: Basket['id']): void => {
-  //   void dispatch(deleteBasket(basketId));
-  // };
+  const handleDeleteBasket = (): void => {
+    void dispatch(deleteBasket(user.basketId));
+  };
 
   return (
     <div className="Basket">

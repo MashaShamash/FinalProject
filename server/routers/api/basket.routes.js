@@ -12,25 +12,21 @@ router.get("/:id", verifyAccessToken, async (req, res) => {
       include: BasketLine,
     });
     console.log(basketsInDB);
-    res.json({ message: "success", baskets: basketsInDB });
+    res.json({ message: "success", basket: basketsInDB });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
 });
 
-// router.get("/:id", async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     await Basket.destroy({ where: { id } });
-//     const basketsInDB = await Basket.findAll({
-//       where: { userId: id },
-//       include: [BasketLine],
-//     });
-//     res.json({ message: "success", baskets: basketsInDB });
-//   } catch ({ message }) {
-//     res.status(500).json({ message });
-//   }
-// });
+router.delete("/basket/:id", async (req, res) => {
+  const { id } = req.params;
+  try {
+    await Basket.destroy({ where: { id } });
+    res.json({ message: "success" });
+  } catch ({ message }) {
+    res.status(500).json({ message });
+  }
+});
 
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
@@ -119,7 +115,7 @@ router.delete("/basketLine/:id", async (req, res) => {
       where: { userId: basket.userId },
       include: BasketLine,
     });
-    res.json({ message: "success", baskets: basketsInDB });
+    res.json({ message: "success", basket: basketsInDB });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
@@ -127,7 +123,7 @@ router.delete("/basketLine/:id", async (req, res) => {
 router.post("/:id", verifyAccessToken, async (req, res) => {
   try {
     const { id } = req.params;
-
+    console.log(id);
     const figure = await Figure.findOne({ where: { id } });
     // console.log(figure, 'FIIIIIG');
 
@@ -144,6 +140,7 @@ router.post("/:id", verifyAccessToken, async (req, res) => {
         totalAmount: 0,
         orderStatus: "Не оформлен",
       });
+      res.locals.user.dataValues.basketId = basket.id;
     }
     console.log(basket, 2222);
     let basketLine;

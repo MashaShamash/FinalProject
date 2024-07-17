@@ -5,9 +5,8 @@ import type { UserId } from '../../auth/types/userTypes';
 import type { FigureId } from '../../figures/types/figureTypes';
 
 class BasketApi {
-  static getAllBasket = async (id: UserId): Promise<{ message: string; baskets: Basket[] }> => {
-
-    const response: AxiosResponse<{ message: string; baskets: Basket[] }> = await axiosInstance.get(
+  static getAllBasket = async (id: UserId): Promise<{ message: string; basket: Basket }> => {
+    const response: AxiosResponse<{ message: string; basket: Basket }> = await axiosInstance.get(
       `/basket/${id}`,
     );
     return response.data;
@@ -17,7 +16,7 @@ class BasketApi {
     id: Basket['id'],
   ): Promise<{ message: string; baskets: Basket[] }> => {
     const response: AxiosResponse<{ message: string; baskets: Basket[] }> =
-      await axiosInstance.delete(`/basket/${id}`);
+      await axiosInstance.delete(`/basket/basket/${id}`);
     return response.data;
   };
 
