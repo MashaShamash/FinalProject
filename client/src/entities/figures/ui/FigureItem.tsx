@@ -39,7 +39,6 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
     <div className="figureCard">
       <img src={figure.img} alt="foto" />
 
-
       <h3>{figure.title}</h3>
       <h3>{figure.price} $</h3>
       <div className="buttonGrop">
@@ -47,7 +46,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
           style={{ backgroundColor: 'transparent', border: 'none' }}
           type="button"
           className="detailsButton"
-         onClick={() => navigate(`/figures/${figure.id}`)}
+          onClick={() => navigate(`/figures/${figure.id}`)}
         >
           подробнее
         </button>
@@ -66,6 +65,8 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
                   backgroundColor: 'transparent',
                   border: 'none',
                   padding: '0',
+                  border: 'solid 1px',
+                  borderRadius:"10px"
                 }}
                 className="btn"
                 type="button"
@@ -91,7 +92,6 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
             )}
           </>
         )}
-
       </div>
     </div>
   );

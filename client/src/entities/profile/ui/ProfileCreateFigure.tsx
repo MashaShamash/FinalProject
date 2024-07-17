@@ -1,14 +1,15 @@
 import './ProfileCreateFigure.css'
-import React, { ChangeEvent, useState } from 'react';
+import type { ChangeEvent} from 'react';
+import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { createFigureThunk} from '../../figures/figuresSlice';
-import { Profile } from '../types/profileTypes';
+import type { Profile } from '../types/profileTypes';
 
 
 type ProfileCreateFigureProps={
     isProfile: Profile
 }
-const ProfileCreateFigure = ({isProfile, setActive}: ProfileCreateFigureProps): JSX.Element =>{
+function ProfileCreateFigure({isProfile, setActive}: ProfileCreateFigureProps): JSX.Element {
     const {user} = useAppSelector((state) => state.auth)
     const { categories } = useAppSelector((state) => state.categories);
     const dispatch = useAppDispatch()
