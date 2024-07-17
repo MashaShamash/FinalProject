@@ -1,27 +1,31 @@
 import React, {  useState } from 'react';
-
-import { useAppSelector } from '../../app/store/store';
-import './ProfilePage.css'
-import ProfileBio from '../../entities/profile/ui/ProfileBio';
-import ProfileMyFigure from '../../entities/profile/ui/ProfileMyFigure';
-import ProfileMyAdress from '../../entities/profile/ui/ProfileMyAdress';
-import ProfileUpdatName from '../../entities/profile/ui/ProfileUpdatName';
-import ModalWindowFigureProf from '../../shared/ui/Modal/ModalFigureCreate';
+import { Figure } from '../../../entities/figures/types/figureTypes';
+import { useAppSelector } from '../../../app/store/store';
+import ProfileUserBio from '../../../entities/profile/profileUsers/ui/ProfileUserBio';
+import ProfileUsersFigure from '../../../entities/profile/profileUsers/ui/ProfileUsersFigure';
+import ProfileUserAdress from '../../../entities/profile/profileUsers/ui/ProfileMyAdress';
 
 
 
+type ProfilePageProps={
+    figure: Figure
+}
 
-
-
-function ProfilePage ({}): JSX.Element {
+function ProfileUsersPage ({figure}: ProfilePageProps): JSX.Element {
     const {user} = useAppSelector((state) => state.auth)
 
    const {figures} =useAppSelector((state) => state.figures)
    const {users} = useAppSelector((state) => state.users)
 
     const {profiles} = useAppSelector((state) => state.profiles)
+    
+    const userse = users.find(el => el.id === +figure.id)
+    const isProfile = profiles.find(el => el.id === userse?.id)
+    
+           
+        
 
-      const isProfile = profiles.find(el => el.id === user?.id)
+     
 
     const [isOpenBio, setIsOpenBio] = useState(true)
     const [isOpenMyFigure, setIsOpenMyFigure] = useState(false)
@@ -32,7 +36,6 @@ function ProfilePage ({}): JSX.Element {
 return (
 <div className='ProfilePage'>
     <div className="wrapper-prof-bio">
-        
             <div className="NameImg">
                     <div className='div-map'>
                     <div className='pictha'>
@@ -44,12 +47,6 @@ return (
                             <p>Фамилия: {isProfile?.lastName}</p>
                         </div>
                     </div>
-                    <div className='gu'>
-                    <ModalWindowFigureProf active={active} setActive={setActive}>
-                        <ProfileUpdatName isProfile={isProfile}/>
-                    </ModalWindowFigureProf>
-                    <button onClick={()=> setActive((prev) => !prev)}>изменить</button>
-                    </div>
                     </div>
             </div>
        
@@ -60,13 +57,13 @@ return (
                 <button onClick={() => { setIsOpenMyFigure(false);setIsOpenBio(false);setIsOpenMyAdress(true)}}>Как связаться</button>
             </div>
             <div className={isOpenBio === true && isOpenMyFigure === false && isOpenMyAdress === false ? 'divr' : 'gty'}>
-            <ProfileBio isProfile={isProfile}/>
+            <ProfileUserBio isProfile={isProfile}/>
             </div>
             <div className={isOpenMyFigure === true && isOpenBio === false && isOpenMyAdress === false ? 'divr' : 'gty'}>
-             <ProfileMyFigure isProfile={isProfile}/>
+             <ProfileUsersFigure isProfile={isProfile} figure={figure}/>
             </div>
             <div className={isOpenMyAdress === true && isOpenBio === false && isOpenMyFigure === false ? 'divr' : 'gty'}>
-             <ProfileMyAdress isProfile={isProfile}/>
+             <ProfileUserAdress isProfile={isProfile}/>
             </div>
         </div>
     </div>
@@ -74,4 +71,4 @@ return (
  );
 
 }
-export default ProfilePage
+export default ProfileUsersPage
