@@ -50,8 +50,10 @@ return (
             <ProfileUpdateFigure figure={figure} isProfile={isProfile}/>
         </ModalWindowFigureUpdate>
         <ModalWindowFigureDelete setActiveDelete={setActiveDelete} activeDelete={activeDelete}>
-            <h1>Вы действительно хотите Удалить?</h1>
+            <div className='delr'>
+            <h1 className='pui'>Вы действительно хотите Удалить?</h1>
             <button onClick={() => {onHeandleDeleteFigure(figure); setActiveDelete((prev) => !prev)}}>Удалить</button>
+            </div>
         </ModalWindowFigureDelete>
             <div className='two-button'>
             <button className='ui' onClick={()=> setActiveUpdate((prev) => !prev)}>Изменить</button>
