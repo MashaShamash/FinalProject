@@ -2,30 +2,27 @@
 const router = require("express").Router();
 // const basket = require("../../db/models/basket");
 const { BasketLine, Basket, Figure } = require("../../db/models");
+const verifyAccessToken = require("../../middleware/verifyAccessToken");
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", verifyAccessToken, async (req, res) => {
   const { id } = req.params;
   try {
-    const basketsInDB = await Basket.findAll({
-      where: { userId: id },
-      include: [BasketLine],
+    const basketsInDB = await Basket.findOne({
+      where: { id: id, cartStatus: false },
+      include: BasketLine,
     });
-
-    res.json({ message: "success", baskets: basketsInDB });
+    console.log(basketsInDB);
+    res.json({ message: "success", basket: basketsInDB });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.delete("/basket/:id", async (req, res) => {
   const { id } = req.params;
   try {
     await Basket.destroy({ where: { id } });
-    const basketsInDB = await Basket.findAll({
-      where: { userId: id },
-      include: [BasketLine],
-    });
-    res.json({ message: "success", baskets: basketsInDB });
+    res.json({ message: "success" });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
@@ -40,7 +37,7 @@ router.put("/:id", async (req, res) => {
     );
     const basketsInDB = await Basket.findAll({
       where: { userId: id },
-      include: [BasketLine],
+      include: BasketLine,
     });
     res.json({ message: "success", baskets: basketsInDB });
   } catch ({ message }) {
@@ -69,7 +66,7 @@ router.put("/basketLine/:id", async (req, res) => {
         );
         const basketsInDB = await Basket.findAll({
           where: { userId: basket.userId },
-          include: [BasketLine],
+          include: BasketLine,
         });
         res.json({ message: "success", baskets: basketsInDB });
         return;
@@ -85,7 +82,7 @@ router.put("/basketLine/:id", async (req, res) => {
     );
     const basketsInDB = await Basket.findAll({
       where: { userId: basket.userId },
-      include: [BasketLine],
+      include: BasketLine,
     });
     res.json({ message: "success", baskets: basketsInDB });
   } catch ({ message }) {
@@ -100,7 +97,7 @@ router.delete("/basketLine/:id", async (req, res) => {
     const figure = await Figure.findOne({ where: { id: basketLine.figureId } });
     const basket = await Basket.findOne({
       where: { userId: +res.locals.user.id, cartStatus: false },
-      include: [BasketLine],
+      include: BasketLine,
     });
     await BasketLine.destroy({ where: { id } });
     if (basket.BasketLines.length) {
@@ -116,24 +113,26 @@ router.delete("/basketLine/:id", async (req, res) => {
     }
     const basketsInDB = await Basket.findAll({
       where: { userId: basket.userId },
-      include: [BasketLine],
+      include: BasketLine,
     });
-    res.json({ message: "success", baskets: basketsInDB });
+    res.json({ message: "success", basket: basketsInDB });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
 });
-router.post("/:id", async (req, res) => {
+router.post("/:id", verifyAccessToken, async (req, res) => {
   try {
     const { id } = req.params;
-
+    console.log(id);
     const figure = await Figure.findOne({ where: { id } });
-// console.log(figure, 'FIIIIIG');
-    let basket = await Basket.findOne({
-      where: { userId: +res.locals.user, cartStatus: false },
-      include: [BasketLine],
+    // console.log(figure, 'FIIIIIG');
+
+    let basket;
+
+    basket = await Basket.findOne({
+      where: { userId: res.locals.user.id, cartStatus: false },
     });
-    // console.log(basket, "IIIIDDDDD");
+
     if (!basket) {
       basket = await Basket.create({
         userId: +res.locals.user.id,
@@ -141,36 +140,47 @@ router.post("/:id", async (req, res) => {
         totalAmount: 0,
         orderStatus: "Не оформлен",
       });
+      res.locals.user.dataValues.basketId = basket.id;
     }
+    console.log(basket, 2222);
     let basketLine;
-    if (basket.BasketLine) {
-      basketLine = basket.BasketLine.find(
-        (basketLine) => basketLine.figureId === +id
-      );
-      if (basketLine) {
-        const count = basketLine.count + 1;
-        await BasketLine.update({ count }, { where: { id: basketLine.id } });
-        basketLine = basket.BasketLine.find(
-          (basketLine) => basketLine.figureId === +id
-        );
-        await Basket.update(
-          { totalAmount: +figure.amount + +basket.totalAmount },
-          { where: { id: basket.id } }
-        );
-        res.json({ message: "increase", basketLine });
-        return;
-      }
-    }
+    // if (basket.BasketLine) {
+    //   basketLine = basket.BasketLine.find(
+    //     (basketLine) => basketLine.figureId === +id
+    //   );
+    //   console.log(6);
+    //   if (basketLine) {
+    //     const count = basketLine.count + 1;
+    //     await BasketLine.update({ count }, { where: { id: basketLine.id } });
+    //     basketLine = basket.BasketLine.find(
+    //       (basketLine) => basketLine.figureId === +id
+    //     );
+    //     await Basket.update(
+    //       { totalAmount: +figure.amount + +basket.totalAmount },
+    //       { where: { id: basket.id } }
+    //     );
+    //     console.log(7);
+    //     res.json({ message: "increase", basketLine });
+    //     return;
+    //   }
+    // }
     basketLine = await BasketLine.create({
-      figureId: +id,
+      figureId: figure.id,
       basketId: basket.id,
       count: 1,
     });
-    await Basket.update(
-      { totalAmount: +figure.amount + +figure.totalAmount },
-      { where: { id: figure.id } }
-    );
-    res.json({ message: "create", basketLine });
+
+    // await Basket.update(
+    //   { totalAmount: +figure.amount + +figure.totalAmount },
+    //   { where: { id: figure.id } }
+    // );
+    if (basketLine) {
+      basketLine = await BasketLine.findOne({
+        where: { id: basketLine.id },
+        include: Figure,
+      });
+      res.json({ message: "create", basketLine });
+    }
   } catch ({ message }) {
     console.log(message);
     res.status(500).json({ message });
@@ -178,10 +188,4 @@ router.post("/:id", async (req, res) => {
 });
 module.exports = router;
 
-
 // 106 строка вопролс по s
-
-
-
-
-

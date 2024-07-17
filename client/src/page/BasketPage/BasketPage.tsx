@@ -1,31 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import { Button } from '@mui/material';
 // import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store/store';
 import { useAppDispatch } from '../../app/store/store';
 import BasketItem from '../../entities/basket/ui/BasketItem';
-import type { BasketLine } from '../../entities/basket/types/basketTypes';
-import { deleteBasket } from '../../entities/basket/basketSlice';
+import type { Basket, BasketLine } from '../../entities/basket/types/basketTypes';
+import { deleteBasket, loadBaskets } from '../../entities/basket/basketSlice';
 
 function BasketPage(): JSX.Element {
   const dispatch = useAppDispatch();
-  // const user = useSelector((state: RootState) => state.auth.user);
-  const userBaskets = useSelector((state: RootState) => state.baskets.baskets);
+   const user = useSelector((state: RootState) => state.auth.user);
+  const userBaskets = useSelector((state: RootState) => state.basket.basket);
   const baskettt = userBaskets.filter((basket) => !basket.cartStatus)[0];
 
-  const totalQuantity = baskettt
-    ? baskettt?.BasketLine.reduce((acc, basketLine) => acc + basketLine.count, 0)
-    : 0;
-  const handleDeleteBasket = () => {
-    void dispatch(deleteBasket(baskettt.id));
+
+  console.log(basket);
+
+  useEffect(() => {
+    // сделать так, чтобы у юзера был basketId
+    void dispatch(loadBaskets(user.basketId));
+  }, [dispatch]);
+
+  // const totalQuantity = baskettt
+  //   ? baskettt?.BasketLine.reduce((acc, basketLine) => acc + basketLine.count, 0)
+  //   : 0;
+  const handleDeleteBasket = (): void => {
+    void dispatch(deleteBasket(user.basketId));
   };
 
   return (
     <div className="Basket">
       <div className="container">
         <h2>корзина</h2>
-        {baskettt && baskettt.BasketLine.length !== 0 && (
+        {basket && basket.BasketLines && (
           <div style={{ textAlign: 'start' }}>
             <button onClick={handleDeleteBasket} type="button">
               Очистить корзину
@@ -33,29 +41,29 @@ function BasketPage(): JSX.Element {
           </div>
         )}
 
-        {baskettt && baskettt.BasketLine.length !== 0 && (
-          <div >
+        {basket && basket.BasketLines && basket.BasketLines && (
+          <div>
             <div>
-              {baskettt.BasketLine.map((basketLine: BasketLine) => (
+              {basket.BasketLines.map((basketLine: BasketLine) => (
                 <BasketItem basketLine={basketLine} key={basketLine.id} />
               ))}
             </div>
-            <div >
-              <div>
+            <div>
+              {/* <div>
                 <h3>Количество товаров</h3>
                 <p>{totalQuantity || 0}</p>
               </div>
               <div>
                 <h3>Сумма заказа</h3>
                 <p> {baskettt.totalAmount} ₽</p>
-              </div>
+              </div> */}
               <button className="btn" type="button">
                 Оформить заказ
               </button>
             </div>
           </div>
         )}
-        {(!baskettt || !baskettt.BasketLine.length) && (
+        {(!basket || !basket.BasketLines) && (
           <div className="message">
             <p>Пока ничего нет</p>
           </div>

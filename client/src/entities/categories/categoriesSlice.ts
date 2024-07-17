@@ -33,7 +33,6 @@ const categorySlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getCategoriesThunk.fulfilled, (state, action) => {
-        console.log(33333, action.payload);
 
         state.categories = action.payload;
       })

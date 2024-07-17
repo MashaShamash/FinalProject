@@ -1,152 +1,149 @@
 .wrapper {
-font-size: 36px;
+  font-size: 36px;
 }
 
-.title-main-magazin p{
-    font-size: 15px;
-    padding-bottom: 8px;
+.title-main-magazin p {
+  font-size: 15px;
+  padding-bottom: 8px;
 }
 
 .MagazinPage {
-
 }
 
 .contener {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    border-top: 1px solid black;
-    padding: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-top: 1px solid black;
+  padding: 20px;
 }
 
 .categor {
-
 }
 
 .selector-categor {
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .category-span {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .category-sel {
-    width: 300px;
-    height: 30px;
+  width: 300px;
+  height: 30px;
 }
 
 .pseudonym {
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .pseudonym-span {
-    font-size: 20px;
+  font-size: 20px;
 }
 .pseudonym-input {
-    width: 300px;
-    height: 30px;
+  width: 300px;
+  height: 30px;
 }
 
 .title {
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .title-span {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .title-input {
-    width: 300px;
-    height: 30px;
+  width: 300px;
+  height: 30px;
 }
 
 .price {
-
 }
 
-.price p{
-    font-size: 20px;
+.price p {
+  font-size: 20px;
 }
 
 .price-slider {
-    width: 300px;
+  width: 300px;
 }
 
 .height {
-
 }
 
-.height p{
-    font-size: 20px;
+.height p {
+  font-size: 20px;
 }
 .height-slider {
-    width: 300px;
+  width: 300px;
 }
 
 .material {
-    width: 300px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap;
+  width: 300px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .material-span {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .material-input {
-    width: 300px;
-    height: 30px;
+  width: 300px;
+  height: 30px;
 }
 
 .date {
-
 }
 
-.date p{
- font-size: 20px;
+.date p {
+  font-size: 20px;
 }
 
 .date-slider {
-    width: 300px;
+  width: 300px;
 }
 
 .price {
-
 }
 
-.price p{
-    
+.price p {
 }
 
 .price-slider {
-
 }
 
 .button-get {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-bottom: 1px solid black;
-    padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+  padding: 10px;
 }
-.buttonSearch{
-    display: grid;
-    font-size: 18px;
-    border: solid 1px;
-    border-radius: 50%;
+.buttonSearch {
+  display: flex;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  font-size: 18px;
 }

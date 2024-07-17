@@ -14,7 +14,7 @@ const store = configureStore({
     like: likeSlice.reducer,
     figures: figureSlice.reducer,
     profiles: profileSlice.reducer,
-    baskets: basketSlice.reducer
+    basket: basketSlice.reducer
   },
 });
 

@@ -5,3 +5,10 @@
   flex-direction: row;
   flex-wrap: wrap;
 }
+img {
+  width: 300px; /* начальный размер изображения */
+  transition: transform 0.5s ease; /* плавный переход */
+}
+img:hover {
+    transform: scale(2.2); /* увеличение изображения на 20% */
+  }

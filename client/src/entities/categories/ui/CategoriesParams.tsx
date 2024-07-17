@@ -3,10 +3,10 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useParams } from 'react-router-dom';
 import './CategoriesParams.css';
 import { useAppSelector } from '../../../app/store/store';
-import { Figure } from '../../figures/types/figureTypes';
-import { Category } from '../types/categoryTypes';
+import type { Figure } from '../../figures/types/figureTypes';
+import type { Category } from '../types/categoryTypes';
 
-const CategoriesParams = (): JSX.Element => {
+function CategoriesParams(): JSX.Element {
   const { catId } = useParams<{ catId: string }>();
   const { categories } = useAppSelector((state) => state.categories);
   const { figures } = useAppSelector((state) => state.figures);
@@ -14,7 +14,7 @@ const CategoriesParams = (): JSX.Element => {
   const [items, setItems] = useState<Figure[]>([]);
   const [filteredFigures, setFilteredFigures] = useState<Figure[]>([]);
   const [active, setActive] = useState(false);
-  let nameCategor: Category | undefined = undefined;
+  let nameCategor: Category | undefined;
 
   if (catId) {
     nameCategor = categories.find((el) => el.id === +catId);
@@ -69,5 +69,5 @@ const CategoriesParams = (): JSX.Element => {
       </InfiniteScroll>
     </div>
   );
-};
+}
 export default CategoriesParams;

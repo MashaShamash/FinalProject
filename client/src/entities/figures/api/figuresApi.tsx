@@ -55,10 +55,9 @@ class FigureApi {
 
   static AddToBasket = async (
     id: FigureId,
-  ): Promise<{ message: string; basketLine: BasketLine }> => {
-    console.log(id);
+  ): Promise<{ message: string; basketLines: BasketLine }> => {
 
-    const response: AxiosResponse<{ message: string; basketLine: BasketLine }> =
+    const response: AxiosResponse<{ message: string; basketLines: BasketLine }> =
       await axiosInstance.post(`/basket/${id}`);
 
     return response.data;
