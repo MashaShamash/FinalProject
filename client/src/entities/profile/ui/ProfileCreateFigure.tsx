@@ -1,4 +1,4 @@
-
+import './ProfileCreateFigure.css'
 import React, { ChangeEvent, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import { createFigureThunk} from '../../figures/figuresSlice';
@@ -8,7 +8,7 @@ import { Profile } from '../types/profileTypes';
 type ProfileCreateFigureProps={
     isProfile: Profile
 }
-const ProfileCreateFigure = ({isProfile}: ProfileCreateFigureProps): JSX.Element =>{
+const ProfileCreateFigure = ({isProfile, setActive}: ProfileCreateFigureProps): JSX.Element =>{
     const {user} = useAppSelector((state) => state.auth)
     const { categories } = useAppSelector((state) => state.categories);
     const dispatch = useAppDispatch()
@@ -43,7 +43,7 @@ const ProfileCreateFigure = ({isProfile}: ProfileCreateFigureProps): JSX.Element
         data.append("imageFile", imageFile)
         
         void dispatch(createFigureThunk(data))
-        setPreviewImage(prev => undefined)
+        setPreviewImage(undefined)
         setTitle('')
         setDate(2024)
         setMaterials('')
@@ -52,6 +52,7 @@ const ProfileCreateFigure = ({isProfile}: ProfileCreateFigureProps): JSX.Element
         setWidth(100)
         setCategoryId(0)
         setImageFile('')
+        setActive((prev:boolean)=> !prev)
 
     }
     
@@ -70,10 +71,12 @@ const ProfileCreateFigure = ({isProfile}: ProfileCreateFigureProps): JSX.Element
 
 
 return (
-<div className=' ProfileCreateFigure'>
-    <form action="" onSubmit={onHeandleCreateFigure}>
-        <h3></h3>
+<div className='ProfileCreateFigure'>
+<h3 className='span-f'>Добавить искусства</h3>
+    <form action="" className='form-create' onSubmit={onHeandleCreateFigure}>
+        <div className='one-div-create'>
         <div className="creat-title">
+        <span className='span-for'>Название картины</span>
         <label htmlFor="name">
         <input type="text" className='form__input' 
         placeholder='Название картины'
@@ -84,6 +87,7 @@ return (
       </label>
         </div>
         <div className="create-date">
+        <span className='span-for'>Год создания картины</span>
         <label htmlFor="name">
         <input type="number" className='form__input' 
         placeholder='Год создания картины'
@@ -95,7 +99,7 @@ return (
       </div>
       <div className="create-img">
                 <label htmlFor="name">
-                    <span>Добавить картину</span>
+                    <span className='span-for'>Добавить картину</span>
                     <input type="file" className='form__input' 
                         placeholder='Картинка'
                         onChange={onHandleImageChange}
@@ -105,7 +109,9 @@ return (
                     <img src={previewImage} alt="Preview" className="preview-image" />
                 )}
             </div>
+            
         <div className="create-material">
+        <span className='span-for'>Материалы</span>
         <label htmlFor="name">
         <input type="text" className='form__input' 
         placeholder='Материалы'
@@ -115,7 +121,10 @@ return (
         <span>{}</span>
       </label>
         </div>
+        </div>
+        <div className='two-div-create'>
         <div className="create-height">
+        <span className='span-for'>Высота картины, мм</span>
         <label htmlFor="name">
         <input type="number" className='form__input' 
         placeholder='Высота картины'
@@ -126,6 +135,7 @@ return (
       </label>
         </div>
         <div className="create-price">
+        <span className='span-for'>Стоимость картины, руб</span>
         <label htmlFor="name">
         <input type="number" className='form__input' 
         placeholder='Стоимость'
@@ -135,7 +145,9 @@ return (
         <span>{}</span>
       </label>
         </div>
+        
         <div className="create-width">
+        <span className='span-for'>Ширина картины, мм</span>
         <label htmlFor="name">
         <input type="number" className='form__input' 
         placeholder='Ширина'
@@ -145,11 +157,11 @@ return (
         <span>{}</span>
       </label>
         </div>
-        <div className="selector-categor">
-            <span className='category-span'>Категория: </span>
+        <div className="selector-catego">
+            <span className='span-for'>Категория: </span>
                  <select 
                         value={categoryId}
-                        className='category-sel'
+                        
                         onChange={(e) => setCategoryId(+e.target.value)}>
                         <option value="">Выбрать категорию</option>
                         {categories.map((category) => (
@@ -157,7 +169,8 @@ return (
                     ))}
             </select>
         </div>
-        <button type="submit">Добавить</button>
+        </div>
+        <button style={{marginLeft: '40px'}} type="submit">Добавить</button>
     </form>
  </div>
  );

@@ -55,11 +55,20 @@ router.put("/:profileId",verifyAccessToken,upload.single('imageFile'), async (re
   try {
     const { user } = res.locals;
     const { profileId } = req.params;
-    const img = `/img/${req.file.filename}`
-    console.log(img);
+    // Инициализируем переменную для пути к изображению
+    let img = '';
+
+    // Проверяем, загружен ли новый файл
+    if (req.file) {
+        img = `/img/${req.file.filename}`; // Задаем путь к новому изображению
+    } else {
+        // Если новый файл не был загружен, сохраняем текущий путь из базы данных
+        const figure = await Profile.findOne({ where: { id:profileId } });
+        if (figure) {
+            img = figure.img; // Используем текущий путь к изображению из базы данных
+        }
+    }
     const { pseudonym, activity, biography, name, lastName, conDan} = req.body;
-    console.log(777, activity);
-    console.log(888, pseudonym, typeof activity, biography, name, lastName, conDan);
     
     const result = await Profile.update(
       { pseudonym, activity, biography, name, lastName, conDan, img},

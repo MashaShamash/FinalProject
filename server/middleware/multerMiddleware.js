@@ -1,5 +1,15 @@
 const multer = require('multer');
 const path = require('path');
+const fs = require('fs');
+
+// Функция для проверки существования файла
+function fileExists(filePath) {
+  try {
+    return fs.existsSync(filePath);
+  } catch (err) {
+    return false;
+  }
+}
 
 // Настройки для multer
 const storage = multer.diskStorage({
@@ -13,6 +23,18 @@ const storage = multer.diskStorage({
   }
 });
 
-const upload = multer({ storage });
+// Функция для фильтрации файлов
+const fileFilter = (req, file, cb) => {
+  const filePath = path.join('public/img', file.originalname);
+  if (fileExists(filePath)) {
+    // Файл с таким именем уже существует, продолжаем без ошибки
+    cb(null, true);
+  } else {
+    // Разрешаем загрузку файла
+    cb(null, true);
+  }
+};
+
+const upload = multer({ storage, fileFilter });
 
 module.exports = upload;

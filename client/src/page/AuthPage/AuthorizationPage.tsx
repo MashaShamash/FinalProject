@@ -53,7 +53,7 @@ function AuthorizationPage(): JSX.Element {
   return (
     <div className="main-div">
     <form className='form' onSubmit={handleSubmit(onHandleAuth)}>
-      <h3 className='form__title'>Зарегистрируйтесь, чтобы собирать произведения ведущих художников мира.</h3>
+      <h3 className='form__title'>Авторизируйтесь, чтобы собирать произведения ведущих художников мира.</h3>
       <label htmlFor="email" >
         <input type="email" className='form__input' {...register('email')}
         placeholder='Email'
