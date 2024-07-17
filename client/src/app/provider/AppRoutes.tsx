@@ -14,6 +14,7 @@ import ErrorPage from '../../page/ErrorPage/ErrorPage';
 
 
 function AppRoutes(): JSX.Element {
+  
   return (
     <Routes>
       <Route path="/" />
@@ -26,8 +27,7 @@ function AppRoutes(): JSX.Element {
       <Route path="/likes" element={<FavoritePage />} />
       <Route path="/registration" element={<RegistrationPage />} />
       <Route path="/autorization" element={<AuthorizationPage />} />
-
-      <Route path="/profile" element={<ProfilePage />} />
+      <Route path="/profile" element={<ProfilePage />}/>
       <Route path="/basket" element={<BasketPage />} />
       <Route path="*" element={<ErrorPage />} />
 
