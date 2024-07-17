@@ -1,9 +1,6 @@
-<<<<<<< HEAD
+
 import { UserId } from "../../auth/types/userTypes"
 import { CategoryId } from "../../categories/types/categoryTypes"
-=======
-import type { CategoryId } from "../../categories/types/categoryTypes"
->>>>>>> dev
 
 export type Figure ={
     id: number,

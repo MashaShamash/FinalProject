@@ -5,13 +5,13 @@ import BasketApi from './api/apiBasket';
 import { addToBasket } from '../figures/figuresSlice';
 
 type BasketsReducer = {
-  baskets: Basket[];
+  basket: Basket | undefined;
   message: string | undefined;
   errors: string | undefined;
 };
 
 const initialState: BasketsReducer = {
-  baskets: [],
+  basket: undefined,
   message: undefined,
   errors: undefined,
 };
@@ -41,50 +41,50 @@ const basketSlice = createSlice({
   extraReducers: (build) => {
     build
       .addCase(loadBaskets.fulfilled, (state, action) => {
-        action.payload.baskets.map((basket) => basket.BasketLine.sort((a, b) => a.id - b.id));
-        state.baskets = action.payload.baskets;
+        state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
       .addCase(loadBaskets.rejected, (state, action) => {
         state.errors = action.error.message;
       })
       .addCase(deleteBasket.fulfilled, (state, action) => {
-        state.baskets = action.payload.baskets;
+        state.basket = undefined;
         state.message = action.payload.message;
       })
       .addCase(updateBasketLine.fulfilled, (state, action) => {
-        action.payload.baskets.map((basket) => basket.BasketLine.sort((a, b) => a.id - b.id));
-        state.baskets = action.payload.baskets;
+        state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
       .addCase(deleteBasketLine.fulfilled, (state, action) => {
-        state.baskets = action.payload.baskets;
+        state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
       .addCase(updateBasket.fulfilled, (state, action) => {
-        state.baskets = action.payload.baskets;
+        state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
       .addCase(addToBasket.fulfilled, (state, action) => {
-        let figures;
-        action.payload.message === 'success'
-          ? (figures = state.figures.map((figure) => {
-              if (figure.id === action.payload.basketLine.figureId) {
-                figure.BasketLine.push(action.payload.basketLine);
-              }
-              return figure;
-            }))
-          : (figures = state.figures.map((figure) => {
-              figure.BasketLine.map((basketLine: { id: number; count: number }) => {
-                if (basketLine.id === action.payload.basketLine.id) basketLine.count += 1;
-                return basketLine;
-              });
-              return figure;
-            }));
-        state.figures = figures;
-        state.message = action.payload.message;
+        state.basket.push(action.payload.basketLine);
       });
   },
 });
 
 export default basketSlice;
+
+// let figures;
+// action.payload.message === 'success'
+//   ? (figures = state.figures.map((figure) => {
+//       if (figure.id === action.payload.basketLine.figureId) {
+//         figure.BasketLine.push(action.payload.basketLine);
+//       }
+//       return figure;
+//     }))
+//   : (figures = state.figures.map((figure) => {
+//       figure.BasketLine.map((basketLine: { id: number; count: number }) => {
+//         if (basketLine.id === action.payload.basketLine.id) basketLine.count += 1;
+//         return basketLine;
+//       });
+//       return figure;
+//     }));
+// state.figures = figures;
+// state.message = action.payload.message;

@@ -1,12 +1,13 @@
-import React, { ChangeEvent, useState } from 'react';
-import { Profile } from '../types/profileTypes';
+import type { ChangeEvent} from 'react';
+import React, { useState } from 'react';
+import type { Profile } from '../types/profileTypes';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
 import {  getUpdateProfileThunk } from '../profileSlice';
 
 type ProfileUpdatNameProps={
     isProfile: Profile;
 }
-const ProfileUpdatName = ({isProfile}: ProfileUpdatNameProps): JSX.Element =>{
+function ProfileUpdatName({isProfile}: ProfileUpdatNameProps): JSX.Element {
     const {user} = useAppSelector((state) => state.auth)
     const { categories } = useAppSelector((state) => state.categories);
     const { figures } = useAppSelector((state) => state.figures);
@@ -21,7 +22,7 @@ const ProfileUpdatName = ({isProfile}: ProfileUpdatNameProps): JSX.Element =>{
     const [biography, setProfilBio] = useState(isProfile.biography)
     const [pseudonym, setProfilPseudonym] = useState(isProfile.pseudonym)
     const [previewImage, setPreviewImage] = useState<string | undefined>(undefined);
-    const [imageFile, setImageFile] = useState<string>('');
+    const [imageFile, setImageFile] = useState<string>(isProfile.img);
 
     const onHeandleCreateFigure = (e:React.FormEvent<HTMLElement>): void  => {
         e.preventDefault()
@@ -49,7 +50,6 @@ const ProfileUpdatName = ({isProfile}: ProfileUpdatNameProps): JSX.Element =>{
 
         void dispatch(getUpdateProfileThunk({id:isProfile.id, body: data}))
         setPreviewImage(prev => undefined)
-        setImageFile('')
 
     }
     
@@ -70,7 +70,7 @@ const ProfileUpdatName = ({isProfile}: ProfileUpdatNameProps): JSX.Element =>{
 return (
 <div className=' ProfileCreateFigure'>
     <form action="" onSubmit={onHeandleCreateFigure}>
-        <h3></h3>
+        <h3 />
         <div className="creat-name">
         <label htmlFor="name">
         <input type="text" className='form__input' 
@@ -131,7 +131,7 @@ return (
                     placeholder={pseudonym}
                     onChange={(e) => setProfilPseudonym(e.target.value)}
                     maxLength={100}
-                    ></input>
+                     />
             </div>
             <div>
                     <span className='span-form'>Колличество символов: {biography.length} /500</span>
@@ -143,7 +143,7 @@ return (
                     rows={4}// Устанавливаем высоту textarea на 4 строки
                     // cols="50" // Ширина textarea в символах
                     maxLength={500}
-                    ></input>
+                     />
             </div>
         <button type="submit">Добавить</button>
     </form>

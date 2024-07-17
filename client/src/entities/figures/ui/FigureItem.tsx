@@ -31,7 +31,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
   if (likes && figure) {
     like = likes.find((lik) => lik.Figure.id === figure.id);
   }
-  const handleAddToBasket = (): void => {
+  const handleAddToBasket = ()=> {
     void dispatch(addToBasket(figure.id));
     setOpenBasket(true);
   };
@@ -50,6 +50,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
           >
             подробнее
           </button>
+
           
           {user && (
             <button className="btn" type="button" onClick={() => handleAddToBasket()}>
@@ -60,6 +61,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
             <button type="button" onClick={handleFavorite}>
               {like ? <RxStarFilled /> : <LiaStar />}
             </button>
+
           )}
         </div>
       </div>

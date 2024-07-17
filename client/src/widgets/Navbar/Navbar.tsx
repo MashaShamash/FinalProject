@@ -15,13 +15,13 @@ function Navbar(): JSX.Element {
   const { user } = useAppSelector((state) => state.auth);
   const [active, setActive] = useState<boolean>(false);
   const [activeRego, setActiveRego] = useState<boolean>(false);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const dispatch = useAppDispatch();
 
   const onHendleLogaut = (): void => {
     void dispatch(getLogoutThunk());
-    navigate('/')
+    navigate('/');
     setActive(false);
     setActiveRego(false);
   };
@@ -33,7 +33,7 @@ function Navbar(): JSX.Element {
           <NavLink to="/categories">главная</NavLink>
         </li>
 
-        <li>
+        <li className="search">
           {/* <CiSearch /> */}
           <InputFilter />
         </li>
@@ -64,15 +64,20 @@ function Navbar(): JSX.Element {
         ) : (
           <>
             <li>
-              <button onClick={() => setActiveRego((prev) => !prev)}>регистрация</button>
+              <button className="buttonRega" onClick={() => setActiveRego((prev) => !prev)}>
+                регистрация
+              </button>
             </li>
+
 
             <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
               <RegistrationPage />
             </ModalWindowRego>
 
             <li>
-              <button onClick={() => setActive((prev) => !prev)}>войти</button>
+              <button className="buttonLoga" onClick={() => setActive((prev) => !prev)}>
+                войти
+              </button>
             </li>
 
             <ModalWindow active={active} setActive={setActive}>

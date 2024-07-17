@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { Like, LikeWithoutId, LikeWithoutIdAndWithotFigure } from './likeTypes/likeTypes';
+import type { Like, LikeWithoutId, LikeWithoutIdAndWithotFigure } from './types/likeTypes';
 import LikeApi from './api/apiLike';
 
 type StateLike = { like: Like[] };
@@ -19,21 +19,20 @@ const likeSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllLikeThunk.fulfilled, (state, action) => {
-        console.log(action.payload);
-
+  
         state.like = action.payload;
       })
       .addCase(createLikeThunk.fulfilled, (state, action) => {
         switch (action.payload.message) {
           case 'success':
-            console.log(1);
+        
             state.like.push(action.payload.like);
             break;
           case 'успешно удалено':
-            console.log(action.payload);
+          
 
             state.like = state.like.filter((like: Like) => like.id !== action.payload.like.id);
-            console.log(state.like);
+        
 
             break;
 

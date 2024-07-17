@@ -8,9 +8,10 @@ import CategoriesParams from '../../entities/categories/ui/CategoriesParams';
 import FiguresParams from '../../entities/figures/ui/FiguresParams';
 import MagazinPage from '../../page/MagazinPage/MagazinPage';
 import FavoritePage from '../../page/FavoritePage/FavoritePage';
-import ErrorPage from '../../page/ErrorPage/ErrorPage';
-import ProfilePage from '../../page/ProfilePage/ProfilePage';
 import BasketPage from '../../page/BasketPage/BasketPage';
+import ProfilePage from '../../page/ProfilePage/ProfilePage';
+import ErrorPage from '../../page/ErrorPage/ErrorPage';
+
 
 function AppRoutes(): JSX.Element {
   
@@ -21,6 +22,7 @@ function AppRoutes(): JSX.Element {
       <Route path="/figures" element={<FigurePage />} />
       <Route path="/magazin" element={<MagazinPage />} />
       <Route path="/categories/:catId" element={<CategoriesParams />} />
+      <Route path="/profile" element={<ProfilePage />}/>
       <Route path="/figures/:figId" element={<FiguresParams />} />
       <Route path="/likes" element={<FavoritePage />} />
       <Route path="/registration" element={<RegistrationPage />} />

@@ -2,11 +2,10 @@ import type { AxiosResponse } from 'axios';
 import axiosInstance from '../../../services/axiosInstance';
 import type { Basket, BasketLine } from '../types/basketTypes';
 import type { UserId } from '../../auth/types/userTypes';
-import type { FigureId } from '../../figures/types/figureTypes';
 
 class BasketApi {
-  static getAllBasket = async (id: UserId): Promise<{ message: string; baskets: Basket[] }> => {
-    const response: AxiosResponse<{ message: string; baskets: Basket[] }> = await axiosInstance.get(
+  static getAllBasket = async (id: UserId): Promise<{ message: string; basket: Basket }> => {
+    const response: AxiosResponse<{ message: string; basket: Basket }> = await axiosInstance.get(
       `/basket/${id}`,
     );
     return response.data;
@@ -16,7 +15,7 @@ class BasketApi {
     id: Basket['id'],
   ): Promise<{ message: string; baskets: Basket[] }> => {
     const response: AxiosResponse<{ message: string; baskets: Basket[] }> =
-      await axiosInstance.delete(`/basket/${id}`);
+      await axiosInstance.delete(`/basket/basket/${id}`);
     return response.data;
   };
 
@@ -51,6 +50,12 @@ class BasketApi {
     return response.data;
   };
 
- 
+  // static AddToBasket = async (
+  //   id: FigureId,
+  // ): Promise<{ message: string; basketLine: BasketLine }> => {
+  //   const response: AxiosResponse<{ message: string; basketLine: BasketLine }> =
+  //     await axiosInstance.post(`/magazin/addToBasket/${id}`);
+  //   return response.data;
+  // };
 }
 export default BasketApi;

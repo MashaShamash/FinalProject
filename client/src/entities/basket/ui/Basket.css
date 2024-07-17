@@ -1,0 +1,14 @@
+.BasketItem {
+  padding: 20px;
+  display: flex;
+  justify-content: end;
+  flex-wrap: wrap;
+  /* flex-direction: row;
+  flex-wrap: wrap; */
+}
+.BasketContent  {
+ flex-direction: row;
+}
+.BasketContent img {
+    width: 300px;
+   }
