@@ -1,154 +1,173 @@
-import type { ChangeEvent} from 'react';
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
+import './ProfileUpdatName.css';
 import type { Profile } from '../types/profileTypes';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import {  getUpdateProfileThunk } from '../profileSlice';
+import { getUpdateProfileThunk } from '../profileSlice';
 
-type ProfileUpdatNameProps={
+type ProfileUpdatNameProps = {
     isProfile: Profile;
 }
-function ProfileUpdatName({isProfile}: ProfileUpdatNameProps): JSX.Element {
-    const {user} = useAppSelector((state) => state.auth)
-    const { categories } = useAppSelector((state) => state.categories);
-    const { figures } = useAppSelector((state) => state.figures);
-    const dispatch = useAppDispatch()
-    console.log(99999999999, isProfile?.pseudonym);
+
+function ProfileUpdatName({ isProfile }: ProfileUpdatNameProps): JSX.Element {
+    const { user } = useAppSelector((state) => state.auth);
+    const dispatch = useAppDispatch();
     
-
-    const [name, setName] = useState(isProfile.name)
-    const [lastName, setLastName] = useState(isProfile.lastName)
-    const [conDan, setConDan] = useState(isProfile.conDan)
-    const [activity, setActivity] = useState(isProfile.activity)
-    const [biography, setProfilBio] = useState(isProfile.biography)
-    const [pseudonym, setProfilPseudonym] = useState(isProfile.pseudonym)
+    const [name, setName] = useState(isProfile.name);
+    const [lastName, setLastName] = useState(isProfile.lastName);
+    const [conDan, setConDan] = useState(isProfile.conDan);
+    const [activity, setActivity] = useState(isProfile.activity);
+    const [biography, setProfilBio] = useState(isProfile.biography);
+    const [pseudonym, setProfilPseudonym] = useState(isProfile.pseudonym);
     const [previewImage, setPreviewImage] = useState<string | undefined>(undefined);
-    const [imageFile, setImageFile] = useState<string>(isProfile.img);
+    const [imageFile, setImageFile] = useState<File | string>(isProfile.img);
 
-    const onHeandleCreateFigure = (e:React.FormEvent<HTMLElement>): void  => {
-        e.preventDefault()
+    const onHeandleCreateFigure = (e: React.FormEvent<HTMLElement>): void => {
+        e.preventDefault();
 
         let activityString = activity;
         if (Array.isArray(activity)) {
-            activityString = activity.join(', '); 
+            activityString = activity.join(', ');
         } else if (typeof activity === 'object') {
             activityString = JSON.stringify(activity);
         }
 
+        const data = new FormData();
+        data.append("name", name);
+        data.append("lastName", lastName);
+        data.append("conDan", conDan);
+        data.append("activity", activityString);
+        data.append("biography", biography);
+        data.append("pseudonym", pseudonym);
+        if (imageFile instanceof File) {
+            data.append("imageFile", imageFile);
+        } else (
+            data.append("imageFile", isProfile.img)
+        )
 
-        const data = new FormData()
-        data.append("name", name)
-        data.append("lastName", lastName)
-        data.append("conDan", conDan)
-        data.append("activity", activityString)
-        data.append("biography", biography)
-        data.append("pseudonym", pseudonym)
-        data.append("imageFile", imageFile)
-        
-        console.log(imageFile);
-        
-
-
-        void dispatch(getUpdateProfileThunk({id:isProfile.id, body: data}))
-        setPreviewImage(prev => undefined)
-
-    }
-    
-    const onHandleImageChange = (e: ChangeEvent<HTMLInputElement>): void => {
-      if (e.target.files && e.target.files[0]) {
-        const file = e.target.files[0];
-        setImageFile(file);
-  
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setPreviewImage(reader.result as string);
-        };
-        reader.readAsDataURL(file);
-      }
+        void dispatch(getUpdateProfileThunk({ id: isProfile.id, body: data }));
+        setPreviewImage(undefined);
     };
 
+    const onHandleImageChange = (e: ChangeEvent<HTMLInputElement>): void => {
+        if (e.target.files && e.target.files[0]) {
+            const file = e.target.files[0];
+            setImageFile(file);
+    
+            const reader = new FileReader();
+            reader.onloadend = () => {
+                setPreviewImage(reader.result as string);
+            };
+            reader.readAsDataURL(file);
+        } else {
+            // Если файл не выбран, сбрасываем предпросмотр и imageFile
+            setPreviewImage(undefined);
+            setImageFile(isProfile.img); // или пустую строку, в зависимости от того, что требуется
+        }
+    }
 
-return (
-<div className=' ProfileCreateFigure'>
-    <form action="" onSubmit={onHeandleCreateFigure}>
-        <h3 />
-        <div className="creat-name">
-        <label htmlFor="name">
-        <input type="text" className='form__input' 
-        placeholder='Как зовут'
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        />
-        <span>{}</span>
-      </label>
-        </div>
-        <div className="create-lastName">
-        <label htmlFor="name">
-        <input type="text" className='form__input' 
-        placeholder='Фамилия'
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        />
-        <span>{}</span>
-      </label>
-      </div>
-      <div className="create-img">
-                <label htmlFor="name">
-                    <span>Добавить картину</span>
-                    <input type="file" className='form__input' 
-                        placeholder='Картинка'
-                        onChange={onHandleImageChange}
+    const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>, setState: React.Dispatch<React.SetStateAction<string>>): void => {
+        setState(e.target.value);
+        e.target.style.height = 'auto'; // сбросить высоту, чтобы правильно определить scrollHeight
+        e.target.style.height = `${e.target.scrollHeight}px`;
+    };
+
+    return (
+        <div className='ProfileCreateFigure'>
+            <h3 className='form-h3'>Изменить личные данные</h3>
+            <form className="div-form" action="" onSubmit={onHeandleCreateFigure}>
+                <div className='repr'>
+                <div className="creat-name" style={{ width: '100%' }}>
+                    <label htmlFor="name">
+                    <span className='span-for'>Имя:</span>
+                        <input 
+                            type="text" 
+                            className='form__input' 
+                            placeholder='Как зовут'
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className="create-lastName" style={{ width: '100%' }}>
+                    <label htmlFor="lastName">
+                    <span className='span-for'>Фамилия:</span>
+                        <input 
+                            type="text" 
+                            className='form__input' 
+                            placeholder='Фамилия'
+                            value={lastName}
+                            onChange={(e) => setLastName(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className="create-img" style={{ width: '100%' }}>
+                        <span className='span-for'>Добавить аватар</span>
+                        <div className="input__wrapper">
+                        <input name="file" type="file" id="input__file" className="input input__file" onChange={onHandleImageChange} multiple/>
+                            <label for="input__file" class="input__file-button" >
+                                <span className="input__file-icon-wrapper">Выберите файл</span>
+                        </label>
+                        {previewImage && (
+                        <img src={previewImage} alt="Preview" className="preview-image" />
+                    )}
+                    </div>
+                </div>
+                <div className="create-conDan" style={{ width: '100%' }}>
+                    <label htmlFor="conDan">
+                    <span className='span-for'>Контакт:</span>
+                        <input 
+                            type="text" 
+                            className='form__input' 
+                            placeholder='Контакт'
+                            value={conDan}
+                            onChange={(e) => setConDan(e.target.value)}
+                        />
+                    </label>
+                </div>
+                </div>
+                <div className='peruy'>
+                <div className="create-activity" style={{ width: '100%' }}>
+                    <label htmlFor="activity">
+                    <span className='span-for'>Роль:</span>
+                        <input 
+                            type="text" 
+                            className='form__input' 
+                            placeholder='Кто ты?'
+                            value={activity}
+                            onChange={(e) => setActivity(e.target.value)}
+                        />
+                    </label>
+                </div>
+                <div className='div-input-psev' style={{ width: '100%' }}>
+                <span className='span-for'>Псевдоним:</span>
+                    <span className='span-fo'>Колличество символов: {pseudonym.length} /100</span>
+                    <textarea
+                        value={pseudonym}
+                        className='textarea-bio'
+                        placeholder='Псевдоним'
+                        onChange={(e) => handleTextareaChange(e, setProfilPseudonym)}
+                        maxLength={100}
+                        style={{ maxHeight: '150px', overflow: 'auto' }}
                     />
-                </label>
-                {previewImage && (
-                    <img src={previewImage} alt="Preview" className="preview-image" />
-                )}
-            </div>
-        <div className="create-conDan">
-        <label htmlFor="name">
-        <input type="text" className='form__input' 
-        placeholder='контакт'
-        value={conDan}
-        onChange={(e) => setConDan(e.target.value)}
-        />
-        <span>{}</span>
-      </label>
+                </div>
+                <div className='div-input-psev' style={{ width: '100%' }}>
+                <span className='span-for'>Биография:</span>
+                    <span className='span-fo'>Колличество символов: {biography.length} /500</span>
+                    <textarea
+                        value={biography}
+                        className='textarea-bio'
+                        placeholder='Биография'
+                        onChange={(e) => handleTextareaChange(e, setProfilBio)}
+                        maxLength={500}
+                        style={{ maxHeight: '250px', overflow: 'auto' }}
+                    />
+                </div>
+                <button type="submit">Добавить</button>
+                </div>
+            </form>
+            
         </div>
-        <div className="create-activity">
-        <label htmlFor="name">
-        <input type="text" className='form__input' 
-        placeholder='Кто ты?'
-        value={activity}
-        onChange={(e) => setActivity(e.target.value)}
-        />
-        <span>{}</span>
-      </label>
-        </div>
-        <div>
-             <span className='span-form'>Колличество символов: {pseudonym.length} /100</span>
-                <input
-                  value={pseudonym}
-                    className='textarea-bio'
-                    placeholder={pseudonym}
-                    onChange={(e) => setProfilPseudonym(e.target.value)}
-                    maxLength={100}
-                     />
-            </div>
-            <div>
-                    <span className='span-form'>Колличество символов: {biography.length} /500</span>
-                    <input
-                    value={biography}
-                    className='textarea-bio'
-                    placeholder={biography}
-                    onChange={(e) => setProfilBio(e.target.value)}
-                    rows={4}// Устанавливаем высоту textarea на 4 строки
-                    // cols="50" // Ширина textarea в символах
-                    maxLength={500}
-                     />
-            </div>
-        <button type="submit">Добавить</button>
-    </form>
- </div>
- );
-
+    );
 }
-export default ProfileUpdatName
+
+export default ProfileUpdatName;

@@ -31,17 +31,18 @@ function ProfilePage ({}: ProfilePageProps): JSX.Element {
     
 return (
 <div className='ProfilePage'>
-    <div className="wrapper">
-        <div className="conteiner">
+    <div className="wrapper-prof-bio">
+        
             <div className="NameImg">
                     <div className='div-map'>
+                    <div className='pictha'>
                     <img src={isProfile?.img} alt="" />
+                    </div>
                     <div className='div-map-name'>
-                    <p>Имя: {isProfile?.name}</p>
-                    <p>Фамилия: {isProfile?.lastName}</p>
-                    <p>Контакт: {isProfile?.conDan}</p>
-                    <p>Кто: {isProfile?.activity}</p>
-                    
+                         <div className='div-p-name'>
+                            <p>Имя: {isProfile?.name}</p>
+                            <p>Фамилия: {isProfile?.lastName}</p>
+                        </div>
                     </div>
                     <div className='gu'>
                     <ModalWindowFigureProf active={active} setActive={setActive}>
@@ -51,7 +52,7 @@ return (
                     </div>
                     </div>
             </div>
-        </div>
+       
         <div className="info-page-comtener">
             <div className="button-page">
                 <button onClick={() => {setIsOpenMyFigure(false); setIsOpenMyAdress(false);setIsOpenBio(true)}}>Биография</button>
@@ -65,7 +66,7 @@ return (
              <ProfileMyFigure isProfile={isProfile}/>
             </div>
             <div className={isOpenMyAdress === true && isOpenBio === false && isOpenMyFigure === false ? 'divr' : 'gty'}>
-             <ProfileMyAdress />
+             <ProfileMyAdress isProfile={isProfile}/>
             </div>
         </div>
     </div>

@@ -21,14 +21,17 @@
 }
 
 .div-map-bio {
+    padding-top: 70px;
     display: flex;
     flex-direction: column;
     margin-left: 160px;
+    padding-bottom: 100px;
 }
 
 .div-map-bio_but {
     border-bottom: 1px solid black;
     margin-right: 350px;
+    padding-top: 70px;
 }
 
 .profile-p {

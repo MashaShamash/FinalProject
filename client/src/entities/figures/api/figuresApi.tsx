@@ -16,7 +16,7 @@ class FigureApi {
   };
 
   static createFigure = async (body: FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym): Promise<Figure> => {
-    try {
+  
     const response: AxiosResponse<{ message: string; figure: Figure }> =
     await  axiosInstance.post("/figures",body,  {
       headers: {
@@ -24,9 +24,7 @@ class FigureApi {
       }
    })
     return response.data.figure;
-    } catch (error) {
-      console.log(error);
-    }
+    
   };
 
   static deleteFigure = async (id: FigureId): Promise<FigureId | string> => {
