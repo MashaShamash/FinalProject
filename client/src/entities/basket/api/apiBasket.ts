@@ -6,6 +6,7 @@ import type { FigureId } from '../../figures/types/figureTypes';
 
 class BasketApi {
   static getAllBasket = async (id: UserId): Promise<{ message: string; baskets: Basket[] }> => {
+
     const response: AxiosResponse<{ message: string; baskets: Basket[] }> = await axiosInstance.get(
       `/basket/${id}`,
     );
@@ -51,6 +52,12 @@ class BasketApi {
     return response.data;
   };
 
- 
+  // static AddToBasket = async (
+  //   id: FigureId,
+  // ): Promise<{ message: string; basketLine: BasketLine }> => {
+  //   const response: AxiosResponse<{ message: string; basketLine: BasketLine }> =
+  //     await axiosInstance.post(`/magazin/addToBasket/${id}`);
+  //   return response.data;
+  // };
 }
 export default BasketApi;

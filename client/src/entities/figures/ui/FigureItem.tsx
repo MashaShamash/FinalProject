@@ -29,7 +29,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
   if (likes && figure) {
     like = likes.find((lik) => lik.Figure.id === figure.id);
   }
-  const handleAddToBasket = (): void => {
+  const handleAddToBasket = ()=> {
     void dispatch(addToBasket(figure.id));
     setOpenBasket(true);
   };
@@ -53,7 +53,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
             </>
           ) : (
             <>
-              {user && (
+             {user && (
                 <button className="btn" type="button" onClick={() => handleAddToBasket()}>
                   добавить в корзину
                 </button>
@@ -63,6 +63,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
                   {like ? <RxStarFilled /> : <LiaStar />}
                 </button>
               )}
+             
             </>
           )}
         </div>

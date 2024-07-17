@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
 import type { Figure, FigureId, FigureWithoutId } from './types/figureTypes';
 import FigureApi from './api/figuresApi';
 

@@ -41,7 +41,6 @@ const basketSlice = createSlice({
   extraReducers: (build) => {
     build
       .addCase(loadBaskets.fulfilled, (state, action) => {
-        action.payload.baskets.map((basket) => basket.BasketLine.sort((a, b) => a.id - b.id));
         state.baskets = action.payload.baskets;
         state.message = action.payload.message;
       })
@@ -53,7 +52,6 @@ const basketSlice = createSlice({
         state.message = action.payload.message;
       })
       .addCase(updateBasketLine.fulfilled, (state, action) => {
-        action.payload.baskets.map((basket) => basket.BasketLine.sort((a, b) => a.id - b.id));
         state.baskets = action.payload.baskets;
         state.message = action.payload.message;
       })
@@ -66,25 +64,27 @@ const basketSlice = createSlice({
         state.message = action.payload.message;
       })
       .addCase(addToBasket.fulfilled, (state, action) => {
-        let figures;
-        action.payload.message === 'success'
-          ? (figures = state.figures.map((figure) => {
-              if (figure.id === action.payload.basketLine.figureId) {
-                figure.BasketLine.push(action.payload.basketLine);
-              }
-              return figure;
-            }))
-          : (figures = state.figures.map((figure) => {
-              figure.BasketLine.map((basketLine: { id: number; count: number }) => {
-                if (basketLine.id === action.payload.basketLine.id) basketLine.count += 1;
-                return basketLine;
-              });
-              return figure;
-            }));
-        state.figures = figures;
-        state.message = action.payload.message;
+        state.baskets.push(action.payload.basketLine);
       });
   },
 });
 
 export default basketSlice;
+
+// let figures;
+// action.payload.message === 'success'
+//   ? (figures = state.figures.map((figure) => {
+//       if (figure.id === action.payload.basketLine.figureId) {
+//         figure.BasketLine.push(action.payload.basketLine);
+//       }
+//       return figure;
+//     }))
+//   : (figures = state.figures.map((figure) => {
+//       figure.BasketLine.map((basketLine: { id: number; count: number }) => {
+//         if (basketLine.id === action.payload.basketLine.id) basketLine.count += 1;
+//         return basketLine;
+//       });
+//       return figure;
+//     }));
+// state.figures = figures;
+// state.message = action.payload.message;

@@ -30,7 +30,7 @@ function Navbar(): JSX.Element {
           <NavLink to="/categories">главная</NavLink>
         </li>
 
-        <li>
+        <li className="search">
           {/* <CiSearch /> */}
           <InputFilter />
         </li>
@@ -61,7 +61,9 @@ function Navbar(): JSX.Element {
         ) : (
           <>
             <li>
-              <button onClick={() => setActiveRego((prev) => !prev)}>регистрация</button>
+              <button className="buttonRega" onClick={() => setActiveRego((prev) => !prev)}>
+                регистрация
+              </button>
             </li>
 
             <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
@@ -69,7 +71,9 @@ function Navbar(): JSX.Element {
             </ModalWindowRego>
 
             <li>
-              <button onClick={() => setActive((prev) => !prev)}>войти</button>
+              <button className="buttonLoga" onClick={() => setActive((prev) => !prev)}>
+                войти
+              </button>
             </li>
 
             <ModalWindow active={active} setActive={setActive}>

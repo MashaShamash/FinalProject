@@ -4,7 +4,7 @@ module.exports = (sequelize, DataTypes) => {
   class Basket extends Model {
     static associate({ User, BasketLine }) {
       this.belongsTo(User, { foreignKey: "userId" });
-      this.hasMany(BasketLine, { foreignKey: "basketLineId" });
+      this.hasMany(BasketLine, { foreignKey: "basketId" });
     }
   }
   Basket.init(
