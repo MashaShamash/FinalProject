@@ -25,7 +25,6 @@ async function getAllFigure () {
 module.exports = {
   async up (queryInterface, Sequelize) {
     const figures = await getAllFigure();
-      console.log(figures.length);
      await queryInterface.bulkInsert('Figures', figures
      , {});
     

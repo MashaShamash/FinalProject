@@ -23,7 +23,6 @@ async function getAllUser () {
 module.exports = {
   async up (queryInterface, Sequelize) {
     const users = await getAllUser();
-    console.log(users.length);
      await queryInterface.bulkInsert('Users',users, {});
   },
   async down (queryInterface, Sequelize) {
