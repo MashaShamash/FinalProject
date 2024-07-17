@@ -1,16 +1,11 @@
 
-import React from 'react';
-import { Button } from '@mui/material';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-
-
 import React, { useEffect } from 'react';
 
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store/store';
 import { useAppDispatch } from '../../app/store/store';
 import BasketItem from '../../entities/basket/ui/BasketItem';
-import type { Basket, BasketLine } from '../../entities/basket/types/basketTypes';
+import type { BasketLine } from '../../entities/basket/types/basketTypes';
 import { deleteBasket, loadBaskets } from '../../entities/basket/basketSlice';
 
 function BasketPage(): JSX.Element {

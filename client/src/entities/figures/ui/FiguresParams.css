@@ -32,3 +32,31 @@
   .figureItem img:hover {
     transform: scale(1.1); /* Увеличение при наведении */
   }
+
+  .div-get-button {
+    width: 60%;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 40px;
+    font-size: 20px;
+  }
+
+  .div-get-button button {
+    padding-bottom: 2px;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-right: 30px;
+    margin-left: 50px;
+    font-size: 20px;
+    border-radius: 0;
+}
+
+.div-get-button button:hover {
+  border-bottom: 2px solid rgb(0, 0, 0);
+  padding-bottom: 2px;
+}

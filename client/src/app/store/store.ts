@@ -6,6 +6,7 @@ import figureSlice from '../../entities/figures/figuresSlice';
 import likeSlice from '../../entities/like/likeSlice';
 import basketSlice from '../../entities/basket/basketSlice';
 import profileSlice from '../../entities/profile/profileSlice';
+import usersSlice from '../../entities/users/usersSlice';
 
 const store = configureStore({
   reducer: {
@@ -14,7 +15,8 @@ const store = configureStore({
     like: likeSlice.reducer,
     figures: figureSlice.reducer,
     profiles: profileSlice.reducer,
-    basket: basketSlice.reducer
+    basket: basketSlice.reducer,
+    users: usersSlice.reducer,
   },
 });
 
