@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import type { Figure, FigureId, FigureWithoutId } from './types/figureTypes';
+import type { Figure, FigureId, FigureWithoutId, FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym } from './types/figureTypes';
 import FigureApi from './api/figuresApi';
 
 type StateFigure = {
@@ -12,8 +12,8 @@ const initialState: StateFigure = {
 
 export const getFiguresThunk = createAsyncThunk('load/figures', () => FigureApi.getAllFigure());
 
-export const createFigureThunk = createAsyncThunk('add/figures', (body: FigureWithoutId) =>
-  FigureApi.createFigure(body),
+export const createFigureThunk = createAsyncThunk('add/figures', (body: FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym) =>
+    FigureApi.createFigure(body),
 );
 export const addToBasket = createAsyncThunk('magazin/addToBasket', (id: FigureId) =>
   FigureApi.AddToBasket(id),
@@ -25,7 +25,7 @@ export const removeFigureThunk = createAsyncThunk('remove/figures', (id: FigureI
 
 export const updateFigureThunk = createAsyncThunk(
   'update/figures',
-  (obj: { id: FigureId; body: FigureWithoutId }) => FigureApi.updateFigure(obj),
+  (obj: { id: FigureId; body:FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym }) => FigureApi.updateFigure(obj),
 );
 
 const figureSlice = createSlice({

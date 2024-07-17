@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const { Figure } = require('../../db/models');
 const verifyAccessToken = require('../../middleware/verifyAccessToken');
+const upload = require('../../middleware/multerMiddleware')
 
 
-router.get('/', async (req, res) => {
+router.get('/',async (req, res) => {
     try {
         const figures = await Figure.findAll();
         res.status(200).json({ message: 'success', figures });
@@ -22,27 +23,30 @@ router.get('/:id',verifyAccessToken, async (req, res) => {
     }
 });
 
-router.post('/', verifyAccessToken, async (req, res) => {
+router.post('/', verifyAccessToken, upload.single('imageFile'), async (req, res) => {
     try {
-        const { user } = res.locals;
-        const { title, date, img, height, price, width, sell, categoryId } = req.body;
-        const figure = await Figure.create({ title, date, img, height, price, width, sell, categoryId, userId: user.id });
+            const { user } = res.locals;
+            const img = `/img/${req.file.filename}`
+            const { title, date, height, price, width, categoryId, pseudonym, materials, biography} = req.body;
+        const figure = await Figure.create({name: user.name ,lastName: user.lastName, title, date, img, height, price, width, sell: false, categoryId, userId: user.id, pseudonym, materials, biography});
         if (figure) {
             res.status(200).json({ message: 'success', figure });
             return;
         }
         res.status(400).json({ message: 'Что-то пошло не так' });
     } catch ({ message }) {
+        console.log(message);
         res.status(500).json({ error: message })
     }
 });
 
-router.put('/:id', verifyAccessToken, async (req, res) => {
+router.put('/:id', verifyAccessToken,upload.single('imageFile'), async (req, res) => {
     try {
         const { user } = res.locals;
         const { id } = req.params;
-        const {title, date, img, height, price, width, sell, categoryId } = req.body;
-        const result = await Figure.update({ title, date, img, height, price, width, sell, categoryId  }, { where: { id: id, userId: user.id } });
+        const img = `/img/${req.file.filename}`
+        const {title, date, height, materials, price, pseudonym, biography, width, sell, categoryId } = req.body;
+        const result = await Figure.update({materials, pseudonym, title, biography, date, img, height, price, width, sell, categoryId  }, { where: { id: id, userId: user.id } });
         if (result[0] > 0) {
             const figure = await Figure.findOne({ where: { id: id } });
             res.status(200).json({ message: 'success', figure });

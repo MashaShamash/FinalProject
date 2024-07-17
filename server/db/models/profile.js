@@ -13,7 +13,19 @@ module.exports = (sequelize, DataTypes) => {
     activity: {
       type: DataTypes.TEXT
     },
+    img: {
+      type: DataTypes.TEXT
+    },
     biography: {
+      type: DataTypes.TEXT
+    },
+    name: {
+      type: DataTypes.TEXT
+    },
+    conDan: {
+      type: DataTypes.TEXT
+    },
+    lastName: {
       type: DataTypes.TEXT
     },
     userId: {

@@ -1,0 +1,104 @@
+.ProfilePage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.wrapper {
+    width: 90%;
+    height: 100vh;
+}
+
+
+.NameImg {
+    position: relative;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.NameImg img {
+    width: 150px;
+    display: flex;
+    background-color: aquamarine;
+}
+
+.div-map {
+    display: flex;
+    margin-left: 50px;
+}
+
+.div-map-name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+}
+
+.div-map-name p{
+    font-size: 30px;
+}
+
+.info-page-comtener {
+    height: calc(100vh - 300px);
+}
+
+.button-page {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid black;
+    
+}
+.button-page button {
+    padding-bottom: 2px;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-right: 30px;
+    margin-left: 50px;
+    font-size: 20px;
+    border-radius: 0;
+}
+
+.button-page button:hover {
+    border-bottom: 2px solid rgb(0, 0, 0);
+    padding-bottom: 2px;
+ 
+
+}
+
+.gu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .gu button {
+        padding-bottom: 2px;
+        border: none;
+        font: inherit;
+        color: inherit;
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        margin-right: 30px;
+        margin-left: 50px;
+        font-size: 20px;
+        border-radius: 0;
+    }
+    
+    .button-page button:hover {
+        border-bottom: 2px solid rgb(0, 0, 0);
+        padding-bottom: 2px;
+     
+    
+    }
+
