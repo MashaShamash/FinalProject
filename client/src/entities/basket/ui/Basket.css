@@ -1,4 +1,5 @@
 .BasketItem {
+  width: 100px;
   padding: 20px;
   display: flex;
   justify-content: end;
@@ -12,3 +13,4 @@
 .BasketContent img {
     width: 300px;
    }
+   

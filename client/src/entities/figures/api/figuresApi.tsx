@@ -59,6 +59,7 @@ class FigureApi {
 
     const response: AxiosResponse<{ message: string; basketLines: BasketLine }> =
       await axiosInstance.post(`/basket/${id}`);
+console.log(response.data);
 
     return response.data;
   };

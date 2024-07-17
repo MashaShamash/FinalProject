@@ -15,12 +15,10 @@ import { deleteBasket, loadBaskets } from '../../entities/basket/basketSlice';
 
 function BasketPage(): JSX.Element {
   const dispatch = useAppDispatch();
-   const user = useSelector((state: RootState) => state.auth.user);
-  const userBaskets = useSelector((state: RootState) => state.basket.basket);
-  const baskettt = userBaskets.filter((basket) => !basket.cartStatus)[0];
+  const user = useSelector((state: RootState) => state.auth.user);
+  const basket = useSelector((state: RootState) => state.basket.basket);
 
-
-  console.log(basket);
+  // console.log(basket);
 
   useEffect(() => {
     // сделать так, чтобы у юзера был basketId
@@ -37,7 +35,40 @@ function BasketPage(): JSX.Element {
   return (
     <div className="Basket">
       <div className="container">
-        <h2>корзина</h2>
+        <div
+          style={{ position: 'relative', overflow: 'hidden', width: '100vw', marginTop: '20px', height:"200px" }}
+        >
+          <img
+            style={{
+              position: 'absolute',
+              top: '0',
+              left: '0',
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              zIndex: '0',
+              opacity: "0.6"
+            }}
+            src="https://i.pinimg.com/564x/08/2b/72/082b7236e9ffa750debcc6cbe209500e.jpg"
+            alt=""
+          />
+          {(!basket || !basket.BasketLines) && (
+            <div
+              style={{
+                display:"flex",
+                justifyContent:"center",
+                alignItems:"center",
+                position: 'relative',
+                zIndex: '1',
+                padding: '20px',
+                color: 'white',
+                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+              }}
+            >
+              <h1>Вы пока ничего не выбрали</h1>
+            </div>
+          )}
+        </div>
         {basket && basket.BasketLines && (
           <div style={{ textAlign: 'start' }}>
             <button onClick={handleDeleteBasket} type="button">
@@ -48,7 +79,7 @@ function BasketPage(): JSX.Element {
 
         {basket && basket.BasketLines && basket.BasketLines && (
           <div>
-            <div>
+            <div className='basketContener'>
               {basket.BasketLines.map((basketLine: BasketLine) => (
                 <BasketItem basketLine={basketLine} key={basketLine.id} />
               ))}
@@ -66,11 +97,6 @@ function BasketPage(): JSX.Element {
                 Оформить заказ
               </button>
             </div>
-          </div>
-        )}
-        {(!basket || !basket.BasketLines) && (
-          <div className="message">
-            <p>Пока ничего нет</p>
           </div>
         )}
       </div>
