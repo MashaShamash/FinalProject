@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { Like, LikeWithoutId, LikeWithoutIdAndWithotFigure } from './likeTypes/likeTypes';
+import type { Like, LikeWithoutId, LikeWithoutIdAndWithotFigure } from './types/likeTypes';
 import LikeApi from './api/apiLike';
 
 type StateLike = { like: Like[] };

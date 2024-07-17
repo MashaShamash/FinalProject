@@ -1,4 +1,5 @@
-import type { UserId } from '../../auth/types';
+import { UserId } from "../../auth/types/userTypes";
+
 
 export type Basket = {
   id: number;

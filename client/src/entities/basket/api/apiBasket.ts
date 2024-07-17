@@ -2,7 +2,6 @@ import type { AxiosResponse } from 'axios';
 import axiosInstance from '../../../services/axiosInstance';
 import type { Basket, BasketLine } from '../types/basketTypes';
 import type { UserId } from '../../auth/types/userTypes';
-import type { FigureId } from '../../figures/types/figureTypes';
 
 class BasketApi {
   static getAllBasket = async (id: UserId): Promise<{ message: string; baskets: Basket[] }> => {

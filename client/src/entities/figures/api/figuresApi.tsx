@@ -1,7 +1,6 @@
 import type { AxiosResponse } from 'axios';
 import type { Figure, FigureId, FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym } from '../types/figureTypes';
 import axiosInstance from '../../../services/axiosInstance';
-import type { Figure, FigureId, FigureWithoutId } from '../types/figureTypes';
 import type { BasketLine } from '../../basket/types/basketTypes';
 
 class FigureApi {

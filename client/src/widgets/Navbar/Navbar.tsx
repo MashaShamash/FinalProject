@@ -66,7 +66,6 @@ function Navbar(): JSX.Element {
             <li>
               <button onClick={() => setActiveRego((prev) => !prev)}>регистрация</button>
             </li>
-<<<<<<< HEAD
             <>
               <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
                 <RegistrationPage/>
@@ -80,20 +79,6 @@ function Navbar(): JSX.Element {
                 <AuthorizationPage/>
               </ModalWindow>
             </>
-=======
-
-            <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
-              <RegistrationPage />
-            </ModalWindowRego>
-
-            <li>
-              <button onClick={() => setActive((prev) => !prev)}>войти</button>
-            </li>
-
-            <ModalWindow active={active} setActive={setActive}>
-              <AuthorizationPage />
-            </ModalWindow>
->>>>>>> dev
           </>
         )}
       </ul>

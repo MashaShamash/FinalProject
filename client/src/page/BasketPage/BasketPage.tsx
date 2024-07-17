@@ -11,7 +11,7 @@ import { deleteBasket } from '../../entities/basket/basketSlice';
 function BasketPage(): JSX.Element {
   const dispatch = useAppDispatch();
   // const user = useSelector((state: RootState) => state.auth.user);
-  const userBaskets = useSelector((state: RootState) => state.basket.baskets);
+  const userBaskets = useSelector((state: RootState) => state.baskets.baskets);
   const baskettt = userBaskets.filter((basket) => !basket.cartStatus)[0];
 
   const totalQuantity = baskettt
