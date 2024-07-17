@@ -9,12 +9,13 @@ function LikePage(): JSX.Element {
   console.log(likes);
 
   return (
-    <div className="contanerFavorite">
+    <div>
       <div>
-        {' '}
         <h2>Ваши хотелки</h2>
       </div>
-      <div>{likes && likes.map((like) => <FigureItem key={like.id} figure={like.Figure} />)}</div>
+      <div style={{ width: '100vw', display: 'flex' }}>
+        {likes && likes.map((like) => <FigureItem key={like.id} figure={like.Figure} />)}
+      </div>
       {/* <div className="contenerFoter">
         <img src="../../../public/favorite.jpg" alt="" />
       </div> */}

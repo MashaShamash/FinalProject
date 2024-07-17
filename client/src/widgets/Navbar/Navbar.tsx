@@ -33,14 +33,14 @@ function Navbar(): JSX.Element {
           <NavLink to="/categories">главная</NavLink>
         </li>
 
-        <li className="search">
-          {/* <CiSearch /> */}
+        <li  >
+         
           <InputFilter />
         </li>
 
-        <li>
+        {/* <li>
           <NavLink to="/magazin">купить</NavLink>
-        </li>
+        </li> */}
         {user ? (
           <>
             <li>
@@ -52,7 +52,7 @@ function Navbar(): JSX.Element {
             </li>
             <li>
               <NavLink to="/basket">
-                <PiBasketThin style={{ width: '30px' }} />
+                <PiBasketThin style={{ width: '50px' }} />
               </NavLink>
             </li>
             <li>
@@ -69,6 +69,7 @@ function Navbar(): JSX.Element {
               </button>
             </li>
 
+
             <>
 
               <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
@@ -83,6 +84,7 @@ function Navbar(): JSX.Element {
                 <AuthorizationPage/>
               </ModalWindow>
             </>
+
           </>
         )}
       </ul>
