@@ -12,6 +12,7 @@ import BasketPage from '../../page/BasketPage/BasketPage';
 import ProfilePage from '../../page/ProfilePage/ProfilePage';
 import ErrorPage from '../../page/ErrorPage/ErrorPage';
 
+
 function AppRoutes(): JSX.Element {
   return (
     <Routes>
@@ -20,13 +21,16 @@ function AppRoutes(): JSX.Element {
       <Route path="/figures" element={<FigurePage />} />
       <Route path="/magazin" element={<MagazinPage />} />
       <Route path="/categories/:catId" element={<CategoriesParams />} />
+      <Route path="/profile" element={<ProfilePage />}/>
       <Route path="/figures/:figId" element={<FiguresParams />} />
       <Route path="/likes" element={<FavoritePage />} />
       <Route path="/registration" element={<RegistrationPage />} />
       <Route path="/autorization" element={<AuthorizationPage />} />
+
       <Route path="/profile" element={<ProfilePage />} />
       <Route path="/basket" element={<BasketPage />} />
       <Route path="*" element={<ErrorPage />} />
+
     </Routes>
   );
 }

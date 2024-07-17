@@ -22,7 +22,7 @@ function ProfileUpdatName({isProfile}: ProfileUpdatNameProps): JSX.Element {
     const [biography, setProfilBio] = useState(isProfile.biography)
     const [pseudonym, setProfilPseudonym] = useState(isProfile.pseudonym)
     const [previewImage, setPreviewImage] = useState<string | undefined>(undefined);
-    const [imageFile, setImageFile] = useState<string>('');
+    const [imageFile, setImageFile] = useState<string>(isProfile.img);
 
     const onHeandleCreateFigure = (e:React.FormEvent<HTMLElement>): void  => {
         e.preventDefault()
@@ -50,7 +50,6 @@ function ProfileUpdatName({isProfile}: ProfileUpdatNameProps): JSX.Element {
 
         void dispatch(getUpdateProfileThunk({id:isProfile.id, body: data}))
         setPreviewImage(prev => undefined)
-        setImageFile('')
 
     }
     

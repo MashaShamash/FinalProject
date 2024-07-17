@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import './styles/App.css';
-import { useAppDispatch, useAppSelector } from './store/store';
+import { useAppDispatch } from './store/store';
 import { getCategoriesThunk } from '../entities/categories/categoriesSlice';
 import Navbar from '../widgets/Navbar/Navbar';
 import AppRoutes from './provider/AppRoutes';
 import { getRefreshTokensThunk } from '../entities/auth/authSlice';
 import { getFiguresThunk } from '../entities/figures/figuresSlice';
-import { getAllLikeThunk } from '../entities/like/likeSlice';
 import { Loader } from '../widgets/Loading/Loader';
 import StickyFooter from '../widgets/StickyFooter/StyckyFooter';
-import { getAllProfileThunk, getCreateProfileThunk } from '../entities/profile/profileSlice';
+import { getAllProfileThunk } from '../entities/profile/profileSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -19,6 +18,7 @@ function App(): JSX.Element {
     void dispatch(getRefreshTokensThunk());
     void dispatch(getCategoriesThunk());
     void dispatch(getFiguresThunk());
+    void dispatch(getAllProfileThunk())
     const id = setTimeout(() => {
       setLoading(true);
     }, 2000);

@@ -1,4 +1,5 @@
 import React, {  useState } from 'react';
+
 import { useAppDispatch, useAppSelector } from '../../app/store/store';
 import './ProfilePage.css'
 import ProfileBio from '../../entities/profile/ui/ProfileBio';
@@ -14,11 +15,14 @@ type ProfilePageProps={
 
 function ProfilePage ({}: ProfilePageProps): JSX.Element {
     const {user} = useAppSelector((state) => state.auth)
+
+   
     const {profiles} = useAppSelector((state) => state.profiles)
 
+
+
       const isProfile = profiles.find(el => el.id === user?.id)
-      console.log(6666666, isProfile);
-    // const profile = isProfile[0]
+
     const [isOpenBio, setIsOpenBio] = useState(true)
     const [isOpenMyFigure, setIsOpenMyFigure] = useState(false)
     const [isOpenMyAdress, setIsOpenMyAdress] = useState(false)
