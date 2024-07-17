@@ -29,19 +29,18 @@ function BasketItem({ basketLine }: BasketItemProps): JSX.Element {
   return (
     <div>
       {figure && (
-        <div className="BasketItem">
-          <div className="BasketItem-image">
-            <img src={figure.img} alt="book" />
-          </div>
-          <div className="BasketItem-book">
-            <div className="bookInfo">
-              <h3>{figure.title}</h3>
-              <p>{figure.materials}</p>
-            </div>
-            <div>
-              {/* <div> */}
+        <div style={{display:"flex", margin:"20px"}}className="BasketItem">
+          <img style={{width:"500px"}}src={figure.img} alt="book" />
 
-              {/* <button type='button'
+          <div style={{ margin:"20px"}}>
+            <h3>{figure.title}</h3>
+            <p>{figure.materials}</p>
+          </div>
+          <div>
+            <p>{figure.price} ₽</p>
+            {/* <div> */}
+
+            {/* <button type='button'
                     sx={{ p: 0, color: '#547050', borderColor: '#121711' }}
                     onClick={handleDecreaseBasketLine}
                   >
@@ -61,8 +60,7 @@ function BasketItem({ basketLine }: BasketItemProps): JSX.Element {
                   <ClearIcon sx={{ p: 0, width: '15px', height: '15px' }} />
                 </Button>
               </div> */}
-              <p>{figure.price} ₽</p>
-            </div>
+            
           </div>
         </div>
       )}

@@ -4,11 +4,17 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-}
-img {
+} */
+/* .figureDiv img {
   width: 300px; /* начальный размер изображения */
-  transition: transform 0.5s ease; /* плавный переход */
-}
-img:hover {
+  /* transition: transform 0.5s ease; плавный переход */
+ */
+/* img:hover {
     transform: scale(2.2); /* увеличение изображения на 20% */
-  }
+ 
+  /* .gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+} */

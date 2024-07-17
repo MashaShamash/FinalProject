@@ -31,7 +31,7 @@ function FiguresParams(): JSX.Element {
         <p>Материал: {figure.materials}</p>
         <p>Высота холста: {figure.height} см</p>
         <p>Ширина холста: {figure.width} см</p>
-        <p className='bold'>Стоимость: {figure.price} $</p>
+        <p className='bold'>Стоимость: {figure.price} руб</p>
       </div>
     </div>
   );

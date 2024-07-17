@@ -11,11 +11,13 @@ type CategoryItemProps = {
 function CategoryItem({ category }: CategoryItemProps): JSX.Element {
   const dispatch = useAppDispatch();
   const [active, setActive] = useState(false);
-  
+
   return (
     <div className="categoryItem">
-      <Link to={`/categories/${category.id}`}><h1 style={{display: 'flex', justifyContent: 'center', fontSize:'16px'}}>{category.title}</h1>
-      <img src={category.img} alt="" /></Link>
+      <Link to={`/categories/${category.id}`}>
+        <h1 style={{ display: 'flex', justifyContent: 'center' }}>{category.title}</h1>
+        <img src={category.img} alt="" />
+      </Link>
     </div>
   );
 }

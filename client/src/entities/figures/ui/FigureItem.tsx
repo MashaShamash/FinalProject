@@ -29,44 +29,65 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
   if (likes && figure) {
     like = likes.find((lik) => lik.Figure.id === figure.id);
   }
-  const handleAddToBasket = ()=> {
+  const handleAddToBasket = () => {
     void dispatch(addToBasket(figure.id));
     setOpenBasket(true);
   };
   return (
     <div className="figureCard">
-      <div className="figureCardContent">
-        <img src={figure.img} alt="foto" />
+      <img src={figure.img} alt="foto" />
 
-        <h3>{figure.title}</h3>
-        <h3>{figure.price} $</h3>
-        <div className="buttonGrop">
-          <button type="button" className="detailsButton" onClick={() => setActiv((prev) => !prev)}>
-            подробнее
-          </button>
-          {activ ? (
-            <>
-              <p>{figure.materials}</p>
-              <p>{figure.height} см</p>
-              <p>{figure.width} см</p>
-              <p>{figure.sell}</p>
-            </>
-          ) : (
-            <>
-             {user && (
-                <button className="btn" type="button" onClick={() => handleAddToBasket()}>
-                  добавить в корзину
-                </button>
-              )}
-              {user && (
-                <button type="button" onClick={handleFavorite}>
-                  {like ? <RxStarFilled /> : <LiaStar />}
-                </button>
-              )}
-             
-            </>
-          )}
-        </div>
+      <h3>{figure.title}</h3>
+      <h3>{figure.price} $</h3>
+      <div className="buttonGrop">
+        <button
+          style={{ backgroundColor: 'transparent', border: 'none' }}
+          type="button"
+          className="detailsButton"
+          onClick={() => setActiv((prev) => !prev)}
+        >
+          подробнее
+        </button>
+        {activ ? (
+          <>
+            <p>{figure.materials}</p>
+            <p>{figure.height} см</p>
+            <p>{figure.width} см</p>
+            <p>{figure.sell}</p>
+          </>
+        ) : (
+          <>
+            {user && (
+              <button
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  padding: '0',
+                }}
+                className="btn"
+                type="button"
+                onClick={() => handleAddToBasket()}
+              >
+                добавить в корзину
+              </button>
+            )}
+            {user && (
+              <button
+                style={{
+                  backgroundColor: 'transparent',
+                  border: 'none',
+                  fontSize: '26px',
+                  padding: '0',
+                  marginLeft: '70px',
+                }}
+                type="buttonLike"
+                onClick={handleFavorite}
+              >
+                {like ? <RxStarFilled /> : <LiaStar />}
+              </button>
+            )}
+          </>
+        )}
       </div>
     </div>
   );
