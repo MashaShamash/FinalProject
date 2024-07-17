@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { LiaStar } from 'react-icons/lia';
 import { RxStarFilled } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 import type { Figure } from '../types/figureTypes';
 import type { RootState } from '../../../app/store/store';
 import { useAppDispatch } from '../../../app/store/store';
@@ -18,6 +19,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
   const [activ, setActiv] = useState(false);
   const [openBasket, setOpenBasket] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   let like;
   const likes = useSelector((state: RootState) => state.like.like);
@@ -37,6 +39,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
     <div className="figureCard">
       <img src={figure.img} alt="foto" />
 
+
       <h3>{figure.title}</h3>
       <h3>{figure.price} $</h3>
       <div className="buttonGrop">
@@ -44,7 +47,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
           style={{ backgroundColor: 'transparent', border: 'none' }}
           type="button"
           className="detailsButton"
-          onClick={() => setActiv((prev) => !prev)}
+         onClick={() => navigate(`/figures/${figure.id}`)}
         >
           подробнее
         </button>
@@ -88,6 +91,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
             )}
           </>
         )}
+
       </div>
     </div>
   );

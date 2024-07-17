@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../app/store/store';
 import { Figure } from '../types/figureTypes';
-import './figure.css';
+import './FiguresParams.css';
 
 
 
@@ -19,9 +19,10 @@ function FiguresParams(): JSX.Element {
   }
 
   return (
-    <div className="figureItem">
-      <div>
+   
+      <div className="figureItem">
         <img src={figure.img} alt='foto' />
+        <div className="figureItemText">
         <p className='bold'>Название картины: {figure.title}</p>
         <p>Имя художника: {figure.name}</p>
         <p>Фамилия художника: {figure.lastName}</p>
@@ -31,7 +32,9 @@ function FiguresParams(): JSX.Element {
         <p>Материал: {figure.materials}</p>
         <p>Высота холста: {figure.height} см</p>
         <p>Ширина холста: {figure.width} см</p>
-        <p className='bold'>Стоимость: {figure.price} руб</p>
+
+        <p className='bold'>Стоимость: {figure.price} руб.</p>
+
       </div>
     </div>
   );
