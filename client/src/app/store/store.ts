@@ -13,6 +13,8 @@ const store = configureStore({
     auth: authSlice.reducer,
     like: likeSlice.reducer,
     figures: figureSlice.reducer,
+    profiles: profileSlice.reducer,
+    basket: basketSlice.reducer
   },
 });
 

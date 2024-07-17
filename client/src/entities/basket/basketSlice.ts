@@ -5,13 +5,13 @@ import BasketApi from './api/apiBasket';
 import { addToBasket } from '../figures/figuresSlice';
 
 type BasketsReducer = {
-  baskets: Basket[];
+  basket: Basket | undefined;
   message: string | undefined;
   errors: string | undefined;
 };
 
 const initialState: BasketsReducer = {
-  baskets: [],
+  basket: undefined,
   message: undefined,
   errors: undefined,
 };
@@ -41,30 +41,30 @@ const basketSlice = createSlice({
   extraReducers: (build) => {
     build
       .addCase(loadBaskets.fulfilled, (state, action) => {
-        state.baskets = action.payload.baskets;
+        state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
       .addCase(loadBaskets.rejected, (state, action) => {
         state.errors = action.error.message;
       })
       .addCase(deleteBasket.fulfilled, (state, action) => {
-        state.baskets = action.payload.baskets;
+        state.basket = undefined;
         state.message = action.payload.message;
       })
       .addCase(updateBasketLine.fulfilled, (state, action) => {
-        state.baskets = action.payload.baskets;
+        state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
       .addCase(deleteBasketLine.fulfilled, (state, action) => {
-        state.baskets = action.payload.baskets;
+        state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
       .addCase(updateBasket.fulfilled, (state, action) => {
-        state.baskets = action.payload.baskets;
+        state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
       .addCase(addToBasket.fulfilled, (state, action) => {
-        state.baskets.push(action.payload.basketLine);
+        state.basket.push(action.payload.basketLine);
       });
   },
 });
