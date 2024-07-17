@@ -31,14 +31,14 @@
 }
 .buttonLogout {
   background-color: #696969;
-  color: #DAA520;
+  color: #daa520;
   padding: 10px;
 }
 .linkMain {
   color: #696969;
 }
 .linkMain a {
-  background-color: #F0FFFF;
+  background-color: #f0ffff;
   color: aliceblue;
 }
 .Navbar li a {
@@ -63,3 +63,4 @@
   margin-left: auto;
   margin-right: auto;
 } */
+

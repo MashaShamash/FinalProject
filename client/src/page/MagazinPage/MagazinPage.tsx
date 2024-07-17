@@ -83,12 +83,36 @@ function MagazinPage(): JSX.Element {
 
   return (
     <div className="wrapper">
-      <div className="title-main-magazin">
-        <h1>База данных цен на произведения исскуства</h1>
-        <p>
-          Неограниченный доступ к миллионам результатов аукционов и данным о рынке произведений
-          искусства — бесплатно.
-        </p>
+      <div className="title-main-magazin" style={{ position: 'relative', overflow: 'hidden' }}>
+        <div
+          style={{
+            position: 'relative',
+            zIndex: '1',
+            padding: '20px',
+            color: 'white',
+            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+          }}
+        >
+          <h1>База данных цен на произведения исскуства</h1>
+          <p>
+            Неограниченный доступ к миллионам результатов аукционов и данным о рынке произведений
+            искусства — бесплатно.
+          </p>
+        </div>
+
+        <img
+          style={{
+            position: 'absolute',
+            top: '0',
+            left: '0',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            zIndex: '0',
+          }}
+          src="https://i.pinimg.com/564x/08/2b/72/082b7236e9ffa750debcc6cbe209500e.jpg"
+          alt=""
+        />
       </div>
       <div className="MagazinPage">
         <div className="contener">
@@ -204,7 +228,7 @@ function MagazinPage(): JSX.Element {
             </div>
           </div>
         </div>
-        <div className='buttonSearch'>
+        <div className="buttonSearch">
           <button onClick={() => onHandleGetBasket()}>Найти</button>
         </div>
         <div className="results">

@@ -3,6 +3,8 @@ import { useSelector } from 'react-redux';
 import { type RootState } from '../../app/store/store';
 import CategoryItem from '../../entities/categories/ui/CategoryItem';
 import './Category.css';
+import { SlArrowLeft } from 'react-icons/sl';
+import { SlArrowRight } from 'react-icons/sl';
 
 function CategoryPage(): JSX.Element {
   const { categories } = useSelector((state: RootState) => state.categories);
@@ -24,19 +26,20 @@ function CategoryPage(): JSX.Element {
   };
 
   return (
-    <>
-      <h2>Категории</h2>
-      <div className="getMainDiv">
-        <div id="categoryContainer" className="categoryDiv">
-          {categories &&
-            categories.map((category) => <CategoryItem category={category} key={category.id} />)}
-        </div>
-        <div className="category-controls">
-          <button onClick={scrollLeft}>←</button>
-          <button onClick={scrollRight}>→</button>
-        </div>
+    <div className="getMainDiv">
+      <div id="categoryContainer" className="categoryDiv">
+        {categories &&
+          categories.map((category) => <CategoryItem category={category} key={category.id} />)}
       </div>
-    </>
+      <div className="category-controls">
+        <button type="button" onClick={scrollLeft}>
+          <SlArrowLeft />
+        </button>
+        <button type="button" onClick={scrollRight}>
+          <SlArrowRight />
+        </button>
+      </div>
+    </div>
   );
 }
 

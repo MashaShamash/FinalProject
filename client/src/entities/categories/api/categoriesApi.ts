@@ -6,7 +6,6 @@ class CategoryApi {
   static getAllCategory = async (): Promise<Category[]> => {
     const response: AxiosResponse<{ message: string; categories: Category[] }> =
       await axiosInstance.get('/categories');
-    console.log(777, response.data.categories);
 
     return response.data.categories;
   };
