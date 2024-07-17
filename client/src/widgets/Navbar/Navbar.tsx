@@ -30,7 +30,7 @@ function Navbar(): JSX.Element {
     <div className="Navbar">
       <ul>
         <li className="linkMain">
-          <NavLink to="/categories">главная</NavLink>
+          <NavLink to="/categories">ArtsBrush</NavLink>
         </li>
 
         <li  >
@@ -52,7 +52,7 @@ function Navbar(): JSX.Element {
             </li>
             <li>
               <NavLink to="/basket">
-                <PiBasketThin style={{ width: '50px' }} />
+                <PiBasketThin style={{ fontSize: '36px' }} />
               </NavLink>
             </li>
             <li>
