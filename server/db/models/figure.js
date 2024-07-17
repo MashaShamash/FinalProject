@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate({
       User,
       ShowLine,
-      OrderLine,
+      BasketLine,
       Like,
       AuctionLine,
       Category,
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       this.belongsTo(User, { foreignKey: 'userId' });
       this.belongsTo(Category, { foreignKey: 'categoryId' });
       this.hasMany(ShowLine, { foreignKey: 'figureId' });
-      this.hasMany(OrderLine, { foreignKey: 'figureId' });
+      this.hasMany(BasketLine, { foreignKey: 'figureId' });
       this.hasMany(Like, { foreignKey: 'figureId' });
       this.hasMany(AuctionLine, { foreignKey: 'figureId' });
     }

@@ -1,8 +1,8 @@
 import type { AxiosResponse } from 'axios';
 import type { Figure, FigureId, FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym } from '../types/figureTypes';
 import axiosInstance from '../../../services/axiosInstance';
-
-
+import type { Figure, FigureId, FigureWithoutId } from '../types/figureTypes';
+import type { BasketLine } from '../../basket/types/basketTypes';
 
 class FigureApi {
   static getAllFigure = async (): Promise<Figure[]> => {
@@ -52,6 +52,17 @@ class FigureApi {
         }
      })
     return response.data.figure;
+  };
+
+  static AddToBasket = async (
+    id: FigureId,
+  ): Promise<{ message: string; basketLine: BasketLine }> => {
+    console.log(id);
+
+    const response: AxiosResponse<{ message: string; basketLine: BasketLine }> =
+      await axiosInstance.post(`/basket/${id}`);
+
+    return response.data;
   };
 }
 

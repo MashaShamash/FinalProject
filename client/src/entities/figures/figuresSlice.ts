@@ -7,19 +7,20 @@ type StateFigure = {
   figures: Figure[];
 };
 const initialState: StateFigure = {
-    figures: [],
+  figures: [],
 };
 
-export const getFiguresThunk = createAsyncThunk('load/figures', () =>
-    FigureApi.getAllFigure(),
-);
+export const getFiguresThunk = createAsyncThunk('load/figures', () => FigureApi.getAllFigure());
 
 export const createFigureThunk = createAsyncThunk('add/figures', (body: FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym) =>
     FigureApi.createFigure(body),
 );
+export const addToBasket = createAsyncThunk('magazin/addToBasket', (id: FigureId) =>
+  FigureApi.AddToBasket(id),
+);
 
 export const removeFigureThunk = createAsyncThunk('remove/figures', (id: FigureId) =>
-    FigureApi.deleteFigure(id),
+  FigureApi.deleteFigure(id),
 );
 
 export const updateFigureThunk = createAsyncThunk(
@@ -34,7 +35,6 @@ const figureSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getFiguresThunk.fulfilled, (state, action) => {
-
         state.figures = action.payload;
       })
       .addCase(createFigureThunk.fulfilled, (state, action) => {
@@ -45,7 +45,7 @@ const figureSlice = createSlice({
       })
       .addCase(updateFigureThunk.fulfilled, (state, action) => {
         state.figures = state.figures.map((figure) =>
-            figure.id === action.payload.id ? action.payload : figure,
+          figure.id === action.payload.id ? action.payload : figure,
         );
       });
   },

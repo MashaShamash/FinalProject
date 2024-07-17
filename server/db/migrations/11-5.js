@@ -1,36 +1,46 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Baskets', {
+    await queryInterface.createTable("Baskets", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
         references: {
-          model: 'Users',
-          key: 'id',
+          model: "Users",
+          key: "id",
         },
-        onDelete: 'cascade',
+        onDelete: "cascade",
+      },
+      cartStatus: {
+        defaultValue: false,
+        type: Sequelize.BOOLEAN,
+      },
+      totalAmount: {
+        type: Sequelize.FLOAT,
+      },
+      orderStatus: {
+        type: Sequelize.STRING,
       },
       createdAt: {
         allowNull: true,
         type: Sequelize.DATE,
-        defaultValue: new Date()
+        defaultValue: new Date(),
       },
       updatedAt: {
         allowNull: true,
         type: Sequelize.DATE,
-        defaultValue: new Date()
-      }
+        defaultValue: new Date(),
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Baskets');
-  }
+    await queryInterface.dropTable("Baskets");
+  },
 };

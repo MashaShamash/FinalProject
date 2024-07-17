@@ -6,28 +6,28 @@ module.exports = {
     await queryInterface.bulkInsert('Categories',
     [
       {
-        title: 'Авангардизм',
-        img: 'https://avatars.mds.yandex.net/i?id=e6a0184fb888ac7cb41333393e202d5a61d7c538-10121616-images-thumbs&n=13',
+        title: 'Современное искусство',
+        img: 'https://d7hftxdivxxvm.cloudfront.net/?height=218&quality=80&resize_to=fill&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2F3NWE5exOx6ni85xifx7aeg%2Fnormalized.jpg&width=387',
         
       },
       {
-        title: 'Ампир',
-        img: 'https://avatars.mds.yandex.net/i?id=f1fda291c68df54c15ee9897a16a95896cf18185-12529777-images-thumbs&n=13',
+        title: 'Уличное искусство',
+        img: 'https://d7hftxdivxxvm.cloudfront.net/?height=218&quality=80&resize_to=fill&src=https%3A%2F%2Fd32dm0rphc51dk.cloudfront.net%2FKmJZWb8ZAhKGv3mi7jT95w%2Fnormalized.jpg&width=387',
        
       },
       {
-        title: 'Готика',
-        img: 'https://avatars.mds.yandex.net/i?id=c528c1d851a6cabe2d26e6a4bb836bbd6b5faeb66e746567-4395898-images-thumbs&n=13',
+        title: 'Развивающее искусство',
+        img: 'https://d7hftxdivxxvm.cloudfront.net/?height=218&quality=80&resize_to=fill&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2Fmarketing_collections%2Fimages%2F3640a99b-4b4c-44ef-a257-a80da50ecdbe%3FX-Amz-Expires%3D43200%26X-Amz-Date%3D20240716T133807Z%26X-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAICYI665LIMIGJ6KQ%252F20240716%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Signature%3D4ea56f5db515a66ae0dac1f19325b4d3532777d4643003a82886f09980b69c36&width=387',
       
       },
       {
-        title: 'Гиперриализм',
-        img: 'https://avatars.mds.yandex.net/i?id=22d89905a23ada335754a67eb6e1d1b52bf29f92-12718967-images-thumbs&n=13',
+        title: 'Искусство 20-го века',
+        img: 'https://d7hftxdivxxvm.cloudfront.net/?height=218&quality=80&resize_to=fill&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2Fmarketing_collections%2Fimages%2F23aafc87-2498-492c-a87b-5a1568ca86b0%3FX-Amz-Expires%3D43200%26X-Amz-Date%3D20240716T133807Z%26X-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAICYI665LIMIGJ6KQ%252F20240716%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Signature%3D26ad4f6c442362736bcc7bd57bc69a5c08e354aedc4c3574987b9c16a35cab0c&width=387',
         
       },
       {
-        title: 'Класицизм',
-        img: 'https://avatars.mds.yandex.net/i?id=db1e3bf88e66c2112e907cd2477873060b030e09-4662446-images-thumbs&n=13',
+        title: 'Живопись',
+        img: 'https://d7hftxdivxxvm.cloudfront.net/?height=218&quality=80&resize_to=fill&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2Fmarketing_collections%2Fimages%2Fe53f2a60-64a5-4303-8121-08b24f1f665f%3FX-Amz-Expires%3D43200%26X-Amz-Date%3D20240716T133807Z%26X-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAICYI665LIMIGJ6KQ%252F20240716%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Signature%3D6f7de6e04a219932c05a9f52df2b2af4ac54218960c2e4e2aa30bbb7d802067d&width=387',
        
       },
     ],
