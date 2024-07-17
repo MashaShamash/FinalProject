@@ -5,6 +5,7 @@ import CategoryItem from '../../entities/categories/ui/CategoryItem';
 import './Category.css';
 import { SlArrowLeft } from 'react-icons/sl';
 import { SlArrowRight } from 'react-icons/sl';
+import FigurePage from '../FigurePage/FigurePage';
 
 function CategoryPage(): JSX.Element {
   const { categories } = useSelector((state: RootState) => state.categories);
@@ -39,6 +40,8 @@ function CategoryPage(): JSX.Element {
           <SlArrowRight />
         </button>
       </div>
+<div className='divFigure'><FigurePage /></div>
+      
     </div>
   );
 }

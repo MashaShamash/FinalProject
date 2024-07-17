@@ -11,7 +11,7 @@ type BasketsReducer = {
 };
 
 const initialState: BasketsReducer = {
-  basket: undefined,
+  basket: [],
   message: undefined,
   errors: undefined,
 };
@@ -63,8 +63,10 @@ const basketSlice = createSlice({
         state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
+
       .addCase(addToBasket.fulfilled, (state, action) => {
-        state.basket.push(action.payload.basketLine);
+        console.log(state, 22222222);
+        state.basket.push(action.payload.basketLines);
       });
   },
 });

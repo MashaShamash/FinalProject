@@ -23,7 +23,7 @@ function FigurePage(): JSX.Element {
   };
 
   return (
-    <div>
+    <div className='gallery' >
       <InfiniteScroll
         style={{
           height: 'auto',

@@ -11,7 +11,7 @@
   font: inherit;
   border: none;
   cursor: pointer;
-  font-size: 15px;
+  /* font-size: 15px; */
   margin-left: 30px;
   background-color: rgb(221, 221, 221);
 }
@@ -53,4 +53,11 @@
   font-size: 15px;
   margin-left: 30px;
   background-color: rgb(221, 221, 221);
+}
+div.divFigure {
+
+  display: flex;
+  flex-direction: column;
+  width: 1400px;
+  justify-content: space-around;
 }
