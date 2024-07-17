@@ -1,0 +1,34 @@
+  .figureItem {
+    display: flex;
+    align-items: flex-start; /* Выравнивание элементов по верхнему краю */
+    margin: 40px;
+  }
+  
+  .figureItem img {
+    width: 700px; /* Ширина изображения */
+    height: 700px; /* Высота изображения */
+    object-fit: cover; /* Масштабирование изображения */
+    margin-right: 20px; /* Отступ справа от изображения */
+    box-shadow: 0 4px 8px rgba(0.2, 0.3, 0.5, 0.5); /* Тень для изображения */
+    transition: transform 0.3s ease-in-out; /* Плавный переход при наведении */
+  }
+  
+  .figureItem .figureItemText {
+    flex: 1; /* Растягиваем блок с текстом на всё доступное пространство */
+    padding-right: 50px; 
+    padding-left: 50px;
+  }
+  
+  .figureItem p {
+    margin-bottom: 10px; /* Отступ между параграфами */
+    font-size: 16px; /* Размер шрифта для параграфов */
+    width: 700px;
+  }
+  
+  .figureItem .bold {
+    font-weight: bold;
+  }
+  
+  .figureItem img:hover {
+    transform: scale(1.1); /* Увеличение при наведении */
+  }

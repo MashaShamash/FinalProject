@@ -1,6 +1,7 @@
 import React from 'react';
-// import { Button } from '@mui/material';
-// import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { Button } from '@mui/material';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 import { useSelector } from 'react-redux';
 import type { RootState } from '../../app/store/store';
 import { useAppDispatch } from '../../app/store/store';

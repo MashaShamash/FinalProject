@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 import { LiaStar } from 'react-icons/lia';
 import { RxStarFilled } from 'react-icons/rx';
+import { useNavigate } from 'react-router-dom';
 import type { Figure } from '../types/figureTypes';
 import type { RootState } from '../../../app/store/store';
 import { useAppDispatch } from '../../../app/store/store';
@@ -18,6 +19,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
   const [activ, setActiv] = useState(false);
   const [openBasket, setOpenBasket] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   let like;
   const likes = useSelector((state: RootState) => state.like.like);
@@ -41,29 +43,23 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
         <h3>{figure.title}</h3>
         <h3>{figure.price} $</h3>
         <div className="buttonGrop">
-          <button type="button" className="detailsButton" onClick={() => setActiv((prev) => !prev)}>
+          <button
+            type="button"
+            className="detailsButton"
+            onClick={() => navigate(`/figures/${figure.id}`)}
+          >
             подробнее
           </button>
-          {activ ? (
-            <>
-              <p>{figure.materials}</p>
-              <p>{figure.height} см</p>
-              <p>{figure.width} см</p>
-              <p>{figure.sell}</p>
-            </>
-          ) : (
-            <>
-              {user && (
-                <button className="btn" type="button" onClick={() => handleAddToBasket()}>
-                  добавить в корзину
-                </button>
-              )}
-              {user && (
-                <button type="button" onClick={handleFavorite}>
-                  {like ? <RxStarFilled /> : <LiaStar />}
-                </button>
-              )}
-            </>
+          
+          {user && (
+            <button className="btn" type="button" onClick={() => handleAddToBasket()}>
+              добавить в корзину
+            </button>
+          )}
+          {user && (
+            <button type="button" onClick={handleFavorite}>
+              {like ? <RxStarFilled /> : <LiaStar />}
+            </button>
           )}
         </div>
       </div>
