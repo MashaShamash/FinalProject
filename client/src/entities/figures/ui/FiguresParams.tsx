@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import { addToBasket } from '../figuresSlice';
+
 import './FiguresParams.css';
 // import ProfilePage from '../../../page/ProfilePage/ProfilePage';
 import ProfileUsersPage from '../../../page/ProfilePage/ProfileUsers/ProfileUsersPage';
+import { addToBasket } from '../../basket/basketSlice';
 // import ModalWindow from '../../../shared/ui/Modal/Modal';
 
 function FiguresParams(): JSX.Element {

@@ -178,39 +178,35 @@
 // });
 // module.exports = router;
 
-
 // 106 строка вопролс по s
 
 const router = require("express").Router();
 const { BasketLine, Basket, Figure } = require("../../db/models");
 const verifyAccessToken = require("../../middleware/verifyAccessToken");
 
-
 router.get("/:id", verifyAccessToken, async (req, res) => {
   const { id } = req.params;
+  console.log(888, id);
   try {
     const basketsInDB = await Basket.findOne({
-      where: { id: id, cartStatus: false },
+      where: { userId: +id, cartStatus: false },
       include: BasketLine,
     });
-    console.log(basketsInDB);
-    res.json({ message: "success", basket: basketsInDB });
+    console.log(777, basketsInDB);
 
+    res.json({ message: "success", basket: basketsInDB });
   } catch ({ message }) {
     res.status(500).json({ message });
   }
 });
 
-
 // Удалить корзину по ID
-
 
 router.delete("/basket/:id", async (req, res) => {
   const { id } = req.params;
   try {
     await Basket.destroy({ where: { id } });
     res.json({ message: "success" });
-
   } catch ({ message }) {
     res.status(500).json({ message });
   }
@@ -225,10 +221,8 @@ router.put("/:id", async (req, res) => {
       { where: { id } }
     );
     const basketsInDB = await Basket.findAll({
-
       where: { userId: id },
       include: BasketLine,
-
     });
     res.json({ message: "success", baskets: basketsInDB });
   } catch ({ message }) {
@@ -289,10 +283,8 @@ router.delete("/basketLine/:id", async (req, res) => {
     const basketLine = await BasketLine.findOne({ where: { id } });
     const figure = await Figure.findOne({ where: { id: basketLine.figureId } });
     const basket = await Basket.findOne({
-
       where: { userId: +res.locals.user.id, cartStatus: false },
       include: BasketLine,
-
     });
     await BasketLine.destroy({ where: { id } });
     if (basket.BasketLines.length) {
@@ -317,59 +309,57 @@ router.delete("/basketLine/:id", async (req, res) => {
 });
 
 router.post("/:id", verifyAccessToken, async (req, res) => {
-
   try {
     const { id } = req.params;
-    console.log(id);
+    // console.log(id);
+
     const figure = await Figure.findOne({ where: { id } });
 
     // console.log(figure, 'FIIIIIG');
 
     let basket;
-
+    console.log(res.locals.user, "------");
     basket = await Basket.findOne({
       where: { userId: res.locals.user.id, cartStatus: false },
-
     });
-
+    console.log(223344, basket);
     if (!basket) {
       basket = await Basket.create({
-        userId: +req.locals.user.id,
+        userId: res.locals.user.id,
         cartStatus: false,
         totalAmount: 0,
         orderStatus: "Не оформлен",
       });
-      res.locals.user.dataValues.basketId = basket.id;
+
+      console.log(basket, 2222);
     }
 
+    //     let basketLine = basket.BasketLines.find((line) => line.figureId === +id);
 
-//     let basketLine = basket.BasketLines.find((line) => line.figureId === +id);
+    //     if (basketLine) {
+    //       const count = basketLine.count + 1;
+    //       await BasketLine.update({ count }, { where: { id: basketLine.id } });
+    //       basketLine = await BasketLine.findOne({ where: { id: basketLine.id } });
+    //     } else {
+    //       basketLine = await BasketLine.create({
+    //         figureId: +id,
+    //         basketId: basket.id,
+    //         count: 1,
+    //       });
+    //     }
 
-//     if (basketLine) {
-//       const count = basketLine.count + 1;
-//       await BasketLine.update({ count }, { where: { id: basketLine.id } });
-//       basketLine = await BasketLine.findOne({ where: { id: basketLine.id } });
-//     } else {
-//       basketLine = await BasketLine.create({
-//         figureId: +id,
-//         basketId: basket.id,
-//         count: 1,
-//       });
-//     }
+    //     await Basket.update(
+    //       { totalAmount: +figure.amount + +basket.totalAmount },
+    //       { where: { id: basket.id } }
+    //     );
 
-//     await Basket.update(
-//       { totalAmount: +figure.amount + +basket.totalAmount },
-//       { where: { id: basket.id } }
-//     );
+    //     const updatedBasket = await Basket.findOne({
+    //       where: { id: basket.id },
+    //       include: [BasketLine],
+    //     });
 
-//     const updatedBasket = await Basket.findOne({
-//       where: { id: basket.id },
-//       include: [BasketLine],
-//     });
+    //     res.json({ message: "success", basket: updatedBasket });
 
-//     res.json({ message: "success", basket: updatedBasket });
-
-    console.log(basket, 2222);
     let basketLine;
     // if (basket.BasketLine) {
     //   basketLine = basket.BasketLine.find(
@@ -396,6 +386,7 @@ router.post("/:id", verifyAccessToken, async (req, res) => {
       basketId: basket.id,
       count: 1,
     });
+    console.log(basketLine);
 
     // await Basket.update(
     //   { totalAmount: +figure.amount + +figure.totalAmount },
@@ -408,8 +399,8 @@ router.post("/:id", verifyAccessToken, async (req, res) => {
       });
       res.json({ message: "create", basketLine });
     }
-
   } catch ({ message }) {
+    console.log(500, message);
     res.status(500).json({ message });
   }
 });
@@ -417,4 +408,3 @@ router.post("/:id", verifyAccessToken, async (req, res) => {
 module.exports = router;
 
 // 106 строка вопролс по s
-
