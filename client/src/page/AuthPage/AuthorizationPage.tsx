@@ -53,21 +53,21 @@ function AuthorizationPage(): JSX.Element {
   return (
     <div className="main-div">
     <form className='form' onSubmit={handleSubmit(onHandleAuth)}>
-      <h3 className='form__title'>Авторизируйтесь, чтобы собирать произведения ведущих художников мира.</h3>
+      <h3 className='form__title'>Авторизируйтесь</h3>
       <label htmlFor="email" >
         <input type="email" className='form__input' {...register('email')}
         placeholder='Email'
         />
         <span>{errors.email?.message}</span>
       </label>
-      <div className="password-input-wrapper">
+      <div style={{width: '305px'}} className="password-input-wrapper">
         <input
           type={showPassword ? 'text' : 'password'}
           className='form__input_prop'
           {...register('password')}
           placeholder='password'
         />
-        <button
+        <button style={{width: '30px'}}
           type="button"
           className="toggle-password-button"
           onClick={togglePasswordVisibility}
@@ -75,7 +75,7 @@ function AuthorizationPage(): JSX.Element {
           {showPassword ? <FaEyeSlash /> : <FaEye />}
         </button>
       </div>
-      <span style={{width: '200px'}}>{errors.password?.message}</span>
+      <span >{errors.password?.message}</span>
       <div className="button-container">
         <button type="submit" className='form__btn'>
           Войти

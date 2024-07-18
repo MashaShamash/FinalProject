@@ -108,7 +108,7 @@ const togglePasswordVisibility = ():void => {
           {...register('password')}
           placeholder='password'
         />
-        <button
+        <button style={{width: '30px'}}
           type="button"
           className="toggle-password-button"
           onClick={togglePasswordVisibility}
@@ -124,7 +124,7 @@ const togglePasswordVisibility = ():void => {
           placeholder='cpassword'
           {...register('cpassword')}
         />
-        <button
+        <button style={{width: '30px'}}
           type="button"
           className="toggle-password-button"
           onClick={togglePasswordVisibility}

@@ -73,6 +73,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
                   border: 'solid 1px',
                   borderRadius: '10px',
                   fontSize: '18px',
+                  // boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2)'
                 }}
                 className="btn"
                 type="button"
