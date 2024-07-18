@@ -81,7 +81,8 @@ const togglePasswordVisibility = ():void => {
   return (
     <div className="main-div">
     <form className='form' onSubmit={handleSubmit(onHandleSubmit)}>
-      <h3 className='form__title'>Зарегистрируйтесь</h3>
+      <h3 style={{fontSize:"32px"}}className='form__title'>Зарегистрируйтесь</h3>
+
       <label htmlFor="name">
         <input type="text" className='form__input' {...register('name')}
         placeholder='Name'
