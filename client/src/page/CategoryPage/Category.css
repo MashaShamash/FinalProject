@@ -61,3 +61,14 @@ div.divFigure {
   width: 1400px;
   justify-content: space-around;
 }
+
+.main-div-categor {
+
+  width: 100vh;
+  display: flex;
+  justify-content: center;
+}
+
+.div-magazin {
+  background-color: aqua;
+}
