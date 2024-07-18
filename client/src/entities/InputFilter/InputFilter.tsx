@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useAppSelector } from '../../app/store/store';
 import './InputFilter.css';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 type Figure = {
   title: string;
@@ -34,6 +34,7 @@ function InputFilter(): JSX.Element {
     const debounce = setTimeout(() => {
       const filteredGet = filterGet(newInp, figures);
       setInputList(filteredGet);
+      console.log(inputList);
     }, 300);
 
     return () => clearTimeout(debounce);
@@ -54,7 +55,7 @@ function InputFilter(): JSX.Element {
     }, []);
   }
 
-  handleClickOutside(ref, () => setActive(false));
+  // handleClickOutside(ref, () => setActive(false));
 
   return (
     <div className="input-filter">
@@ -72,8 +73,7 @@ function InputFilter(): JSX.Element {
         {isActive ? (
           <ul className="ui-main">
             {inputList.map((inp, i) => (
-              <Link to="">
-                {' '}
+              <Link to={`/figures/${inp.id}`}>
                 <div key={i} className="li-main">
                   <img
                     style={{

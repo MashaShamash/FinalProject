@@ -1,4 +1,39 @@
-.basketContener{
-    display: flex;
-    
+.basketContener {
+  display: flex;
 }
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.notBasket {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  background-color: #daa520;
+height: 300px;
+  width: 1500px;
+  margin: 30px;
+  overflow: hidden;
+}
+.notBasket h1 {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 500px;
+  padding: 30px;
+}
+.notBasket a {
+  margin-left: 880px;
+  position: absolute;
+  font-size: 38px;
+  text-decoration: inherit;
+  background-color: antiquewhite;
+  width: 260px;
+  padding: 20px;
+  border: solid 0;
+  border-radius: 8px;
+  opacity: 0.8;
+  color: rgb(21, 12, 73);
+}
+.notBasket img{object-fit: contain; width: 700px;}
