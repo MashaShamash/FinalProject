@@ -1,149 +1,146 @@
-.wrapper {
-  font-size: 36px;
-}
-
-.title-main-magazin p {
-  font-size: 15px;
-  padding-bottom: 8px;
+.wrappers {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  width: 100vw;
 }
 
 .MagazinPage {
+  display: flex;
+    margin: 20px;
+    width: 100vw;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.sautBar {
+  width: 250px; /* Ширина сайтбара */
+  margin-right: 20px;
+  flex-shrink: 0;
+  margin: 40px;
+  padding: 40px;
 }
 
 .contener {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  border-top: 1px solid black;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.contener.active {
+  max-height: 1100px; /* Достаточное значение для полного раскрытия */
+  background-color: rgb(226, 226, 226);
   padding: 20px;
 }
 
-.categor {
+.contener.active p{
+  max-height: 1000px; /* Достаточное значение для полного раскрытия */
+  background-color: rgb(255, 255, 255);
+  font-size: 15px;
+  padding: 5px;
 }
 
-.selector-categor {
-  width: 300px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.category-span {
-  font-size: 20px;
-}
-
-.category-sel {
-  width: 300px;
-  height: 30px;
-}
-
-.pseudonym {
-  width: 300px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.pseudonym-span {
-  font-size: 20px;
-}
-.pseudonym-input {
-  width: 300px;
-  height: 30px;
-}
-
-.title {
-  width: 300px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.title-span {
-  font-size: 20px;
-}
-
-.title-input {
-  width: 300px;
-  height: 30px;
-}
-
-.price {
-}
-
-.price p {
-  font-size: 20px;
-}
-
-.price-slider {
-  width: 300px;
-}
-
-.height {
-}
-
-.height p {
-  font-size: 20px;
-}
-.height-slider {
-  width: 300px;
-}
-
+.selector-categor,
+.pseudonym,
+.title,
 .material {
-  width: 300px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
+  margin-bottom: 15px;
 }
+
 
 .material-span {
-  font-size: 20px;
+    font-size: 25px;
+}
+.category-span,
+.pseudonym-span,
+.title-span,
+.material-span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
+.category-sel,
+.pseudonym-input,
+.title-input,
 .material-input {
-  width: 300px;
-  height: 30px;
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
 }
 
-.date {
+.conteiner-slider {
+  margin-top: 20px;
 }
 
-.date p {
-  font-size: 20px;
-}
-
-.date-slider {
-  width: 300px;
-}
-
+.price,
+.height,
+.date,
 .price {
+  margin-bottom: 20px;
 }
 
-.price p {
-}
-
-.price-slider {
-}
-
-.button-get {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid black;
-  padding: 10px;
-}
 .buttonSearch {
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
-  background-color: transparent;
+  flex-direction: column;
+
+}
+
+.buttonSearch button{
+ 
+  
+}
+
+
+.buttonSearch button {
+  padding-bottom: 2px;
   border: none;
-  color: inherit;
   font: inherit;
+  color: inherit;
+  background-color: transparent;
   cursor: pointer;
-  padding: 0;
-  font-size: 18px;
+  border: none;
+  outline: none;
+ 
+  font-size: 20px;
+  border-radius: 0;
+}
+
+.buttonSearch button:hover {
+  border-bottom: 2px solid rgb(0, 0, 0);
+  padding-bottom: 2px;
+
+
+}
+
+.results {
+  flex-grow: 1;
+}
+
+.results h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.InfiniteScroll {
+  height: auto;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.InfiniteScroll div {
+  width: calc(33.333% - 20px); /* Три элемента в ряд */
+  margin: 10px;
+}
+
+.InfiniteScroll img {
+  width: 100%;
+  height: auto;
+}
+
+.jhg {
+  margin: 0 auto;
 }
