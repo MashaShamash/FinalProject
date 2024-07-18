@@ -1,4 +1,3 @@
-
 import type { UserId } from '../../auth/types/userTypes';
 
 export type Basket = {
@@ -7,7 +6,7 @@ export type Basket = {
   cartStatus: boolean;
   totalAmount: number;
   orderStatus: string;
-  BasketLine: BasketLine[];
+  BasketLines: BasketLine[];
 };
 
 export type BasketLine = {

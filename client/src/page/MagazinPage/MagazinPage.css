@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   margin: 20px;
-  width:90%;
+  width:100%;
 }
 
 .MagazinPage {
@@ -139,4 +139,33 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
+
+}
+
+.price-slider .rc-slider-track {
+  background-color: rgb(196, 216, 194);
+}
+.price-slider .rc-slider-handle {
+  border-color: rgb(196, 216, 194);
+}
+.height-slider .rc-slider-track {
+  background-color: rgb(196, 216, 194);
+}
+.height-slider .rc-slider-handle {
+  border-color: rgb(196, 216, 194);
+}
+.date-slider .rc-slider-track {
+  background-color: rgb(196, 216, 194);
+}
+.date-slider .rc-slider-handle {
+  border-color: rgb(196, 216, 194);
+}
+
+
+
+.price-slider .rc-slider-handle:focus,
+.price-slider .rc-slider-handle:hover,
+.price-slider .rc-slider-handle:active {
+  border-color: rgb(196, 216, 194);
+  box-shadow: 0 0 5px rgb(196, 216, 194);
 }

@@ -17,7 +17,6 @@ function AppRoutes(): JSX.Element {
   
   return (
     <Routes>
-      <Route path="/" />
       <Route path="/figures" element={<FigurePage />} />
       <Route path="/categories" element={<MagazinPage />} />
       <Route path="/categories/:catId" element={<CategoriesParams />} />

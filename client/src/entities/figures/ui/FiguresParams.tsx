@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
-import { addToBasket } from '../figuresSlice';
+
 import './FiguresParams.css';
 // import ProfilePage from '../../../page/ProfilePage/ProfilePage';
 import ProfileUsersPage from '../../../page/ProfilePage/ProfileUsers/ProfileUsersPage';
+import { addToBasket } from '../../basket/basketSlice';
 // import ModalWindow from '../../../shared/ui/Modal/Modal';
 
 function FiguresParams(): JSX.Element {
@@ -59,6 +60,7 @@ function FiguresParams(): JSX.Element {
                   border: 'solid 1px',
                   borderRadius: '10px',
                   fontSize: '18px',
+                  boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2)'
                 }}
                 className="btn"
                 type="button"

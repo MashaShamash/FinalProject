@@ -9,6 +9,7 @@ import RegistrationPage from '../../page/AuthPage/RegistrationPage';
 import AuthorizationPage from '../../page/AuthPage/AuthorizationPage';
 import ModalWindowRego from '../../shared/ui/Modal/ModalRego';
 import InputFilter from '../../entities/InputFilter/InputFilter';
+import { IoPerson } from 'react-icons/io5';
 // import { CiSearch } from 'react-icons/ci';
 
 function Navbar(): JSX.Element {
@@ -21,7 +22,7 @@ function Navbar(): JSX.Element {
 
   const onHendleLogaut = (): void => {
     void dispatch(getLogoutThunk());
-    navigate('/');
+    navigate('/categories');
     setActive(false);
     setActiveRego(false);
   };
@@ -33,8 +34,7 @@ function Navbar(): JSX.Element {
           <NavLink to="/categories">ArtsBrush</NavLink>
         </li>
 
-        <li  >
-         
+        <li>
           <InputFilter />
         </li>
 
@@ -44,7 +44,9 @@ function Navbar(): JSX.Element {
         {user ? (
           <>
             <li>
-              <NavLink to="/profile">личный кабинет</NavLink>
+              <NavLink style={{fontSize:"40px" }} to="/profile">
+                <IoPerson />
+              </NavLink>
             </li>
 
             <li>
@@ -56,7 +58,7 @@ function Navbar(): JSX.Element {
               </NavLink>
             </li>
             <li>
-              <button className="buttonLogout" onClick={onHendleLogaut}>
+              <button  style={{boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2)'}} className="buttonLogout" onClick={onHendleLogaut}>
                 выйти
               </button>
             </li>
@@ -69,17 +71,15 @@ function Navbar(): JSX.Element {
               </button>
             </li>
 
-
             <ModalWindowRego activeRego={activeRego} setActiveRego={setActiveRego}>
-                <RegistrationPage/>
-              </ModalWindowRego>
+              <RegistrationPage />
+            </ModalWindowRego>
             <li>
               <button onClick={() => setActive((prev) => !prev)}>войти</button>
             </li>
             <ModalWindow active={active} setActive={setActive}>
-                <AuthorizationPage/>
-              </ModalWindow>
-
+              <AuthorizationPage />
+            </ModalWindow>
           </>
         )}
       </ul>

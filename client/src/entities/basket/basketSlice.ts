@@ -2,7 +2,8 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { Basket, BasketLine } from './types/basketTypes';
 import type { UserId } from '../auth/types/userTypes';
 import BasketApi from './api/apiBasket';
-import { addToBasket } from '../figures/figuresSlice';
+import FigureApi from '../figures/api/figuresApi';
+import { FigureId } from '../figures/types/figureTypes';
 
 type BasketsReducer = {
   basket: Basket | undefined;
@@ -11,7 +12,7 @@ type BasketsReducer = {
 };
 
 const initialState: BasketsReducer = {
-  basket: [],
+  basket: undefined,
   message: undefined,
   errors: undefined,
 };
@@ -33,6 +34,9 @@ export const updateBasketLine = createAsyncThunk(
 export const deleteBasketLine = createAsyncThunk('basketLine/delete', (id: BasketLine['id']) =>
   BasketApi.deleteBasketLine(id),
 );
+export const addToBasket = createAsyncThunk('magazin/addToBasket', (id: FigureId) =>
+  FigureApi.AddToBasket(id),
+);
 
 const basketSlice = createSlice({
   name: 'baskets',
@@ -41,6 +45,7 @@ const basketSlice = createSlice({
   extraReducers: (build) => {
     build
       .addCase(loadBaskets.fulfilled, (state, action) => {
+        console.log(action.payload);
         state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
@@ -63,10 +68,9 @@ const basketSlice = createSlice({
         state.basket = action.payload.basket;
         state.message = action.payload.message;
       })
-
       .addCase(addToBasket.fulfilled, (state, action) => {
-        console.log(state, 22222222);
-        state.basket.push(action.payload.basketLines);
+        console.log(action.payload, 22222222);
+        state.basket?.BasketLines.push(action.payload.basketLine);
       });
   },
 });

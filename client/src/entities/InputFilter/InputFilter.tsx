@@ -60,7 +60,7 @@ function InputFilter(): JSX.Element {
   return (
       <div className="input-filter">
         <div className="input-div" ref={ref}>
-          <input
+          <input style={{paddingLeft: '15px'}}
             type="text"
             value={newInp}
             autoFocus
@@ -88,7 +88,7 @@ function InputFilter(): JSX.Element {
                       src={inp.img}
                       alt=""
                     />
-                    <div className="li-text">
+                    <div className="li-text" >
                       <h3>{inp.title}</h3>
                       <p>{inp.materials}</p>
                     </div>
