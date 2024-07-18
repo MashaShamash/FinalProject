@@ -5,13 +5,9 @@ import { useAppSelector } from '../../app/store/store';
 import 'rc-slider/assets/index.css';
 import FigureItem from '../../entities/figures/ui/FigureItem';
 import type { Figure } from '../../entities/figures/types/figureTypes';
-import CategoryPage from '../CategoryPage/CategoryPage';
-import { Link } from 'react-router-dom';
-import './MagazinPage.css';
 import { Loader } from '../../widgets/Loading/Loader';
-import { loadBaskets } from '../../entities/basket/basketSlice';
-
-
+import CategoryPage from '../CategoryPage/CategoryPage';
+import './MagazinPage.css';
 
 type PriceRange = [number, number];
 
@@ -36,7 +32,7 @@ function MagazinPage(): JSX.Element {
   const [items, setItems] = useState(figures.slice(0, 20));
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const id = setTimeout(() => {
@@ -44,7 +40,6 @@ function MagazinPage(): JSX.Element {
     }, 2000);
     return () => clearTimeout(id);
   }, [loading]);
-
 
   const handlePriceChange = (value: number | number[]) => {
     setPriceRange(value as PriceRange);
@@ -97,18 +92,19 @@ function MagazinPage(): JSX.Element {
     }, 1500);
   };
 
-  const onHeandleWrite = () => {
-  setSelectCategor('')
-  setStatePseudonym('')
-  setStateMaterial('')
-  setStateWidth([1, 7000])
-  setStateHeight([1, 7000])
-  setStateTitle('')
-  setStateDate([1, 2025])
-  setPriceRange([100, 1000000])
-  setFilteredFigures(figures)
-  setIsOpen(false)
-  }
+
+  const onHeandleWrite = (): void => {
+    setSelectCategor('');
+    setStatePseudonym('');
+    setStateMaterial('');
+    setStateWidth([1, 7000]);
+    setStateHeight([1, 7000]);
+    setStateTitle('');
+    setStateDate([1, 2025]);
+    setPriceRange([100, 1000000]);
+    setFilteredFigures(figures);
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -116,10 +112,7 @@ function MagazinPage(): JSX.Element {
     <div className="wrappers">
       <div className="MagazinPage">
         <div className='sautBar'>
-          <button style={{
-  backgroundColor: 'white',
-  boxShadow: '4px 4px 8px rgb(196, 216, 194)'
-}} onClick={() => setIsExpanded(!isExpanded)}>
+          <button onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? 'Скрыть' : 'Показать'} фильтры
           </button>
           <div className={`contener ${isExpanded ? 'active' : ''}`}>
@@ -168,10 +161,10 @@ function MagazinPage(): JSX.Element {
               </div>
             </div>
             <div className="conteiner-slider">
-              <div  className="price">
+              <div className="price">
                 <div style={{ marginTop: '20px' }}>
                   <p className="material-spa">Ширина картины: от {stateWidth[0]} до {stateWidth[1]} мм</p>
-                  <Slider 
+                  <Slider
                     range
                     className="price-slider"
                     min={1}
@@ -276,7 +269,6 @@ function MagazinPage(): JSX.Element {
         }}
       >
         <Loader />
-
         <header>
           <h1>Welcome to Website</h1>
         </header>
@@ -285,5 +277,4 @@ function MagazinPage(): JSX.Element {
     </>
   );
 }
-
 export default MagazinPage;
