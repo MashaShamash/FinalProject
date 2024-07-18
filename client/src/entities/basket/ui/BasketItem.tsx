@@ -16,6 +16,7 @@ function BasketItem({ basketLine }: BasketItemProps): JSX.Element {
   const dispatch = useAppDispatch();
   const figures = useSelector((state: RootState) => state.figures.figures);
   const figure = figures.find((figure) => figure.id === basketLine.figureId);
+  console.log(654, 'basketItem', figure);
 
   const handleIncreaseBasketLine = () => {
     void dispatch(updateBasketLine({ basketLine, action: 'increase' }));
@@ -29,10 +30,10 @@ function BasketItem({ basketLine }: BasketItemProps): JSX.Element {
   return (
     <div>
       {figure && (
-        <div style={{display:"flex", margin:"20px"}}className="BasketItem">
-          <img style={{width:"500px"}}src={figure.img} alt="book" />
+        <div style={{ display: 'flex', margin: '20px' }} className="BasketItem">
+          <img style={{ width: '500px' }} src={figure.img} alt="book" />
 
-          <div style={{ margin:"20px"}}>
+          <div style={{ margin: '20px' }}>
             <h3>{figure.title}</h3>
             <p>{figure.materials}</p>
           </div>
@@ -60,7 +61,6 @@ function BasketItem({ basketLine }: BasketItemProps): JSX.Element {
                   <ClearIcon sx={{ p: 0, width: '15px', height: '15px' }} />
                 </Button>
               </div> */}
-            
           </div>
         </div>
       )}

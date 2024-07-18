@@ -16,9 +16,7 @@ export const getFiguresThunk = createAsyncThunk('load/figures', () => FigureApi.
 export const createFigureThunk = createAsyncThunk('add/figures', (body: FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym) =>
     FigureApi.createFigure(body),
 );
-export const addToBasket = createAsyncThunk('magazin/addToBasket', (id: FigureId) =>
-  FigureApi.AddToBasket(id),
-);
+
 
 export const removeFigureThunk = createAsyncThunk('remove/figures', (id: FigureId) =>
   FigureApi.deleteFigure(id),

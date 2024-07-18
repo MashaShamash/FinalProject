@@ -9,7 +9,8 @@ import type { Figure } from '../types/figureTypes';
 import type { RootState } from '../../../app/store/store';
 import { useAppDispatch } from '../../../app/store/store';
 import { createLikeThunk, getAllLikeThunk } from '../../like/likeSlice';
-import { addToBasket } from '../figuresSlice';
+
+import { addToBasket, loadBaskets } from '../../basket/basketSlice';
 
 type FigureItemProps = {
   figure: Figure;
@@ -31,10 +32,14 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
   if (likes && figure) {
     like = likes.find((lik) => lik.Figure.id === figure.id);
   }
-  const handleAddToBasket = () => {
+  const handleAddToBasket = (): void => {
     void dispatch(addToBasket(figure.id));
     setOpenBasket(true);
   };
+
+  useEffect(() => {
+    if (user) void dispatch(loadBaskets(user?.id));
+  }, [dispatch]);
   return (
     <div className="figureCard">
       <img src={figure.img} alt="foto" />
@@ -43,7 +48,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
       <h3>{figure.price} $</h3>
       <div className="buttonGrop">
         <button
-          style={{ backgroundColor: 'transparent', border: 'none', fontSize:"18px" }}
+          style={{ backgroundColor: 'transparent', border: 'none', fontSize: '18px' }}
           type="button"
           className="detailsButton"
           onClick={() => navigate(`/figures/${figure.id}`)}
