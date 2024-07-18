@@ -58,7 +58,7 @@ function Navbar(): JSX.Element {
               </NavLink>
             </li>
             <li>
-              <button  style={{boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2)'}} className="buttonLogout" onClick={onHendleLogaut}>
+              <button  style={{}} className="buttonLogout" onClick={onHendleLogaut}>
                 выйти
               </button>
             </li>

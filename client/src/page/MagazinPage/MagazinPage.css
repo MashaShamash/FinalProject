@@ -1,16 +1,17 @@
 .wrappers {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   margin: 20px;
-  width:100%;
+  width: 100%;
 }
 
 .MagazinPage {
   display: flex;
   margin: 20px;
- width: 90%;
+  width: 90%;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .sautBar {
@@ -18,8 +19,9 @@
   flex-shrink: 0;
   margin: 10px;
   padding: 10px;
+
 }
-.sautBar button{
+.sautBar button {
   /* margin: 8px; */
 }
 .contener {
@@ -139,7 +141,6 @@
   margin: 0 auto;
   display: flex;
   justify-content: center;
-
 }
 
 .price-slider .rc-slider-track {
@@ -160,8 +161,6 @@
 .date-slider .rc-slider-handle {
   border-color: rgb(196, 216, 194);
 }
-
-
 
 .price-slider .rc-slider-handle:focus,
 .price-slider .rc-slider-handle:hover,
