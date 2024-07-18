@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './CategoriesParams.css';
 import { useAppSelector } from '../../../app/store/store';
 import type { Figure } from '../../figures/types/figureTypes';
@@ -8,6 +8,7 @@ import type { Category } from '../types/categoryTypes';
 
 function CategoriesParams(): JSX.Element {
   const { catId } = useParams<{ catId: string }>();
+  const navigate = useNavigate()
   const { categories } = useAppSelector((state) => state.categories);
   const { figures } = useAppSelector((state) => state.figures);
   const [hasMore, setHasMore] = useState(true);
@@ -51,8 +52,8 @@ function CategoriesParams(): JSX.Element {
         dataLength={items.length}
         next={fetchMoreData}
         hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        endMessage={<p>No more figures to display</p>}
+        loader={<h4></h4>}
+        endMessage={<p></p>}
       >
         {items &&
           items.map((el) => (
@@ -64,6 +65,7 @@ function CategoriesParams(): JSX.Element {
               <h3>{el.price}</h3>
               <p>{el.width}</p>
               <p>{el.sell}</p>
+              <button type='button' onClick={()=> navigate(`/figures/${el.id}`)}>Подробнее</button>
             </div>
           ))}
       </InfiniteScroll>

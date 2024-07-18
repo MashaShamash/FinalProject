@@ -8,7 +8,9 @@ import type { Profile } from '../types/profileTypes';
 
 type ProfileCreateFigureProps={
     isProfile: Profile
+    setActive: (value: boolean) => void;
 }
+
 function ProfileCreateFigure({isProfile, setActive}: ProfileCreateFigureProps): JSX.Element {
     const {user} = useAppSelector((state) => state.auth)
     const { categories } = useAppSelector((state) => state.categories);
@@ -44,6 +46,7 @@ function ProfileCreateFigure({isProfile, setActive}: ProfileCreateFigureProps): 
         data.append("imageFile", imageFile)
         
         void dispatch(createFigureThunk(data))
+        
         setPreviewImage(undefined)
         setTitle('')
         setDate(2024)
@@ -53,7 +56,8 @@ function ProfileCreateFigure({isProfile, setActive}: ProfileCreateFigureProps): 
         setWidth(100)
         setCategoryId(0)
         setImageFile('')
-        setActive((prev:boolean)=> !prev)
+        setActive(false)
+        
 
     }
     

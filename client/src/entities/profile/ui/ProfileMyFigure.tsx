@@ -33,7 +33,7 @@ const ProfileMyFigure = ({isProfile}: ProfileMyFigureProps): JSX.Element =>{
 return (
 <div className=' ProfileMyFigure'>
         <ModalWindowFigureProf active={active} setActive={setActive}>
-            <ProfileCreateFigure isProfile={isProfile}/>
+            <ProfileCreateFigure isProfile={isProfile} setActive={setActive}/>
         </ModalWindowFigureProf>
         <div className='button-open'>
         <button onClick={() => setActive((prev) => !prev)}>Добавить исскуства</button>
@@ -58,7 +58,7 @@ return (
         </button>
             
         <ModalWindowFigureUpdate setActiveUpdate={setActiveUpdate} activeUpdate={activeUpdate}>
-            <ProfileUpdateFigure figure={figure} isProfile={isProfile}/>
+            <ProfileUpdateFigure figure={figure} isProfile={isProfile} setActiveUpdate={setActiveUpdate}/>
         </ModalWindowFigureUpdate>
         <ModalWindowFigureDelete setActiveDelete={setActiveDelete} activeDelete={activeDelete}>
             <div className='delr'>
