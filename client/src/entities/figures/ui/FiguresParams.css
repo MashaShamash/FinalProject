@@ -2,6 +2,7 @@
     display: flex;
     align-items: flex-start; /* Выравнивание элементов по верхнему краю */
     margin: 40px;
+    
   }
   
   .figureItem img {
@@ -11,6 +12,9 @@
     margin-right: 20px; /* Отступ справа от изображения */
     box-shadow: 0 4px 8px rgba(0.2, 0.3, 0.5, 0.5); /* Тень для изображения */
     transition: transform 0.3s ease-in-out; /* Плавный переход при наведении */
+  }
+  .figureItemText {
+    font-size: 32px;
   }
   
   .figureItem .figureItemText {

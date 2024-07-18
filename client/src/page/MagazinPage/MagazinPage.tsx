@@ -5,9 +5,9 @@ import { useAppSelector } from '../../app/store/store';
 import 'rc-slider/assets/index.css';
 import FigureItem from '../../entities/figures/ui/FigureItem';
 import type { Figure } from '../../entities/figures/types/figureTypes';
+import CategoryPage from '../CategoryPage/CategoryPage';
 import { Link } from 'react-router-dom';
 import './MagazinPage.css';
-import CategoryPage from '../CategoryPage/CategoryPage';
 
 type PriceRange = [number, number];
 

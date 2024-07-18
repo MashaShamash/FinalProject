@@ -2,25 +2,26 @@
   display: flex;
   flex-direction: column;
   margin: 20px;
-  width: 100vw;
+  width:90%;
 }
 
 .MagazinPage {
   display: flex;
-    margin: 20px;
-    width: 100vw;
-    flex-direction: row;
-    justify-content: center;
+  margin: 20px;
+ width: 90%;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .sautBar {
-  width: 250px; /* Ширина сайтбара */
-  margin-right: 20px;
+  width: 200px; /* Ширина сайтбара */
   flex-shrink: 0;
-  margin: 40px;
-  padding: 40px;
+  margin: 10px;
+  padding: 10px;
 }
-
+.sautBar button{
+  /* margin: 8px; */
+}
 .contener {
   overflow: hidden;
   max-height: 0;
@@ -29,11 +30,11 @@
 
 .contener.active {
   max-height: 1100px; /* Достаточное значение для полного раскрытия */
-  background-color: rgb(226, 226, 226);
+  /* background-color: rgb(226, 226, 226); */
   padding: 20px;
 }
 
-.contener.active p{
+.contener.active p {
   max-height: 1000px; /* Достаточное значение для полного раскрытия */
   background-color: rgb(255, 255, 255);
   font-size: 15px;
@@ -47,9 +48,8 @@
   margin-bottom: 15px;
 }
 
-
 .material-span {
-    font-size: 25px;
+  font-size: 25px;
 }
 .category-span,
 .pseudonym-span,
@@ -84,14 +84,10 @@
   margin-top: 20px;
   display: flex;
   flex-direction: column;
-
 }
 
-.buttonSearch button{
- 
-  
+.buttonSearch button {
 }
-
 
 .buttonSearch button {
   padding-bottom: 2px;
@@ -102,7 +98,7 @@
   cursor: pointer;
   border: none;
   outline: none;
- 
+
   font-size: 20px;
   border-radius: 0;
 }
@@ -110,8 +106,6 @@
 .buttonSearch button:hover {
   border-bottom: 2px solid rgb(0, 0, 0);
   padding-bottom: 2px;
-
-
 }
 
 .results {
@@ -143,4 +137,6 @@
 
 .jhg {
   margin: 0 auto;
+  display: flex;
+  justify-content: center;
 }

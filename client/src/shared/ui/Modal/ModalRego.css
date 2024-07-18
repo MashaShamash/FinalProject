@@ -19,7 +19,7 @@
   }
   
   .modal__content {
-    padding: 70px;
+    padding:50px;
     background-color: #fafafb;
     max-width: 700px;
     max-height: 700px;
@@ -27,3 +27,4 @@
     font-weight: 600;
     
   }
+ 

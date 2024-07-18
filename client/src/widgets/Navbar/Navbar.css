@@ -1,7 +1,7 @@
+@import url('https://fonts.cdnfonts.com/css/league-mono');
 @import url('https://fonts.cdnfonts.com/css/kramerized');
  .Navbar {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
+  font-family: 'League Mono', sans-serif;
   background: var(--inverted-bg-color);
   display: flex;
   flex-direction: row;
@@ -9,7 +9,7 @@
   border-bottom: solid 1px;
   height: 100%;
   width: 90%;
-  font-size: 22px;
+  font-size: 28px;
   align-content: space-around;
   justify-content: center;
 
