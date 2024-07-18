@@ -49,7 +49,7 @@ return (
                 <img src={figure.img} alt="" />
                 <h2>{figure.title}</h2>
                 <button
-          style={{ backgroundColor: 'transparent', border: 'none' }}
+          style={{ backgroundColor: 'transparent', border: 'none',  boxShadow: '4px 4px 8px rgb(196, 216, 194)'}}
           type="button"
           className="detailsButton"
          onClick={() => navigate(`/figures/${figure.id}`) }

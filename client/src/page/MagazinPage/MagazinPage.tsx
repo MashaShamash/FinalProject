@@ -100,7 +100,10 @@ function MagazinPage(): JSX.Element {
     <div className="wrappers">
       <div className="MagazinPage">
         <div className='sautBar'>
-          <button onClick={() => setIsExpanded(!isExpanded)}>
+          <button style={{
+  backgroundColor: 'white',
+  boxShadow: '4px 4px 8px rgb(196, 216, 194)'
+}} onClick={() => setIsExpanded(!isExpanded)}>
             {isExpanded ? 'Скрыть' : 'Показать'} фильтры
           </button>
           <div className={`contener ${isExpanded ? 'active' : ''}`}>
@@ -149,10 +152,10 @@ function MagazinPage(): JSX.Element {
               </div>
             </div>
             <div className="conteiner-slider">
-              <div className="price">
+              <div  className="price">
                 <div style={{ marginTop: '20px' }}>
                   <p className="material-spa">Ширина картины: от {stateWidth[0]} до {stateWidth[1]} мм</p>
-                  <Slider
+                  <Slider 
                     range
                     className="price-slider"
                     min={1}
