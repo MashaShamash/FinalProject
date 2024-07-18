@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useAppSelector } from '../../app/store/store';
@@ -8,6 +8,7 @@ import type { Figure } from '../../entities/figures/types/figureTypes';
 import CategoryPage from '../CategoryPage/CategoryPage';
 import { Link } from 'react-router-dom';
 import './MagazinPage.css';
+import { Loader } from '../../widgets/Loading/Loader';
 
 type PriceRange = [number, number];
 
@@ -31,6 +32,16 @@ function MagazinPage(): JSX.Element {
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState(figures.slice(0, 20));
   const [isExpanded, setIsExpanded] = useState(false);
+
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    const id = setTimeout(() => {
+      setLoading(true);
+    }, 2000);
+    return () => clearTimeout(id);
+  }, [loading]);
+
 
   const handlePriceChange = (value: number | number[]) => {
     setPriceRange(value as PriceRange);
@@ -97,6 +108,8 @@ function MagazinPage(): JSX.Element {
   }
 
   return (
+    <>
+    {loading ? (
     <div className="wrappers">
       <div className="MagazinPage">
         <div className='sautBar'>
@@ -246,7 +259,24 @@ function MagazinPage(): JSX.Element {
         </div>
         </div>
       </div>
-    </div>
+    </div>) : (
+      <div
+        style={{
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <Loader />
+
+        <header>
+          <h1>Welcome to Website</h1>
+        </header>
+      </div>
+    )}
+    </>
   );
 }
 
