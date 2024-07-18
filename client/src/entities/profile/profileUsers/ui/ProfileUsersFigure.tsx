@@ -46,7 +46,7 @@ return (
                 <h2>{figur.title}</h2>
                 <div className='get-like'>
                 {figure.id !== figur.id && <button
-          style={{ backgroundColor: 'transparent', border: 'none',  boxShadow: '4px 4px 8px rgb(196, 216, 194)'  }}
+          style={{ backgroundColor: 'transparent', border: 'none' }}
           type="button"
           className="detailsButton"
          onClick={() => navigate(`/figures/${figur.id}`)}

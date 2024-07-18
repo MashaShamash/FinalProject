@@ -43,7 +43,7 @@ function FigureItem({ figure }: FigureItemProps): JSX.Element {
       <h3>{figure.price} $</h3>
       <div className="buttonGrop">
         <button
-          style={{ backgroundColor: 'transparent', border: 'none', fontSize:"18px",    boxShadow: '4px 4px 8px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.2)' }}
+          style={{ backgroundColor: 'transparent', border: 'none', fontSize:"18px" }}
           type="button"
           className="detailsButton"
           onClick={() => navigate(`/figures/${figure.id}`)}
