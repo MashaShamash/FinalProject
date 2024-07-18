@@ -82,6 +82,7 @@ const togglePasswordVisibility = ():void => {
     <div className="main-div">
     <form className='form' onSubmit={handleSubmit(onHandleSubmit)}>
       <h3 style={{fontSize:"32px"}}className='form__title'>Зарегистрируйтесь</h3>
+
       <label htmlFor="name">
         <input type="text" className='form__input' {...register('name')}
         placeholder='Name'
@@ -100,7 +101,7 @@ const togglePasswordVisibility = ():void => {
         />
         <span>{errors.email?.message}</span>
       </label>
-      <div className="password-input-wrapper">
+      <div style ={{width: '305px',  marginTop: '5px'}}className="password-input-wrapper">
         <input
           type={showPassword ? 'text' : 'password'}
           className='form__input_prop'
@@ -116,8 +117,8 @@ const togglePasswordVisibility = ():void => {
         </button>
       </div>
       <span>{errors.password?.message}</span>
-      <div className="password-input-wrapper">
-        <input
+      <div style ={{width: '305px', marginTop: '5px'}}className="password-input-wrapper" >
+        <input 
           type={showPassword ? 'text' : 'password'}
           className='form__input_prop_op'
           placeholder='cpassword'
