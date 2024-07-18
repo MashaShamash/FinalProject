@@ -43,62 +43,63 @@ function InputFilter(): JSX.Element {
   // а это чтобы нажимать мышкой на экран и уходить с поиска
   function handleClickOutside(ref: React.RefObject<HTMLDivElement>, handler: () => void) {
     useEffect(() => {
-      function handleClickOutside(event: MouseEvent) {
+      function handlePointerDown(event: PointerEvent) {
         if (ref.current && !ref.current.contains(event.target as Node)) {
           handler();
         }
       }
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('pointerdown', handlePointerDown);
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener('pointerdown', handlePointerDown);
       };
     }, []);
   }
 
-  // handleClickOutside(ref, () => setActive(false));
+  handleClickOutside(ref, () => setActive(false));
 
   return (
-    <div className="input-filter">
-      <div className="input-div">
-        <input
-          type="text"
-          value={newInp}
-          autoFocus
-          ref={ref}
-          autoComplete="off"
-          placeholder="поиск по автору, названию, материалам"
-          className="input-main"
-          onChange={(e) => setInpNew(e.target.value)}
-        />
-        {isActive ? (
-          <ul className="ui-main">
-            {inputList.map((inp, i) => (
-              <Link to={`/figures/${inp.id}`}>
-                <div key={i} className="li-main">
-                  <img
-                    style={{
-                      width: '70px',
-                      height: '70px',
-                      objectFit: 'cover',
-                      marginRight: '10px',
-                    }}
-                    src={inp.img}
-                    alt=""
-                  />
-                  <div className="li-text">
-                    <h3>{inp.title}</h3>
-                    <p>{inp.materials}</p>
+      <div className="input-filter">
+        <div className="input-div" ref={ref}>
+          <input
+            type="text"
+            value={newInp}
+            autoFocus
+            autoComplete="off"
+            placeholder="поиск по автору, названию, материалам"
+            className="input-main"
+            onChange={(e) => setInpNew(e.target.value)}
+          />
+          {isActive && (
+            <ul className="ui-main">
+              {inputList.map((inp, i) => (
+                <Link
+                  to={`/figures/${inp.id}`}
+                  key={i}
+                  onClick={(e) => e.stopPropagation()} // Добавьте эту строку
+                >
+                  <div className="li-main">
+                    <img
+                      style={{
+                        width: '70px',
+                        height: '70px',
+                        objectFit: 'cover',
+                        marginRight: '10px',
+                      }}
+                      src={inp.img}
+                      alt=""
+                    />
+                    <div className="li-text">
+                      <h3>{inp.title}</h3>
+                      <p>{inp.materials}</p>
+                    </div>
                   </div>
-                </div>
-              </Link>
-            ))}
-          </ul>
-        ) : (
-          ''
-        )}
+                </Link>
+              ))}
+            </ul>
+          )}
+        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }
 
 export default InputFilter;

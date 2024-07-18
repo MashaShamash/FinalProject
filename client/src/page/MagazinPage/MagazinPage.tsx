@@ -7,6 +7,7 @@ import FigureItem from '../../entities/figures/ui/FigureItem';
 import type { Figure } from '../../entities/figures/types/figureTypes';
 import { Link } from 'react-router-dom';
 import './MagazinPage.css';
+import CategoryPage from '../CategoryPage/CategoryPage';
 
 type PriceRange = [number, number];
 
@@ -29,6 +30,7 @@ function MagazinPage(): JSX.Element {
   const [isOpen, setIsOpen] = useState(false);
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState(figures.slice(0, 20));
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handlePriceChange = (value: number | number[]) => {
     setPriceRange(value as PriceRange);
@@ -81,155 +83,138 @@ function MagazinPage(): JSX.Element {
     }, 1500);
   };
 
+  const onHeandleWrite = () => {
+  setSelectCategor('')
+  setStatePseudonym('')
+  setStateMaterial('')
+  setStateWidth([1, 7000])
+  setStateHeight([1, 7000])
+  setStateTitle('')
+  setStateDate([1, 2025])
+  setPriceRange([100, 1000000])
+  setFilteredFigures(figures)
+  setIsOpen(false)
+  }
+
   return (
-    <div className="wrapper">
-      <div className="title-main-magazin" style={{ position: 'relative', overflow: 'hidden' }}>
-        <div
-          style={{
-            position: 'relative',
-            zIndex: '1',
-            padding: '20px',
-            color: 'white',
-            textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
-          }}
-        >
-          <h1>База данных цен на произведения исскуства</h1>
-          <p>
-            Неограниченный доступ к миллионам результатов аукционов и данным о рынке произведений
-            искусства — бесплатно.
-          </p>
-        </div>
-
-        <img
-          style={{
-            position: 'absolute',
-            top: '0',
-            left: '0',
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: '0',
-          }}
-          src="https://i.pinimg.com/564x/08/2b/72/082b7236e9ffa750debcc6cbe209500e.jpg"
-          alt=""
-        />
-      </div>
+    <div className="wrappers">
       <div className="MagazinPage">
-        <div className="contener">
-          <div className="categor">
-            <div className="selector-categor">
-              <span className="category-span">Категория: </span>
-              <select
-                value={selectCategor}
-                className="category-sel"
-                onChange={(e) => setSelectCategor(e.target.value)}
-              >
-                <option value="">Выбрать категорию</option>
-                {categories.map((category) => (
-                  <option key={category.id} value={category.id}>
-                    {category.title}
-                  </option>
-                ))}
-              </select>
-            </div>
-
-            <div className="pseudonym">
-              <span className="pseudonym-span">Псевдоним автора: </span>
-              <input
-                className="pseudonym-input"
-                type="text"
-                value={statePseudonym}
-                onChange={(e) => setStatePseudonym(e.target.value)}
-              />
-            </div>
-            <div className="title">
-              <span className="title-span">Название картины: </span>
-              <input
-                type="text"
-                className="title-input"
-                value={stateTitle}
-                onChange={(e) => setStateTitle(e.target.value)}
-              />
-            </div>
-            <div className="material">
-              <span className="material-span">Материал: </span>
-              <input
-                type="text"
-                className="material-input"
-                value={stateMaterial}
-                onChange={(e) => setStateMaterial(e.target.value)}
-              />
-            </div>
-          </div>
-          <div className="conteiner-slider">
-            <div className="price">
-              <div style={{ marginTop: '20px' }}>
-                <p>
-                  Ширина картины: от {stateWidth[0]} до {stateWidth[1]} мм
-                </p>
-                <Slider
-                  range
-                  className="price-slider"
-                  min={1}
-                  max={7000}
-                  step={1}
-                  value={stateWidth}
-                  onChange={handleStateWidth}
+        <div className='sautBar'>
+          <button onClick={() => setIsExpanded(!isExpanded)}>
+            {isExpanded ? 'Скрыть' : 'Показать'} фильтры
+          </button>
+          <div className={`contener ${isExpanded ? 'active' : ''}`}>
+            <div className="categor">
+              <div className="selector-categor">
+                <span className="material-span">Категория: </span>
+                <select
+                  value={selectCategor}
+                  className="category-sel"
+                  onChange={(e) => setSelectCategor(e.target.value)}
+                >
+                  <option value="">Выбрать категорию</option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.id}>
+                      {category.title}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="pseudonym">
+                <span className="material-span">Псевдоним автора: </span>
+                <input
+                  className="pseudonym-input"
+                  type="text"
+                  value={statePseudonym}
+                  onChange={(e) => setStatePseudonym(e.target.value)}
+                />
+              </div>
+              <div className="title">
+                <span className="material-span">Название картины: </span>
+                <input
+                  type="text"
+                  className="title-input"
+                  value={stateTitle}
+                  onChange={(e) => setStateTitle(e.target.value)}
+                />
+              </div>
+              <div className="material">
+                <span className="material-span">Материал: </span>
+                <input
+                  type="text"
+                  className="material-input"
+                  value={stateMaterial}
+                  onChange={(e) => setStateMaterial(e.target.value)}
                 />
               </div>
             </div>
-            <div className="height">
-              <div style={{ marginTop: '20px' }}>
-                <p>
-                  Высота картины: от {stateHeight[0]} до {stateHeight[1]} мм
-                </p>
-                <Slider
-                  range
-                  className="height-slider"
-                  min={1}
-                  max={7000}
-                  step={1}
-                  value={stateHeight}
-                  onChange={handleStateHeight}
-                />
+            <div className="conteiner-slider">
+              <div className="price">
+                <div style={{ marginTop: '20px' }}>
+                  <p className="material-spa">Ширина картины: от {stateWidth[0]} до {stateWidth[1]} мм</p>
+                  <Slider
+                    range
+                    className="price-slider"
+                    min={1}
+                    max={7000}
+                    step={1}
+                    value={stateWidth}
+                    onChange={handleStateWidth}
+                  />
+                </div>
+              </div>
+              <div className="height">
+                <div style={{ marginTop: '20px' }}>
+                  <p className="material-spa">Высота картины: от {stateHeight[0]} до {stateHeight[1]} мм</p>
+                  <Slider
+                    range
+                    className="height-slider"
+                    min={1}
+                    max={7000}
+                    step={1}
+                    value={stateHeight}
+                    onChange={handleStateHeight}
+                  />
+                </div>
+              </div>
+              <div className="date">
+                <div style={{ marginTop: '20px' }}>
+                  <p className="material-spa">Дата: от {stateDate[0]} до {stateDate[1]} года</p>
+                  <Slider
+                    range
+                    min={0}
+                    className="date-slider"
+                    max={2025}
+                    step={1}
+                    value={stateDate}
+                    onChange={handleStateDate}
+                  />
+                </div>
+              </div>
+              <div className="price">
+                <div style={{ marginTop: '20px' }}>
+                  <p className="material-spa">Цена: от {priceRange[0]} до {priceRange[1]} рублей</p>
+                  <Slider
+                    range
+                    className="price-slider"
+                    min={100}
+                    max={1000000}
+                    step={10}
+                    value={priceRange}
+                    onChange={handlePriceChange}
+                  />
+                </div>
               </div>
             </div>
-            <div className="date">
-              <div style={{ marginTop: '20px' }}>
-                <p>
-                  Дата: от {stateDate[0]} до {stateDate[1]} года
-                </p>
-                <Slider
-                  range
-                  min={0}
-                  className="date-slider"
-                  max={2025}
-                  step={1}
-                  value={stateDate}
-                  onChange={handleStateDate}
-                />
-              </div>
-            </div>
-            <div className="price">
-              <div style={{ marginTop: '20px' }}>
-                <p>
-                  Цена: от {priceRange[0]} до {priceRange[1]} рублей
-                </p>
-                <Slider
-                  range
-                  className="price-slider"
-                  min={100}
-                  max={1000000}
-                  step={10}
-                  value={priceRange}
-                  onChange={handlePriceChange}
-                />
-              </div>
+            <div className="buttonSearch">
+              <button onClick={() => onHandleGetBasket()}>Найти</button>
+              <button onClick={()=> onHeandleWrite()}>Очистить</button>
             </div>
           </div>
         </div>
-        <div className="buttonSearch">
-          <button onClick={() => onHandleGetBasket()}>Найти</button>
+        <div className='hpo'>
+        <div className='jhg'>
+          <CategoryPage />
         </div>
         <div className="results">
           {isOpen ? (
@@ -258,6 +243,7 @@ function MagazinPage(): JSX.Element {
                 </div>
               ))}
           </InfiniteScroll>
+        </div>
         </div>
       </div>
     </div>

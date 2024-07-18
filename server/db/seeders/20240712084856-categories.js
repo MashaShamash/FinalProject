@@ -22,7 +22,7 @@ module.exports = {
       },
       {
         title: 'Искусство 20-го века',
-        img: 'https://d7hftxdivxxvm.cloudfront.net/?height=218&quality=80&resize_to=fill&src=https%3A%2F%2Fartsy-media-uploads.s3.amazonaws.com%2Fmarketing_collections%2Fimages%2F23aafc87-2498-492c-a87b-5a1568ca86b0%3FX-Amz-Expires%3D43200%26X-Amz-Date%3D20240716T133807Z%26X-Amz-Algorithm%3DAWS4-HMAC-SHA256%26X-Amz-Credential%3DAKIAICYI665LIMIGJ6KQ%252F20240716%252Fus-east-1%252Fs3%252Faws4_request%26X-Amz-SignedHeaders%3Dhost%26X-Amz-Signature%3D26ad4f6c442362736bcc7bd57bc69a5c08e354aedc4c3574987b9c16a35cab0c&width=387',
+        img: '/img/iskusstvo_20_veka.img'
         
       },
       {
