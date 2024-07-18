@@ -1,10 +1,12 @@
 .basketContener {
   display: flex;
+  flex-direction: column;
 }
 .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-direction: column;
 }
 .notBasket {
   display: flex;
@@ -12,7 +14,7 @@
   align-items: center;
   position: relative;
   background-color: #daa520;
-height: 300px;
+  height: 300px;
   width: 1500px;
   margin: 30px;
   overflow: hidden;
@@ -36,4 +38,7 @@ height: 300px;
   opacity: 0.8;
   color: rgb(21, 12, 73);
 }
-.notBasket img{object-fit: contain; width: 700px;}
+.notBasket img {
+  object-fit: contain;
+  width: 700px;
+}

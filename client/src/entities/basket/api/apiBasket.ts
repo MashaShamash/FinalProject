@@ -8,6 +8,7 @@ class BasketApi {
     const response: AxiosResponse<{ message: string; basket: Basket }> = await axiosInstance.get(
       `/basket/${id}`,
     );
+    console.log(345678, id);
     return response.data;
   };
 
