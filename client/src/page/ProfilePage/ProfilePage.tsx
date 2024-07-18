@@ -46,7 +46,7 @@ return (
                     </div>
                     <div className='gu'>
                     <ModalWindowFigureProf active={active} setActive={setActive}>
-                        <ProfileUpdatName isProfile={isProfile}/>
+                        <ProfileUpdatName isProfile={isProfile} setActive={setActive}/>
                     </ModalWindowFigureProf>
                     <button onClick={()=> setActive((prev) => !prev)}>изменить</button>
                     </div>

@@ -8,9 +8,10 @@ import './ProfileCreateFigure.css'
 type ProfileCreateFigureProps = {
     figure: Figure
     isProfile: Profile
+    setActiveUpdate: (value: boolean) => void;
 }
 
-const ProfileUpdateFigure = ({ figure, isProfile }: ProfileCreateFigureProps): JSX.Element => {
+const ProfileUpdateFigure = ({ figure, isProfile, setActiveUpdate}: ProfileCreateFigureProps): JSX.Element => {
     const { user } = useAppSelector((state) => state.auth)
     const { categories } = useAppSelector((state) => state.categories);
     const dispatch = useAppDispatch()
@@ -51,6 +52,8 @@ const ProfileUpdateFigure = ({ figure, isProfile }: ProfileCreateFigureProps): J
         if (imageFile instanceof File) {
             setImageFile(figure.img);
         }
+        setActiveUpdate(false)
+        
     }
 
     const onHandleImageChange = (e: ChangeEvent<HTMLInputElement>): void => {

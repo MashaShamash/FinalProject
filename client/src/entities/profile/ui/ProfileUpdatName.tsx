@@ -6,9 +6,10 @@ import { getUpdateProfileThunk } from '../profileSlice';
 
 type ProfileUpdatNameProps = {
     isProfile: Profile;
+    setActive: (value: boolean) => void;
 }
 
-function ProfileUpdatName({ isProfile }: ProfileUpdatNameProps): JSX.Element {
+function ProfileUpdatName({ isProfile, setActive}: ProfileUpdatNameProps): JSX.Element {
     const { user } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     
@@ -30,10 +31,12 @@ function ProfileUpdatName({ isProfile }: ProfileUpdatNameProps): JSX.Element {
         } else if (typeof activity === 'object') {
             activityString = JSON.stringify(activity);
         }
+        const sanitizedFirstName = name.replace(/\s+/g, '');
+        const sanitizedLastName = lastName.replace(/\s+/g, '');
 
         const data = new FormData();
-        data.append("name", name);
-        data.append("lastName", lastName);
+        data.append("name", sanitizedFirstName);
+        data.append("lastName", sanitizedLastName);
         data.append("conDan", conDan);
         data.append("activity", activityString);
         data.append("biography", biography);
@@ -46,6 +49,7 @@ function ProfileUpdatName({ isProfile }: ProfileUpdatNameProps): JSX.Element {
 
         void dispatch(getUpdateProfileThunk({ id: isProfile.id, body: data }));
         setPreviewImage(undefined);
+        setActive(false)
     };
 
     const onHandleImageChange = (e: ChangeEvent<HTMLInputElement>): void => {
