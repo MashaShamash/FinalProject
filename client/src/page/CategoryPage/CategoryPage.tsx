@@ -6,6 +6,7 @@ import './Category.css';
 import { SlArrowLeft } from 'react-icons/sl';
 import { SlArrowRight } from 'react-icons/sl';
 import FigurePage from '../FigurePage/FigurePage';
+import MagazinPage from '../MagazinPage/MagazinPage';
 
 function CategoryPage(): JSX.Element {
   const { categories } = useSelector((state: RootState) => state.categories);
@@ -27,21 +28,21 @@ function CategoryPage(): JSX.Element {
   };
 
   return (
-    <div className="getMainDiv">
-      <div id="categoryContainer" className="categoryDiv">
-        {categories &&
-          categories.map((category) => <CategoryItem category={category} key={category.id} />)}
-      </div>
-      <div className="category-controls">
-        <button type="button" onClick={scrollLeft}>
-          <SlArrowLeft />
-        </button>
-        <button type="button" onClick={scrollRight}>
+    <div className='main-div-categor'>
+      <div className="getMainDiv">
+        <div id="categoryContainer" className="categoryDiv">
+          {categories &&
+            categories.map((category) => <CategoryItem category={category} key={category.id} />)}
+        </div>
+       <div className="category-controls">
+          <button type="button" onClick={scrollLeft}>
+            <SlArrowLeft />
+          </button>
+          <button type="button" onClick={scrollRight}>
           <SlArrowRight />
-        </button>
+          </button>
+        </div>
       </div>
-<div className='divFigure'><FigurePage /></div>
-      
     </div>
   );
 }

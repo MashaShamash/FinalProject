@@ -82,6 +82,7 @@ return (
         <input type="text" className='form__input' 
         placeholder='Название картины'
         value={title}
+        required
         onChange={(e) => setTitle(e.target.value)}
         />
         <span>{}</span>
@@ -92,7 +93,7 @@ return (
         <label htmlFor="name">
         <input type="number" className='form__input' 
         placeholder='Год создания картины'
-       
+        required
         onChange={(e) => setDate(+e.target.value)}
         />
         <span>{}</span>
@@ -104,6 +105,7 @@ return (
                     <input type="file" className='form__input' 
                         placeholder='Картинка'
                         onChange={onHandleImageChange}
+                        required
                     />
                 </label>
                 {previewImage && (
@@ -117,6 +119,7 @@ return (
         <input type="text" className='form__input' 
         placeholder='Материалы'
         value={materials}
+        required
         onChange={(e) => setMaterials(e.target.value)}
         />
         <span>{}</span>
@@ -129,7 +132,7 @@ return (
         <label htmlFor="name">
         <input type="number" className='form__input' 
         placeholder='Высота картины'
-      
+        required
         onChange={(e) => setHeight(+e.target.value)}
         />
         <span>{}</span>
@@ -140,7 +143,7 @@ return (
         <label htmlFor="name">
         <input type="number" className='form__input' 
         placeholder='Стоимость'
-       
+        required
         onChange={(e) => setPrice(+e.target.value)}
         />
         <span>{}</span>
@@ -152,7 +155,7 @@ return (
         <label htmlFor="name">
         <input type="number" className='form__input' 
         placeholder='Ширина'
-      
+        required
         onChange={(e) => setWidth(+e.target.value)}
         />
         <span>{}</span>
@@ -162,7 +165,7 @@ return (
             <span className='span-for'>Категория: </span>
                  <select 
                         value={categoryId}
-                        
+                        required
                         onChange={(e) => setCategoryId(+e.target.value)}>
                         <option value="">Выбрать категорию</option>
                         {categories.map((category) => (

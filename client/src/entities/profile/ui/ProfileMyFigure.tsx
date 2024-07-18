@@ -9,6 +9,7 @@ import { Figure } from '../../figures/types/figureTypes';
 import './ProfileMyFigure.css'
 import ModalWindowFigureUpdate from '../../../shared/ui/Modal/ModalUpdateFigure';
 import ModalWindowFigureDelete from '../../../shared/ui/Modal/ModalDeleteFigure';
+import { useNavigate } from 'react-router-dom';
 
 type ProfileMyFigureProps={
     isProfile: Profile
@@ -17,10 +18,12 @@ type ProfileMyFigureProps={
 const ProfileMyFigure = ({isProfile}: ProfileMyFigureProps): JSX.Element =>{
     const {user} = useAppSelector((state) => state.auth)
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const {figures} = useAppSelector((state) => state.figures)
     const [active, setActive] = useState<boolean>(false);
     const [activeUpdate, setActiveUpdate] = useState<boolean>(false);
     const [activeDelete,setActiveDelete] = useState<boolean>(false);
+    const [isOpen, setIsOpen] = useState<boolean>(true);
 
         const onHeandleDeleteFigure = (figure:Figure) => {
            void dispatch(removeFigureThunk(figure.id))
@@ -45,6 +48,14 @@ return (
             <div className='div-map-figure'>
                 <img src={figure.img} alt="" />
                 <h2>{figure.title}</h2>
+                <button
+          style={{ backgroundColor: 'transparent', border: 'none' }}
+          type="button"
+          className="detailsButton"
+         onClick={() => navigate(`/figures/${figure.id}`) }
+        >
+          подробнее
+        </button>
             
         <ModalWindowFigureUpdate setActiveUpdate={setActiveUpdate} activeUpdate={activeUpdate}>
             <ProfileUpdateFigure figure={figure} isProfile={isProfile}/>

@@ -9,6 +9,7 @@ import { getFiguresThunk } from '../entities/figures/figuresSlice';
 import { Loader } from '../widgets/Loading/Loader';
 import StickyFooter from '../widgets/StickyFooter/StyckyFooter';
 import { getAllProfileThunk } from '../entities/profile/profileSlice';
+import { getUsersThunk } from '../entities/users/usersSlice';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -19,6 +20,7 @@ function App(): JSX.Element {
     void dispatch(getCategoriesThunk());
     void dispatch(getFiguresThunk());
     void dispatch(getAllProfileThunk())
+    void dispatch(getUsersThunk())
     const id = setTimeout(() => {
       setLoading(true);
     }, 2000);

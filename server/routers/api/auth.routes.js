@@ -103,4 +103,15 @@ router.get("/logout", (req, res) => {
   res.status(200).clearCookie("refresh").json({ message: "success" });
 });
 
+router.get('/users', async (req, res) => {
+    try {
+      const userses = await User.findAll();
+      res.status(200).json({ message: 'success', userses });
+    } catch ({ message }) {
+      res.json({ error: message });
+    }
+  });
+
 module.exports = router;
+
+
