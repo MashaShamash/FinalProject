@@ -6,7 +6,7 @@ const path = require('path')
 
 async function getAllProfile () {
     try {
-      const getReadFile = await fs.readFile(path.join(__dirname, '..', '..', '/scriptSeeads/art.json'), 'utf8')
+      const getReadFile = await fs.readFile(path.join(__dirname, '..', '..', '/scriptSeeads/updated_data.json'), 'utf8')
         const parsGetReadFile = JSON.parse(getReadFile)
         const newArrUser = []
       
