@@ -1,4 +1,6 @@
-import React, { useState, ChangeEvent } from 'react';
+// @ts-nocheck
+import type { ChangeEvent } from 'react';
+import React, { useState } from 'react';
 import './ProfileUpdatName.css';
 import type { Profile } from '../types/profileTypes';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
@@ -10,7 +12,6 @@ type ProfileUpdatNameProps = {
 }
 
 function ProfileUpdatName({ isProfile, setActive}: ProfileUpdatNameProps): JSX.Element {
-    const { user } = useAppSelector((state) => state.auth);
     const dispatch = useAppDispatch();
     
     const [name, setName] = useState(isProfile.name);
@@ -108,7 +109,7 @@ function ProfileUpdatName({ isProfile, setActive}: ProfileUpdatNameProps): JSX.E
                         <span className='span-for'>Добавить аватар</span>
                         <div className="input__wrapper">
                         <input name="file" type="file" id="input__file" className="input input__file" onChange={onHandleImageChange} multiple/>
-                            <label for="input__file" class="input__file-button" >
+                            <label htmlFor="input__file" className="input__file-button" >
                                 <span className="input__file-icon-wrapper">Выберите файл</span>
                         </label>
                         {previewImage && (

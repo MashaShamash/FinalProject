@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
-import type { Figure, FigureId, FigureWithoutId, FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym } from './types/figureTypes';
+import type { Figure, FigureId, FigureWithoutIdAndWithoutUserIdAndWithoutNamelastNamePseudonym } from './types/figureTypes';
 
 import FigureApi from './api/figuresApi';
 

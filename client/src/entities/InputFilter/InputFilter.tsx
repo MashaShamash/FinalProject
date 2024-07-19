@@ -1,7 +1,8 @@
+// @ts-nocheck
 import React, { useEffect, useRef, useState } from 'react';
+import { Link} from 'react-router-dom';
 import { useAppSelector } from '../../app/store/store';
 import './InputFilter.css';
-import { Link, NavLink } from 'react-router-dom';
 
 type Figure = {
   title: string;

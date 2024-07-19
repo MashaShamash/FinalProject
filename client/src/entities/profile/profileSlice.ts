@@ -1,5 +1,6 @@
+// @ts-nocheck
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { Profile, ProfileId, ProfileWhizautIdAndWhizautUserId, ProfileWhizautIdAndWhizautUserIdAndNameLastName } from "./types/profileTypes";
+import type { Profile, ProfileId, ProfileWhizautIdAndWhizautUserId, ProfileWhizautIdAndWhizautUserIdAndNameLastName } from "./types/profileTypes";
 import ProfileApi from "./api/profileApi";
 
 

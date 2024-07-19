@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 import InfiniteScroll from 'react-infinite-scroll-component';

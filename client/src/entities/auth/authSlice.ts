@@ -1,8 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { User, UserWithoutIdWithPassword, UserWithoutNameAndLastName } from "./types/userTypes";
+import type { User, UserWithoutIdWithPassword, UserWithoutNameAndLastName } from "./types/userTypes";
 import AuthApi from "./api/AuthApi";
-import ProfileApi from "../profile/api/profileApi";
-import { Profile, ProfileWhizautIdAndWhizautUserId } from "../profile/types/profileTypes";
+
 
 type initialStateType = {
     user: User | undefined;

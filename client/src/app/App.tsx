@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './styles/App.css';
-import { RootState, useAppDispatch } from './store/store';
+import { useSelector } from 'react-redux';
+import type { RootState} from './store/store';
+import { useAppDispatch } from './store/store';
 import { getCategoriesThunk } from '../entities/categories/categoriesSlice';
 import Navbar from '../widgets/Navbar/Navbar';
 import AppRoutes from './provider/AppRoutes';
@@ -11,7 +13,6 @@ import StickyFooter from '../widgets/StickyFooter/StyckyFooter';
 import { getAllProfileThunk } from '../entities/profile/profileSlice';
 import { getUsersThunk } from '../entities/users/usersSlice';
 import { loadBaskets } from '../entities/basket/basketSlice';
-import { useSelector } from 'react-redux';
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();

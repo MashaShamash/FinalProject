@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { type RootState } from '../../app/store/store';
 import FigureItem from '../../entities/figures/ui/FigureItem';
@@ -8,7 +7,6 @@ import './FigureDiv.css';
 
 function FigurePage(): JSX.Element {
   const { figures } = useSelector((state: RootState) => state.figures);
-  // const [likedFigures, setLikedFigures] = useState<{ figureId: string }[]>([]);
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState(figures.slice(0, 20));
 

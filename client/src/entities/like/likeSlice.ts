@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import type { Like, LikeWithoutId, LikeWithoutIdAndWithotFigure } from './types/likeTypes';
+import type { Like, LikeWithoutIdAndWithotFigure } from './types/likeTypes';
 import LikeApi from './api/apiLike';
 
 // Функция для загрузки состояния из localStorage
@@ -14,7 +14,7 @@ const loadState = (): Like[] => {
 };
 
 // Функция для сохранения состояния в localStorage
-const saveState = (state: Like[]) => {
+const saveState = (state: Like[]): void => {
   try {
     const serializedState = JSON.stringify(state);
     localStorage.setItem('like', serializedState);

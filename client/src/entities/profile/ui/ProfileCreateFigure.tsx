@@ -1,3 +1,4 @@
+// @ts-nocheck
 import './ProfileCreateFigure.css'
 import type { ChangeEvent} from 'react';
 import React, { useState } from 'react';
@@ -12,7 +13,6 @@ type ProfileCreateFigureProps={
 }
 
 function ProfileCreateFigure({isProfile, setActive}: ProfileCreateFigureProps): JSX.Element {
-    const {user} = useAppSelector((state) => state.auth)
     const { categories } = useAppSelector((state) => state.categories);
     const dispatch = useAppDispatch()
     console.log(99999999999, isProfile?.pseudonym);

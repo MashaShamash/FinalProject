@@ -1,16 +1,15 @@
 import React from 'react';
-
 import './ProfileBio.css'
-import { useAppSelector } from '../../../../app/store/store';
-import { Profile } from '../../types/profileTypes';
+import type { Profile } from '../../types/profileTypes';
+
 
 
 
 type ProfileBioProps={
     isProfile: Profile
 }
-const ProfileUserBio = ({isProfile}: ProfileBioProps): JSX.Element =>{
-    const {user} = useAppSelector((state) => state.auth)
+function ProfileUserBio({isProfile}: ProfileBioProps): JSX.Element {
+
 
 return (
             <div className=' ProfileBio'>
