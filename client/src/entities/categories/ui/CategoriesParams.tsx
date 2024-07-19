@@ -40,6 +40,7 @@ function CategoriesParams(): JSX.Element {
   };
   return (
     <div className=" CategoriesParams">
+      <button type='button' className='buttonsr' onClick={()=> navigate(-1)}>Назад</button>
       <h1>Категория: {nameCategor?.title}</h1>
       <InfiniteScroll
         style={{
@@ -65,7 +66,7 @@ function CategoriesParams(): JSX.Element {
               <h3>{el.price}</h3>
               <p>{el.width}</p>
               <p>{el.sell}</p>
-              <button type='button' onClick={()=> navigate(`/figures/${el.id}`)}>Подробнее</button>
+              <button type='button' className='buttonsr' onClick={()=> navigate(`/figures/${el.id}`)}>Подробнее</button>
             </div>
           ))}
       </InfiniteScroll>
