@@ -247,8 +247,8 @@ function MagazinPage(): JSX.Element {
             dataLength={items.length}
             next={fetchMoreData}
             hasMore={hasMore}
-            loader={<h4>Loading...</h4>}
-            endMessage={<p>No more figures to display</p>}
+            loader={<h4 />}
+            endMessage={<p />}
           >
             {filteredFigures &&
               filteredFigures.map((figure) => (
