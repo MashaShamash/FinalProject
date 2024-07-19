@@ -20,3 +20,29 @@
     justify-content: center;
     flex-wrap: wrap;
   }
+
+.buttonsr {
+
+}
+
+.buttonsr{
+  padding-bottom: 2px;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  margin-right: 30px;
+  margin-left: 50px;
+  font-size: 20px;
+  border-radius: 0;
+}
+
+.buttonsr:hover {
+  border-bottom: 2px solid rgb(0, 0, 0);
+  padding-bottom: 2px;
+
+
+}
