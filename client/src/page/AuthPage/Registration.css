@@ -1,0 +1,116 @@
+.main-div {
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+  
+}
+
+
+label {
+    display: flex;
+    flex-direction: column;
+    width: 270px;
+    /* height: 40px; */
+}
+
+.form__input {
+    height: 30px;
+    margin-top: 3px;
+    font-size: 32px;
+}
+span{
+  font-size: 32px;
+}
+.span-password {
+    font-size: 8px;
+    width: 200px;
+}
+
+.form__btn {
+
+    border-radius: 100px;
+    margin-top: 10px;
+   width: 200px;
+   background-color: transparent;
+   border: none;
+}
+
+.button-container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.password-input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 270px;
+  }
+  
+.form__input_prop[type="password"] {
+    flex: 1;
+    padding-right: 40px;
+    height: 30px;
+    margin-top: 3px;
+  }
+
+  .form__input_prop_op[type="password"] {
+    flex: 1;
+    padding-right: 40px; 
+    height: 30px;
+    margin-top: 3px;
+  }
+
+  .form__input_prop[type="text"] {
+    flex: 1;
+    padding-right: 40px; 
+    height: 30px;
+    margin-top: 3px;
+  }
+  .form__input_prop_op[type="text"] {
+    flex: 1;
+    padding-right: 40px; 
+    height: 30px;
+    margin-top: 3px;
+  }
+  
+  .toggle-password-button {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .toggle-password-button:focus {
+    outline: none;
+  }
+  
+  .span-password {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 5px;
+  }
+
+  span {
+    font-size: 10px;
+  }
+
+  .div-button-ext {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .botton-ext {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 0 0 0;
+  }

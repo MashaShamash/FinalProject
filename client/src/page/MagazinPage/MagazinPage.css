@@ -1,0 +1,170 @@
+.wrappers {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 20px;
+  width: 100%;
+}
+
+.MagazinPage {
+  display: flex;
+  margin: 20px;
+  width: 90%;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.sautBar {
+  width: 200px; /* Ширина сайтбара */
+  flex-shrink: 0;
+  margin: 10px;
+  padding: 10px;
+
+}
+.sautBar button {
+  /* margin: 8px; */
+}
+.contener {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.contener.active {
+  max-height: 1100px; /* Достаточное значение для полного раскрытия */
+  /* background-color: rgb(226, 226, 226); */
+  padding: 20px;
+}
+
+.contener.active p {
+  max-height: 1000px; /* Достаточное значение для полного раскрытия */
+  background-color: rgb(255, 255, 255);
+  font-size: 15px;
+  padding: 5px;
+}
+
+.selector-categor,
+.pseudonym,
+.title,
+.material {
+  margin-bottom: 15px;
+}
+
+.material-span {
+  font-size: 25px;
+}
+.category-span,
+.pseudonym-span,
+.title-span,
+.material-span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.category-sel,
+.pseudonym-input,
+.title-input,
+.material-input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.conteiner-slider {
+  margin-top: 20px;
+}
+
+.price,
+.height,
+.date,
+.price {
+  margin-bottom: 20px;
+}
+
+.buttonSearch {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.buttonSearch button {
+}
+
+.buttonSearch button {
+  padding-bottom: 2px;
+  border: none;
+  font: inherit;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  outline: none;
+
+  font-size: 20px;
+  border-radius: 0;
+}
+
+.buttonSearch button:hover {
+  border-bottom: 2px solid rgb(0, 0, 0);
+  padding-bottom: 2px;
+}
+
+.results {
+  flex-grow: 1;
+}
+
+.results h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.InfiniteScroll {
+  height: auto;
+  overflow: auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.InfiniteScroll div {
+  width: calc(33.333% - 20px); /* Три элемента в ряд */
+  margin: 10px;
+}
+
+.InfiniteScroll img {
+  width: 100%;
+  height: auto;
+}
+
+.jhg {
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+
+.price-slider .rc-slider-track {
+  background-color: rgb(196, 216, 194);
+}
+.price-slider .rc-slider-handle {
+  border-color: rgb(196, 216, 194);
+}
+.height-slider .rc-slider-track {
+  background-color: rgb(196, 216, 194);
+}
+.height-slider .rc-slider-handle {
+  border-color: rgb(196, 216, 194);
+}
+.date-slider .rc-slider-track {
+  background-color: rgb(196, 216, 194);
+}
+.date-slider .rc-slider-handle {
+  border-color: rgb(196, 216, 194);
+}
+
+.price-slider .rc-slider-handle:focus,
+.price-slider .rc-slider-handle:hover,
+.price-slider .rc-slider-handle:active {
+  border-color: rgb(196, 216, 194);
+  box-shadow: 0 0 5px rgb(196, 216, 194);
+}

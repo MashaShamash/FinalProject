@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import {  User, UserWithoutIdWithPassword, UserWithoutName } from "../types/userTypes";
+import {  User, UserWithoutId, UserWithoutNameAndLastName } from "../types/userTypes";
 import axiosInstance from "../../../services/axiosInstance";
 
 
@@ -13,8 +13,9 @@ export type UserType = {
 
 class AuthApi {
 
-    static registration = async (body:UserWithoutIdWithPassword):Promise<UserType> => {
+    static registration = async (body:UserWithoutId):Promise<UserType> => {
         try {
+        
             const response: AxiosResponse<UserType> = await axiosInstance.post('/auth/registration', body)
             return response.data
         } catch (error) {
@@ -22,7 +23,7 @@ class AuthApi {
         }
     }
 
-    static authorization = async (body:UserWithoutName): Promise<UserType> => {
+    static authorization = async (body:UserWithoutNameAndLastName): Promise<UserType> => {
         try {
             const response: AxiosResponse<UserType> = await axiosInstance.post('/auth/authorization', body)
             return response.data

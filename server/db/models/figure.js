@@ -2,61 +2,83 @@
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Figure extends Model {
-    static associate({ User, ShowLine, OrderLine, Like, AuctionLine, Category }) {
+    static associate({
+      User,
+      ShowLine,
+      BasketLine,
+      Like,
+      AuctionLine,
+      Category,
+    }) {
       this.belongsTo(User, { foreignKey: 'userId' });
       this.belongsTo(Category, { foreignKey: 'categoryId' });
       this.hasMany(ShowLine, { foreignKey: 'figureId' });
-      this.hasMany(OrderLine, { foreignKey: 'figureId' });
+      this.hasMany(BasketLine, { foreignKey: 'figureId' });
       this.hasMany(Like, { foreignKey: 'figureId' });
       this.hasMany(AuctionLine, { foreignKey: 'figureId' });
     }
   }
-  Figure.init({
-    title: {
-      type: DataTypes.TEXT
-    },
-    date: {
-      type: DataTypes.DATE
-    },
-    img: {
-      type: DataTypes.TEXT
-    },
-    materials: {
-      type: DataTypes.TEXT
-    },
-    heigth: {
-      type: DataTypes.INTEGER
-    },
-    price: {
-      type: DataTypes.INTEGER
-    },
-    width: {
-      type: DataTypes.INTEGER
-    },
+  Figure.init(
+    {
+      title: {
+        type: DataTypes.TEXT,
+      },
+      date: {
+        type: DataTypes.INTEGER,
+      },
+      img: {
+        type: DataTypes.TEXT,
+      },
+      materials: {
+        type: DataTypes.TEXT,
+      },
+      height: {
+        type: DataTypes.INTEGER,
+      },
+      price: {
+        type: DataTypes.INTEGER,
+      },
+      name: {
+        type: DataTypes.TEXT,
+      },
+      lastName: {
+        type: DataTypes.TEXT,
+      },
+      width: {
+        type: DataTypes.INTEGER,
+      },
+      pseudonym: {
+        type: DataTypes.TEXT,
+      },
+      biography: {
+        type: DataTypes.TEXT,
+      },
       categoryId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Categories',
-        key: 'id',
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Categories',
+          key: 'id',
+        },
+        onDelete: 'cascade',
       },
-      onDelete: 'cascade',
-    },
       userId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-      references: {
-        model: 'Users',
-        key: 'id',
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id',
+        },
+        onDelete: 'cascade',
       },
-      onDelete: 'cascade',
+      sell: {
+        type: DataTypes.BOOLEAN,
+      },
     },
-    sell: {
-      type: DataTypes.BOOLEAN
-    },
-  }, {
-    sequelize,
-    modelName: 'Figure',
-  });
+    {
+      sequelize,
+      modelName: 'Figure',
+    }
+  );
   return Figure;
 };

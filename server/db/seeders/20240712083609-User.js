@@ -5,12 +5,12 @@ const path = require('path')
 
 async function getAllUser () {
     try {
-      const getReadFile = await fs.readFile(path.join(__dirname, '..', '..', '/scriptSeeads/art.json'), 'utf8')
+      const getReadFile = await fs.readFile(path.join(__dirname, '..', '..', '/scriptSeeads/updated_data.json'), 'utf8')
         const parsGetReadFile = JSON.parse(getReadFile)
         const newArrUser = []
       
         parsGetReadFile.map( (el) => {
-          newArrUser.push({id: el.id, name: el.name, lastName: el.lastName,email: el.email, password: el.password})
+          newArrUser.push({name: el.name, lastName: el.lastName,email: el.email, password: el.password})
         })
        
       return newArrUser
@@ -23,7 +23,6 @@ async function getAllUser () {
 module.exports = {
   async up (queryInterface, Sequelize) {
     const users = await getAllUser();
-    console.log(users.length);
      await queryInterface.bulkInsert('Users',users, {});
   },
   async down (queryInterface, Sequelize) {

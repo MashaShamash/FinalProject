@@ -1,7 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { User, UserWithoutIdWithPassword, UserWithoutName } from "./types/userTypes";
+import type { User, UserWithoutIdWithPassword, UserWithoutNameAndLastName } from "./types/userTypes";
 import AuthApi from "./api/AuthApi";
-
 
 
 type initialStateType = {
@@ -9,6 +8,7 @@ type initialStateType = {
     accessToken: string | undefined;
     error: string | undefined;
     loading: boolean;
+
 }
 
 const initialState: initialStateType = {
@@ -16,15 +16,17 @@ const initialState: initialStateType = {
     accessToken: undefined,
     error: undefined,
     loading: true,
+    
 }
 
 export const getRegistrationThunk = createAsyncThunk('registration/user', (body:UserWithoutIdWithPassword) => AuthApi.registration(body))
 
-export const getAuthorizationThunk = createAsyncThunk('authorization/user', (body:UserWithoutName) => AuthApi.authorization(body))
+export const getAuthorizationThunk = createAsyncThunk('authorization/user', (body:UserWithoutNameAndLastName) => AuthApi.authorization(body))
 
 export const getRefreshTokensThunk = createAsyncThunk('refreshTokens/user', () => AuthApi.refreshTokens())
 
 export const getLogoutThunk = createAsyncThunk('logout/user', () => AuthApi.logout())
+
 
 
 const authSlice = createSlice({

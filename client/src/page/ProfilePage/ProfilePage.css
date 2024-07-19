@@ -1,0 +1,137 @@
+.ProfilePage {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+}
+
+.wrapper-prof-bio {
+    width: 90%;
+    height: 100vh;
+}
+
+
+.NameImg {
+    position: relative;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(255, 255, 255);
+    justify-content: flex-start;
+}
+
+.NameImg img {
+    width: 150px;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+}
+
+.div-map {
+    display: flex;
+    margin-left: 50px;
+    background-color: rgb(255, 255, 255);
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+
+.div-map-name {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+
+
+.info-page-comtener {
+    height: calc(100vh - 300px);
+}
+
+.button-page {
+    background-color: rgb(255, 255, 255);
+    border-bottom: 1px solid black;
+    
+}
+.button-page button {
+    padding-bottom: 2px;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-right: 30px;
+    margin-left: 50px;
+    font-size: 20px;
+    border-radius: 0;
+}
+
+.button-page button:hover {
+    border-bottom: 2px solid rgb(0, 0, 0);
+    padding-bottom: 2px;
+ 
+
+}
+
+.gu {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    position: absolute;
+    left: 80%;
+}
+
+    .gu button {
+        padding-bottom: 2px;
+        border: none;
+        font: inherit;
+        color: inherit;
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+        outline: none;
+        margin-right: 30px;
+        margin-left: 50px;
+        font-size: 20px;
+        border-radius: 0;
+    }
+    
+    .button-page button:hover {
+        border-bottom: 2px solid rgb(0, 0, 0);
+        padding-bottom: 2px;
+     
+    
+    }
+
+   .div-p-name p{
+        font-size: 40px;
+   }
+
+   .pictha {
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+
+   }
+
+   .pictha img{
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 100px;
+   }

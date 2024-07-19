@@ -1,0 +1,115 @@
+.ProfileMyFigure {
+    background-color: rgb(255, 255, 255);
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-open {
+    display: flex;
+    width: 100%;
+    margin-right: 70px;
+    margin-top: 50px;
+    justify-content: flex-end;
+    
+}
+
+.button-open button {
+    padding-bottom: 2px;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    margin-right: 30px;
+    margin-left: 50px;
+    font-size: 30px;
+    border-radius: 0;
+}
+
+.button-open button:hover {
+    border-bottom: 2px solid rgb(0, 0, 0);
+    padding-bottom: 2px;
+ 
+
+}
+
+.div-h1 {
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 30px;
+    
+}
+
+.div-map-figure-main {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.div-map-figure {
+    padding: 50px;
+    display: flex;
+    width: 330px;
+    height: 400px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.div-map-figure img{
+    width: 300px;
+    height: 350px;
+}
+
+
+.two-button {
+    display: flex;
+}
+
+.delr {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.delr button {
+    background-color: brown;
+    color: aliceblue;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.two-button button{
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+    outline: none;
+   
+    font-size: 30px;
+    border-radius: 0;
+}
+
+.two-button button:hover {
+    border-bottom: 2px solid rgb(0, 0, 0);
+    padding-bottom: 2px;
+ 
+
+}
+
+.ui {
+    margin-right: 10px;
+}
+
+.uy {
+    margin-left:10px ;
+}
+
