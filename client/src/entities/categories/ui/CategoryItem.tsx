@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
-import { useAppDispatch } from '../../../app/store/store';
-import { removeCategoryThunk } from '../categoriesSlice';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import type { Category } from '../types/categoryTypes';
 import './categoryCard.css';
-import { Link } from 'react-router-dom';
 
 type CategoryItemProps = {
   category: Category;
 };
 function CategoryItem({ category }: CategoryItemProps): JSX.Element {
-  const dispatch = useAppDispatch();
-  const [active, setActive] = useState(false);
-
   return (
     <div className="categoryItem">
       <Link to={`/categories/${category.id}`}>

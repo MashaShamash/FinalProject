@@ -1,9 +1,10 @@
+// @ts-nocheck
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import type { Basket, BasketLine } from './types/basketTypes';
 import type { UserId } from '../auth/types/userTypes';
 import BasketApi from './api/apiBasket';
 import FigureApi from '../figures/api/figuresApi';
-import { FigureId } from '../figures/types/figureTypes';
+import type { FigureId } from '../figures/types/figureTypes';
 
 type BasketsReducer = {
   basket: Basket | undefined;

@@ -1,11 +1,11 @@
 import React from 'react';
-import { Profile } from '../types/profileTypes';
+import type { Profile } from '../types/profileTypes';
 import './ProfileMyAdress.css'
 
 type ProfileMyAdressProps={
     isProfile: Profile
 }
-const ProfileMyAdress = ({isProfile}: ProfileMyAdressProps): JSX.Element =>{
+function ProfileMyAdress({isProfile}: ProfileMyAdressProps): JSX.Element {
 return (
 <div className=' ProfileMyAdress'>
     <h1 style={{marginTop: '50px'}}>Контактные данные</h1>

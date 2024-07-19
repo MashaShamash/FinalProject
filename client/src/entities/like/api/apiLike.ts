@@ -1,6 +1,6 @@
 import type { AxiosResponse } from 'axios';
 import axiosInstance from '../../../services/axiosInstance';
-import type { Like, LikeId, LikeWithoutId, LikeWithoutIdAndWithotFigure } from '../types/likeTypes';
+import type { Like, LikeWithoutIdAndWithotFigure } from '../types/likeTypes';
 
 class LikeApi {
   static getAllLike = async (): Promise<Like[]> => {
@@ -19,13 +19,5 @@ class LikeApi {
 
     return response.data;
   };
-
-  // static deleteLike = async (id: LikeId): Promise<LikeId | string> => {
-  //   const response: AxiosResponse<{ message: string }> = await axiosInstance.delete(`/like/${id}`);
-  //   if (response.data.message === 'success') {
-  //     return id;
-  //   }
-  //   return 'no';
-  // };
 }
 export default LikeApi;

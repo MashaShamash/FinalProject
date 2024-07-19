@@ -8,6 +8,7 @@ import {yupResolver} from '@hookform/resolvers/yup'
 import {  getRegistrationThunk } from '../../entities/auth/authSlice';
 import { UserWithoutIdWithPassword } from '../../entities/auth/types/userTypes';
 import { getCreateProfileThunk } from '../../entities/profile/profileSlice';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -52,7 +53,7 @@ const schema = object().shape({
 
 function RegistrationPage( ): JSX.Element {
   const [showPassword, setShowPassword] = useState(false);
- 
+ const navigate = useNavigate()
   const dispatch = useAppDispatch();
  
 const {register, handleSubmit, formState: {errors}} = useForm<RegistrationFormInputs>({resolver: yupResolver(schema)})
@@ -70,7 +71,7 @@ const onHandleSubmit  = async (user:UserWithoutIdWithPassword):Promise<void> => 
   }
 
   await dispatch(getCreateProfileThunk(data))
-
+  navigate('/categories')
 
 }
 

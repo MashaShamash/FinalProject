@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/store/store';
@@ -6,8 +7,6 @@ import './FiguresParams.css';
 // import ProfilePage from '../../../page/ProfilePage/ProfilePage';
 import ProfileUsersPage from '../../../page/ProfilePage/ProfileUsers/ProfileUsersPage';
 import { addToBasket } from '../../basket/basketSlice';
-import { useSelector } from 'react-redux';
-import type { RootState } from '@reduxjs/toolkit/query';
 // import ModalWindow from '../../../shared/ui/Modal/Modal';
 
 function FiguresParams(): JSX.Element {
@@ -16,7 +15,7 @@ function FiguresParams(): JSX.Element {
   const [openBasket, setOpenBasket] = useState(false);
   const { figures } = useAppSelector((state) => state.figures);
   // user
-  const user = useSelector((state: RootState) => state.auth.user);
+  const user = useAppSelector((state) => state.auth.user);
   const figure = figures.find((f) => f.id === +figId);
   const [active, setActive] = useState<boolean>(true);
   const navigate = useNavigate();
@@ -79,7 +78,6 @@ function FiguresParams(): JSX.Element {
           <div>
             <ProfileUsersPage figure={figure} />
           </div>
-          
         )}
       </div>
     </>

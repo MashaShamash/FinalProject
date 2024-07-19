@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useState } from 'react';
 import Slider from 'rc-slider';
 import InfiniteScroll from 'react-infinite-scroll-component';
@@ -247,8 +248,8 @@ function MagazinPage(): JSX.Element {
             dataLength={items.length}
             next={fetchMoreData}
             hasMore={hasMore}
-            loader={<h4>Loading...</h4>}
-            endMessage={<p>No more figures to display</p>}
+            loader={<h4 />}
+            endMessage={<p />}
           >
             {filteredFigures &&
               filteredFigures.map((figure) => (

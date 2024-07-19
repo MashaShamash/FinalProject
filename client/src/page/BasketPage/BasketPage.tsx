@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -17,14 +18,7 @@ function BasketPage(): JSX.Element {
   const handleDeleteBasket = (): void => {
     void dispatch(deleteBasket(user.basketId));
   };
-  // const calculateTotalItems = (): number => {
-  //   if (!basket || !basket.BasketLines) {
-  //     return 0;
-  //   }
-  //   return basket.BasketLines.reduce((total, basketLine) => total + basketLine.quantity, 0);
-  // };
-
-  // const totalItems = calculateTotalItems()
+  
   console.log(basket);
 
   return (

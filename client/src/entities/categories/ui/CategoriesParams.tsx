@@ -14,7 +14,6 @@ function CategoriesParams(): JSX.Element {
   const [hasMore, setHasMore] = useState(true);
   const [items, setItems] = useState<Figure[]>([]);
   const [filteredFigures, setFilteredFigures] = useState<Figure[]>([]);
-  const [active, setActive] = useState(false);
   let nameCategor: Category | undefined;
 
   if (catId) {

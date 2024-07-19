@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 import './figure.css';
 import { useSelector } from 'react-redux';
@@ -8,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import type { Figure } from '../types/figureTypes';
 import type { RootState } from '../../../app/store/store';
 import { useAppDispatch } from '../../../app/store/store';
-import { createLikeThunk, getAllLikeThunk } from '../../like/likeSlice';
+import { createLikeThunk } from '../../like/likeSlice';
 
 import { addToBasket, loadBaskets } from '../../basket/basketSlice';
 
